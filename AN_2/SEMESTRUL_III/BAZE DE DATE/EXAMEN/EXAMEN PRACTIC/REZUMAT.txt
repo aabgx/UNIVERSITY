@@ -1,0 +1,53 @@
+INCHIRIERI AUTO: 
+	-inregistrari din ultima luna
+
+MAGAZIN FILME:
+	-contin cuvnatul "..." in nuj ce camp (interogare)
+	-actori cu mai mult de 3 filme (view)
+	-filme neinchiriate de niciun client (procedura)
+	-numara clientii care au facut ceva (functie)
+
+BIBLIOTECA:
+	-insert (cu adaugare daca nu exista una din entitati) (procedura)
+	-carti cumparate dupa 2010 (si librarii care au >5 carti cumparate) (view)
+	-carti scrise de un nr de autori (functie)
+
+CAMPIONAT DE TENIS:
+	-insert (procedura)
+	-jucatori cu nr partide castigate descrescator (view)
+	-ceva adunare de puncte (functie)
+
+COMPETITII:
+	-upsert (procedura)
+	-competitii cu cei mai multi participanti (view)
+
+CURSE DE MASINI:
+	-upsert (procedura)
+	-masini care au participat la mai mult de 3 curse (functie)
+
+MELODII:
+	-upsert
+	-melodii cu mai mult de un nr n de interpreti
+
+MERSUL TRENURILOR:
+	-upsert (dar cauta id-ul avand numele)
+	-nume rute cu toate statiile (view)
+	-statii cu mai mult de un tren la o anumita ora (functie)
+
+
+POLITIE:
+	-upsert
+	-numarul de ore (ordonati politistii cumva) *8 (view)
+	-politisti cu mai mult de o programare la o anumita data si ora (functie)
+
+PRODUSE MAGAZIN:
+	-upsert
+	-clienti cu cel mult 3 produse favorite (left join) (view)
+
+SPITAL:
+	-contine "pediatrie"
+	-boli de care sufera mai mult de 3 pacienti (functie)
+	-tratamente care incep cu "a" si sunt folosite pt mai mult de 2 boli (view)
+	-departamente non stop cu mai mult de 3 doctori asignati (view)
+
+
