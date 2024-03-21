@@ -1,0 +1,9 @@
+rootProject.name = "tema_bun"
+include 'ClientFX'
+include 'Model'
+include 'Persistance'
+include 'Server'
+include 'Persistence'
+include 'Networking'
+include 'Services'
+

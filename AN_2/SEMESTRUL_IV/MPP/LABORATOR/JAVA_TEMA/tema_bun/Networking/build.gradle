@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example.tema_bun'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    implementation project(':Model')
+//    implementation project(':Server')
+    implementation project(':Services')
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
+
+    //pt protobuf
+    implementation group: 'com.google.protobuf', name: 'protobuf-java', version: '3.22.0'
+
+    //pt prostia aia de serializare
+    implementation 'com.google.code.gson:gson:2.8.9'
+}
+
+test {
+    useJUnitPlatform()
+}

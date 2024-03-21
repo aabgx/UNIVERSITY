@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="562.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tema_bun.controller.UtilizatorController">
+   <children>
+      <Label layoutX="169.0" layoutY="21.0" text="DESEN">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="293.0" layoutY="21.0" text="CAUTAREA UNEI COMORI">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="531.0" layoutY="21.0" text="POEZIE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="55.0" text="6-8 ani:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="18.0" layoutY="81.0" text="9-11 ani:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="11.0" layoutY="109.0" text="12-15 ani:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="d_6_8" layoutX="178.0" layoutY="56.0" text="Label" />
+      <Label fx:id="d_9_11" layoutX="178.0" layoutY="82.0" text="Label" />
+      <Label fx:id="d_12_15" layoutX="178.0" layoutY="110.0" text="Label" />
+      <Label fx:id="c_6_8" layoutX="366.0" layoutY="56.0" text="Label" />
+      <Label fx:id="c_9_11" layoutX="366.0" layoutY="82.0" text="Label" />
+      <Label fx:id="c_12_15" layoutX="366.0" layoutY="110.0" text="Label" />
+      <Label fx:id="p_6_8" layoutX="541.0" layoutY="56.0" text="Label" />
+      <Label fx:id="p_9_11" layoutX="541.0" layoutY="82.0" text="Label" />
+      <Label fx:id="p_12_15" layoutX="541.0" layoutY="110.0" text="Label" />
+      <ComboBox fx:id="probaCombo" layoutX="40.0" layoutY="200.0" prefWidth="150.0" promptText="PROBA" />
+      <ComboBox fx:id="categorieCombo" layoutX="40.0" layoutY="239.0" prefWidth="150.0" promptText="CATEGORIE VARSTA" />
+      <Label layoutX="56.0" layoutY="164.0" text="CAUTA PARTICIPANTI:" />
+      <Button fx:id="cautaBtn" layoutX="41.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="25.0" prefWidth="149.0" text="CAUTA!" />
+      <ListView fx:id="cautaListView" layoutX="41.0" layoutY="321.0" prefHeight="200.0" prefWidth="150.0" />
+      <RadioButton fx:id="desenRadio" layoutX="293.0" layoutY="225.0" mnemonicParsing="false" text="DESEN" />
+      <RadioButton fx:id="cautareRadio" layoutX="358.0" layoutY="225.0" mnemonicParsing="false" text="CAUTAREA UNEI COMORI" />
+      <RadioButton fx:id="poezieRadio" layoutX="526.0" layoutY="225.0" mnemonicParsing="false" text="POEZIE" />
+      <Label layoutX="285.0" layoutY="164.0" text="INSCRIE PARTICIPANT:" />
+      <Label layoutX="285.0" layoutY="204.0" text="1. PROBA/PROBELE DORITE (maxim 2!!)" />
+      <Label layoutX="285.0" layoutY="256.0" text="2. NUMELE PARTICIPANTULUI:" />
+      <TextField fx:id="numeField" layoutX="292.0" layoutY="281.0" />
+      <Label layoutX="285.0" layoutY="313.0" text="3. VARSTA PARTICIPANTULUI: " />
+      <Spinner fx:id="varstaSpinner" layoutX="292.0" layoutY="339.0" />
+      <Button fx:id="inscriereBtn" layoutX="285.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleInscriere" prefHeight="25.0" prefWidth="307.0" text="INSCRIE PARTICIPANT!" />
+      <Button fx:id="logoutBtn" layoutX="364.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="37.0" prefWidth="149.0" text="LOGOUT" />
+   </children>
+</AnchorPane>

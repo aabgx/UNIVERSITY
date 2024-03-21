@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="111.0" prefWidth="136.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tema_bun.controller.StartController">
+    <children>
+        <Button fx:id="loginBtn" onAction="#handleLogin" layoutX="39.0" layoutY="23.0" mnemonicParsing="false" text="LOGIN" />
+        <Button fx:id="contBtn" onAction="#handleCreare" layoutX="19.0" layoutY="63.0" mnemonicParsing="false" text="CREARE CONT" />
+    </children>
+</AnchorPane>

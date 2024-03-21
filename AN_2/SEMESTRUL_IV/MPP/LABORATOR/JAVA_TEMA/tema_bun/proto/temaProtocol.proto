@@ -1,0 +1,51 @@
+syntax="proto3";
+package com.example;
+
+option java_package = "com.example.tema_bun.protobuff";
+option java_outer_classname = "AppProtobuffs";
+option csharp_namespace = "tema_bun.AppProtobuffs";
+
+message CopilP{
+  string nume=1;
+  string varsta=2;
+}
+
+message InscriereP{
+    int32 id_copil=1;
+    string id_proba=2;
+}
+
+message ProbaP{
+  string id_proba=1;
+}
+
+message UtilizatorP{
+  string username=1;
+  string parola=2;
+}
+
+
+
+message RequestP {
+  enum Type { LOGIN=0;LOGOUT=1;CREARE_CONT=2;GET_PROBA_CATEGORIE_PARTICIPANTS=3;GET_NUMBER_OF_PARTICIPANTS=4;INSCRIERE=5;}
+  // Identifies which request is filled in.
+  Type type = 1;
+
+  // One of the following will be filled in, depending on the type.
+  UtilizatorP utilizatorP=2;
+  string str=3;
+  repeated string inscriereData=4;
+}
+
+message ResponseP{
+   enum Type { OK=0;ERROR=1;UPDATE=2;}
+
+     // Identifies which request is filled in.
+     Type type = 1;
+
+     // One of the following will be filled in, depending on the type.
+     bool boolean=2;
+     string message=3;
+     repeated int32 vector_cnt=4;
+     repeated string proba_categorie=5;
+}

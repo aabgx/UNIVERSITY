@@ -1,0 +1,88 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.beryx.jlink' version '2.25.0'
+}
+
+group 'com.example.tema_bun'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.8.2'
+}
+
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+application {
+    mainModule = 'com.example.tema_bun'
+    mainClass = 'com.example.tema_bun.HelloApplication'
+}
+
+javafx {
+    version = '17.0.2'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+dependencies {
+
+//    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+//    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+//
+//    implementation group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
+//    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+//    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
+//    runtimeOnly group: 'org.xerial', name: 'sqlite-jdbc', version: '3.36.0.3'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.17.1'
+
+    implementation 'org.apache.logging.log4j:log4j-api:2.17.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+    implementation 'org.xerial:sqlite-jdbc:3.36.0.1'
+    implementation group: 'org.xerial', name: 'sqlite-jdbc', version:'3.36.0.3'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    runtimeOnly group: 'org.xerial', name: 'sqlite-jdbc', version:'3.36.0.3'
+
+    //pt http client
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+}
+
+//jar{
+//    duplicatesStrategy (DuplicatesStrategy.EXCLUDE)
+//    manifest{
+//        attributes('Main-Class':'com.example.tema_bun.HelloApplication')
+//        attributes('Multi-Release':'true')
+//    }
+//    from{
+//        configurations.runtimeClasspath.collect{it.isDirectory() ? it : zipTree(it)}
+//    }
+//}
+
+test {
+    useJUnitPlatform()
+}
+
+jlink {
+    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'app'
+    }
+}
+
+jlinkZip {
+    group = 'distribution'
+}
