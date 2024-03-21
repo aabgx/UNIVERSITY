@@ -1,0 +1,56 @@
+Create database BazaSportiva
+go
+use BazaSportiva
+go
+
+CREATE TABLE Adrese
+(IdAdresa INT PRIMARY KEY, Tara varchar(50),Judet varchar(50),Oras varchar(50),
+Strada varchar(50), Numar int);
+
+CREATE TABLE Departamente
+(IdDepartament INT PRIMARY KEY, Nume varchar(50));
+
+CREATE TABLE Abonamente
+(IdAbonament INT PRIMARY KEY,DataInitierii varchar(50),DataExpirarii varchar(50));
+
+CREATE TABLE AbonamenteDepartamente
+(IdAbonament INT FOREIGN KEY REFERENCES Abonamente(IdAbonament), 
+IdDepartament INT FOREIGN KEY REFERENCES Departamente(IdDepartament),
+CONSTRAINT Id_ad PRIMARY KEY (IdAbonament, IdDepartament));
+
+CREATE TABLE Abonati
+(IdAbonat INT PRIMARY KEY, 
+Nume varchar(50),Varsta int,NrTelefon varchar(11),AdresaEmail varchar(20),
+IdAdresa INT FOREIGN KEY REFERENCES Adrese(IdAdresa),
+IdAbonament INT FOREIGN KEY REFERENCES Abonamente(IdAbonament));
+
+CREATE TABLE Plati
+(IdPlata INT PRIMARY KEY,
+Suma int,DataEfectuarii varchar(20),
+IdAbonat INT FOREIGN KEY REFERENCES Abonati(IdAbonat));
+
+CREATE TABLE Antrenori
+(IdAntrenor INT PRIMARY KEY,
+Nume varchar(40), Varsta int, NrTelefon varchar(11),
+AdresaEmail varchar(30), AniExperienta int,
+IdDepartament INT FOREIGN KEY REFERENCES Departamente(IdDepartament),
+IdAdresa INT FOREIGN KEY REFERENCES Adrese(IdAdresa));
+
+CREATE TABLE Concursuri
+(IdConcurs INT PRIMARY KEY,
+Data varchar(20), NrParticipanti int,
+IdDepartament INT FOREIGN KEY REFERENCES Departamente(IdDepartament)
+);
+
+CREATE TABLE Participanti
+(IdParticipant INT PRIMARY KEY,
+Nume varchar(50), Varsta int, NrTelefon varchar(11),AdresaEmail varchar(50),
+IdConcurs INT FOREIGN KEY REFERENCES Concursuri(IdConcurs),
+IdAdresa INT FOREIGN KEY REFERENCES Adrese(IdAdresa));
+
+CREATE TABLE Premii
+(IdPremiu INT PRIMARY KEY,
+Valoare int,
+IdConcurs INT FOREIGN KEY REFERENCES Concursuri(IdConcurs));
+
+-- DROP DATABASE BazaSportiva
