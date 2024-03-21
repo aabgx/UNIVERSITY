@@ -1,0 +1,5 @@
+keywords: include    iostream    
+operators: >    <    
+separators: #    
+operands: 
+constants: 

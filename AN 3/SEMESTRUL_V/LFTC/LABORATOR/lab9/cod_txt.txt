@@ -1,0 +1,20 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int a, b, c;
+    cin>>a
+    cin>>b;
+    b = a*2;
+    a = (b-(a/2)) + 4;
+    c = b/a;
+    cout<<b;
+    cout<<endl;
+    cout<<a;
+    cout<<endl;
+    cout<<c;
+    cout<<endl; 
+
+    return 0;
+}

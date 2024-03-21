@@ -1,0 +1,5 @@
+keywords: cin    include    using    double    namespace    main    int    cout    std    iostream    
+operators: >    =    <    -    *    >>    <<    
+separators: }    ;    {    #    (    )    
+identifiers: pi    aaa    raza    
+constants: 0b1010    3.14    0667    2    0x333E    

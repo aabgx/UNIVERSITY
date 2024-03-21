@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-image: linear-gradient(to right, #98dbc6, #bdd4e7);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      #background-image {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 10%;
+        height: auto;
+        padding: 10px;
+        z-index: -1;
+      }
+
+      #background-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      #game-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 50%;
+        font-size: 48px;
+      }
+
+      #animal-box {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        margin-right: 20px;
+        min-width: 200px;
+        border-radius: 10%;
+      }
+
+      #buttons-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #score {
+        font-size: 48px;
+        margin-top: 5vh;
+        padding-bottom: 10vh;
+      }
+
+      .button {
+        font-size: 30px;
+        padding: 10px;
+        margin: 5px;
+        cursor: pointer;
+        border: solid 1px black;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        width: 150px;
+        transition-duration: 0.4s;
+      }
+    </style>
+    <title>Animal Game</title>
+  </head>
+
+  <body>
+    <div id="score">Score: 0</div>
+    <div id="game-container">
+      <div>
+        <img id="animal-box" alt="Animal Image" />
+      </div>
+      <div id="buttons-container"></div>
+    </div>
+    <div id="background-image">
+      <img src="colt.png" alt="Background Image" />
+    </div>
+
+    <script>
+      const animals = [
+        { name: "Dog", imageUrl: "images/dog.jpeg" },
+        { name: "Cat", imageUrl: "images/cat.jpeg" },
+        { name: "Elephant", imageUrl: "images/elephant.jpeg" },
+        { name: "Giraffe", imageUrl: "images/giraffe.jpeg" },
+        { name: "Bear", imageUrl: "images/bear.jpeg" },
+        { name: "Fox", imageUrl: "images/fox.jpeg" },
+        { name: "Horse", imageUrl: "images/horse.jpeg" },
+        { name: "Cow", imageUrl: "images/cow.jpeg" },
+        { name: "Pig", imageUrl: "images/pig.jpeg" },
+        { name: "Monkey", imageUrl: "images/monkey.jpeg" },
+        { name: "Lion", imageUrl: "images/lion.jpeg" },
+        { name: "Zebra", imageUrl: "images/zebra.jpeg" },
+        { name: "Parrot", imageUrl: "images/parrot.jpeg" },
+        { name: "Sheep", imageUrl: "images/sheep.jpeg" },
+        { name: "Donkey", imageUrl: "images/donkey.jpeg" },
+        { name: "Rabbit", imageUrl: "images/rabbit.jpeg" },
+        { name: "Tiger", imageUrl: "images/tiger.jpeg" },
+        { name: "Seahorse", imageUrl: "images/seahorse.jpeg" },
+        { name: "Fish", imageUrl: "images/fish.jpeg" },
+      ];
+
+      let currentRound = 1;
+      let correctAnswers = 0;
+
+      function startGame() {
+        if (currentRound <= 10) {
+          const randomAnimalIndex = Math.floor(Math.random() * animals.length);
+          const randomAnimal = animals[randomAnimalIndex];
+
+          document.getElementById("animal-box").src = randomAnimal.imageUrl;
+          updateScore();
+
+          renderButtons(randomAnimal.name);
+        } else {
+          endGame();
+        }
+      }
+
+      function renderButtons(correctAnimalName) {
+        const buttonsContainer = document.getElementById("buttons-container");
+        buttonsContainer.innerHTML = "";
+
+        const shuffledAnimals = shuffleArray(
+          animals.filter((animal) => animal.name !== correctAnimalName)
+        ).slice(0, 3);
+
+        const randomIndex = Math.floor(Math.random() * 4);
+
+        for (let i = 0; i < 4; i++) {
+          const button = document.createElement("button");
+          button.classList.add("button");
+
+          if (i === randomIndex) {
+            button.textContent = correctAnimalName;
+            button.addEventListener("click", () =>
+              checkAnswer(correctAnimalName)
+            );
+          } else {
+            const wrongAnimal = shuffledAnimals.pop();
+            button.textContent = wrongAnimal.name;
+            button.addEventListener("click", () =>
+              checkAnswer(wrongAnimal.name)
+            );
+          }
+
+          buttonsContainer.appendChild(button);
+        }
+      }
+
+      function shuffleArray(array) {
+        const shuffledArray = [...array];
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffledArray[i], shuffledArray[j]] = [
+            shuffledArray[j],
+            shuffledArray[i],
+          ];
+        }
+        return shuffledArray;
+      }
+
+      function checkAnswer(selectedAnimal) {
+        const actualAnimal = animals.find(
+          (animal) =>
+            animal.imageUrl ===
+            document.getElementById("animal-box").getAttribute("src")
+        );
+
+        if (selectedAnimal.toLowerCase() === actualAnimal.name.toLowerCase()) {
+          correctAnswers++;
+        }
+
+        currentRound++;
+        updateScore();
+        startGame();
+      }
+
+      function updateScore() {
+        document.getElementById(
+          "score"
+        ).textContent = `Score: ${correctAnswers}`;
+      }
+
+      function endGame() {
+        window.location.href = "final_score.html?score=" + correctAnswers;
+      }
+
+      document.addEventListener("DOMContentLoaded", startGame);
+    </script>
+  </body>
+</html>

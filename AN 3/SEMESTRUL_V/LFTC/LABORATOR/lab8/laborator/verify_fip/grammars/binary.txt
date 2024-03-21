@@ -1,0 +1,5 @@
+BINARY -> 0b Binary_digits
+Binary_digits -> Binary_digit Binary_digits
+Binary_digits -> eps
+Binary_digit -> 0
+Binary_digit -> 1

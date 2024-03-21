@@ -1,0 +1,15 @@
+#include <iostream>
+if
+int ayg=2; <<
+a = a + 2;
+<
+raza123
+raza
+int zebra$
+xerox
+(instr) -> repeta (ceva) panacand (ceva) sfrepeta
+0b10101
+0xabc
+
+
+if(a>0){b=1;}

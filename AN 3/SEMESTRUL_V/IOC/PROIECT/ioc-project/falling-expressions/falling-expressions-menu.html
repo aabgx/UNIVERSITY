@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expresii Căzătoare</title>
+    <link rel="stylesheet" href="falling-expressions-menu.css" />
+  </head>
+  <body>
+    <div class="menu-container">
+      <h1>Expresii Căzătoare</h1>
+      <div class="content-container">
+        <div class="description-container">
+          <div class="description">
+            <p>
+              🎩🦆 "Hei, prieteni! Sunt eu, Daffy Duck, și astăzi vă voi vorbi
+              despre un joc absolut fantastic, numit 'Falling Expressions'!
+              Acest joc este ca o aventură matematică în lumea noastră looney!"
+            </p>
+
+            <p>
+              📦 "Deci, cum se joacă? Ei bine, ai o cutie magică - da, da, o
+              cutie! Acum, partea cea mai distractivă: expresii matematice
+              coboară din cer. Nu, nu sunt nori sau păsări, ci expresii
+              matematice!"
+            </p>
+
+            <p>
+              🧮 "Treaba ta este să prinzi expresiile corecte cu această cutie.
+              Alegeți cu grijă! Dacă expresia pe care o prinzi dă rezultatul
+              numărului de pe ecran, BUM! Primești un punct. Dar fii atent! Dacă
+              te înșeli, oops! Pierzi o viață."
+            </p>
+
+            <p>
+              ❤️ "Poți alege câte vieți ai la începutul jocului. Mai multe vieți
+              înseamnă mai multe șanse să obții un scor cât mai mare! Dar nu
+              prea multe, altfel e prea ușor, ha!"
+            </p>
+
+            <p>
+              🚀 "Și știi ce e și mai interesant? Poți alege cât de repede să
+              coboare expresiile! Da, da, poți face jocul mai ușor sau mai greu,
+              în funcție de cât de repede vrei să se miște expresiile. Asta e
+              partea cu 'dificultatea'."
+            </p>
+
+            <p>
+              🌈 "Și, pentru a adăuga un pic de culoare, poți chiar să-ți alegi
+              culoarea de fundal! Vrei un cer albastru sau poate o scenă verde?
+              Alegerea e a ta!"
+            </p>
+
+            <p>
+              👦 "Acum, copii, acesta este un joc care vă va pune creierul la
+              treabă și vă va face să râdeți în același timp. Așa că luați-vă
+              cutia, pregătiți-vă de prinderea expresiilor și hai să avem parte
+              de distracție! Quack, quack!" 🦆🎉
+            </p>
+          </div>
+        </div>
+        <div class="inputs-and-image">
+          <img src="assets/daffy-duck.png" class="daffy-image" />
+          <div class="inputs">
+            <div class="dropdown">
+              <label for="difficulty">Dificultate:</label>
+              <select id="difficulty">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="4">5</option>
+              </select>
+            </div>
+            <div class="dropdown">
+              <label for="lives">Număr de vieți:</label>
+              <select id="lives">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+            <div>
+              <label for="game-mode">Mod de joc</label>
+              <select id="game-mode">
+                <option value="1" selected>TRASARE</option>
+                <option value="2">SĂGEȚI</option>
+              </select>
+            </div>
+            <div class="color-picker">
+              <label for="background-color">Culoarea fundalului:</label>
+              <input type="color" id="background-color" value="#4ca8d0" />
+            </div>
+            <button class="playButton" onclick="onPlayButtonClicked()">
+              Incepe jocul
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="falling-expressions-menu.js" defer></script>
+  </body>
+</html>

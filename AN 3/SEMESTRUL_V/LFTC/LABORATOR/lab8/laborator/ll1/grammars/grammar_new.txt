@@ -1,0 +1,4 @@
+S -> abA
+S -> eps
+A -> Saa
+A -> b

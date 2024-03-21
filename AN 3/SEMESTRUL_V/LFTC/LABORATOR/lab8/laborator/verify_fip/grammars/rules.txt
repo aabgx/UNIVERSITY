@@ -1,0 +1,188 @@
+Program -> Lista_importuri using namespace std ; int main ( ) {  Lista_instructiuni return 0 ; }
+
+Lista_importuri -> Import Lista_importuri
+Lista_importuri -> eps
+
+Import -> # include < Librarie >
+
+Librarie -> iostream
+Librarie -> math.h
+
+Lista_instructiuni -> Instructiune Lista_instructiuni
+Lista_instructiuni -> eps
+
+Instructiune -> Declarare
+Instructiune -> Atribuire ;
+Instructiune -> Intrare
+Instructiune -> Iesire
+Instructiune -> Conditional
+Instructiune -> Ciclare
+
+Declarare -> Tip Declarare_body ;
+
+Declarare_body -> Id_sau_atribuire Continuare_declarare_body
+Continuare_declarare_body -> , Declarare_body
+Continuare_declarare_body -> eps
+
+Id_sau_atribuire -> ID Continuare_id_sau_atribuire
+Continuare_id_sau_atribuire -> = Constant
+Continuare_id_sau_atribuire -> eps
+
+Tip -> int
+Tip -> float
+Tip -> char
+
+Atribuire -> ID = Expresie
+
+Expresie -> Atom Continuare_expresie
+Continuare_expresie -> Op Atom
+Continuare_expresie -> eps
+
+
+Op -> +
+Op -> -
+Op -> *
+Op -> /
+Op -> %
+
+Atom -> ID
+Atom -> Constant
+
+Constant -> DECIMAL
+Constant -> BINARY
+Constant -> OCTAL
+Constant -> HEXA
+
+Intrare -> cin >> ID ;
+
+Iesire -> cout << Expresie ;
+
+Conditional -> if ( Conditie ) { Lista_instructiuni } Altfel
+
+Altfel -> else { Lista_instructiuni }
+Altfel -> eps
+
+Conditie -> Expresie Relatie Expresie
+
+Relatie -> ==
+Relatie -> !+
+Relatie -> <
+Relatie -> <=
+Relatie -> >
+Relatie -> >=
+
+Ciclare -> For_loop
+Ciclare -> While_loop
+
+For_loop -> for ( Atribuire ; Conditie ; Incrementare ) { Lista_instructiuni }
+
+Incrementare -> ID ++
+
+While_loop -> while ( Conditie ) { Lista_instructiuni }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ID -> LETTER Lista_litere
+Lista_litere -> LETTER Lista_litere
+Lista_litere -> eps
+LETTER -> a
+LETTER -> b
+LETTER -> c
+LETTER -> d
+LETTER -> e
+LETTER -> f
+LETTER -> g
+LETTER -> h
+LETTER -> i
+LETTER -> j
+LETTER -> k
+LETTER -> l
+LETTER -> m
+LETTER -> n
+LETTER -> o
+LETTER -> p
+LETTER -> q
+LETTER -> r
+LETTER -> s
+LETTER -> t
+LETTER -> u
+LETTER -> v
+LETTER -> w
+LETTER -> x
+LETTER -> y
+LETTER -> z
+
+BINARY -> 0b Binary_digits
+Binary_digits -> Binary_digit Binary_digits
+Binary_digits -> eps
+Binary_digit -> 0
+Binary_digit -> 1
+
+DECIMAL -> Nenul_digit Decimal_digits
+Decimal_digits -> Decimal_digit Decimal_digits
+Decimal_digits -> eps
+Decimal_digit -> 0
+Decimal_digit -> 1
+Decimal_digit -> 2
+Decimal_digit -> 3
+Decimal_digit -> 4
+Decimal_digit -> 5
+Decimal_digit -> 6
+Decimal_digit -> 7
+Decimal_digit -> 8
+Decimal_digit -> 9
+Nenul_digit -> 1
+Nenul_digit -> 2
+Nenul_digit -> 3
+Nenul_digit -> 4
+Nenul_digit -> 5
+Nenul_digit -> 6
+Nenul_digit -> 7
+Nenul_digit -> 8
+Nenul_digit -> 9
+
+OCTAL -> 0 Octal_digits
+Octal_digits -> Octal_digit Octal_digits
+Octal_digits -> eps
+Octal_digit -> 0
+Octal_digit -> 1
+Octal_digit -> 2
+Octal_digit -> 3
+Octal_digit -> 4
+Octal_digit -> 5
+Octal_digit -> 6
+Octal_digit -> 7
+
+HEXA -> 0x Hexa_digits
+Hexa_digits -> Hexa_digit Hexa_digits
+Hexa_digits -> eps
+Hexa_digit -> 0
+Hexa_digit -> 1
+Hexa_digit -> 2
+Hexa_digit -> 3
+Hexa_digit -> 4
+Hexa_digit -> 5
+Hexa_digit -> 6
+Hexa_digit -> 7
+Hexa_digit -> 8
+Hexa_digit -> 9
+Hexa_digit -> a
+Hexa_digit -> b
+Hexa_digit -> c
+Hexa_digit -> d
+Hexa_digit -> e
+Hexa_digit -> f

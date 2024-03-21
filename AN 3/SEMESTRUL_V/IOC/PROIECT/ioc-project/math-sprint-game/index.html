@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-image: linear-gradient(to right, #98dbc6, #bdd4e7);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: "Comic Sans MS", cursive; /* Schimbare la familia de fonturi "Comic Sans MS" */
+      }
+
+      #background-image {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 20%;
+        height: auto;
+        padding: 10px;
+        z-index: -1;
+      }
+
+      #background-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      #rules-container {
+        text-align: center;
+        max-width: 600px;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.2);
+        /* Fundal semi-transparent */
+        color: #333; /* Culoare text */
+      }
+
+      #rules-container h1 {
+        font-size: 28px; /* Mărimea fontului pentru titlu */
+        margin-bottom: 15px; /* Margin mai mare intre titlu si paragrafe */
+      }
+
+      #rules-container p {
+        font-size: 18px; /* Mărimea fontului pentru paragrafe */
+        margin-bottom: 10px; /* Margin mai mare intre paragrafe */
+      }
+
+      #start-button {
+        font-size: 24px;
+        padding: 10px;
+        cursor: pointer;
+        border: solid 1px black;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        width: 150px;
+        transition-duration: 0.4s;
+        margin-top: 20px;
+        color: #fff; /* Culoare text buton */
+        background-color: #3498db; /* Culoare fundal buton */
+      }
+
+      #start-button:hover {
+        background-color: #2980b9; /* Culoare fundal buton la hover */
+      }
+    </style>
+    <title>MATEMATICA RAPIDĂ</title>
+  </head>
+
+  <body>
+    <div id="rules-container">
+      <h1>REGULI</h1>
+      <p>Selectează numărul de întrebări dorit.</p>
+      <p>
+        Pentru fiecare înmulțire, decide dacă răspunsul este corect sau nu
+        apăsând unul dintre cele 2 butoane din partea de jos.
+      </p>
+      <p>
+        Dacă nu ai raspuns corect, se va adăuga o penalizare de o secundă la
+        timpul tău.
+      </p>
+      <p>
+        Scopul este să răspunzi corect la cât mai multe întrebări în cel mai
+        scurt timp posibil.
+      </p>
+      <p>BAFTĂ!</p>
+      <a href="game.html" id="start-button">START</a>
+    </div>
+    <div id="background-image">
+      <img src="colt.png" alt="Background Image" />
+    </div>
+  </body>
+</html>

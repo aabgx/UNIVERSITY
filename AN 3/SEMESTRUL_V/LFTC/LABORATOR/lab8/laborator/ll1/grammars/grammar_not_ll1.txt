@@ -1,0 +1,7 @@
+E -> TP
+P -> +E
+P -> eps
+T -> T*F
+T -> F
+F -> (E)
+F-> a

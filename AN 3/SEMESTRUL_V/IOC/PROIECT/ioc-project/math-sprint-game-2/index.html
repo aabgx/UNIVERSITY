@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <title>SPEEDY</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="score">
+        scor: <span id="scorevalue" style="font-weight: 900">0</span>
+      </div>
+      <div id="correct">Corect!</div>
+      <div id="wrong">Încearcă din nou!</div>
+      <div id="question"></div>
+      <div id="instruction">dă click pe răspunsul corect</div>
+      <div id="choices">
+        <div id="box1" class="box"></div>
+        <div id="box2" class="box"></div>
+        <div id="box3" class="box"></div>
+        <div id="box4" class="box"></div>
+      </div>
+      <div id="startreset">START</div>
+      <div id="timeremaining">
+        timp rămas:
+        <span
+          id="timeremainingvalue"
+          style="
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 32px;
+            color: black;
+          "
+          >60</span
+        >
+      </div>
+      <div id="gameOver"></div>
+    </div>
+    <div id="background-image">
+      <img src="colt.png" alt="Background Image" />
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

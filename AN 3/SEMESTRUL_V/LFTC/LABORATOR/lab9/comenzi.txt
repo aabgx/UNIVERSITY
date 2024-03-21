@@ -1,0 +1,4 @@
+bison -d analyzer.y
+flex analyzer.l
+gcc analyzer.tab.c lex.yy.c
+a.exe < cod_txt.txt

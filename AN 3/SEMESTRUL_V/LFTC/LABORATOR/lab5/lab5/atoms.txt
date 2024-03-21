@@ -1,0 +1,5 @@
+keywords: namespace    include    iostream    std    main    cin    cout    double    using    int    
+operators: >    <    -    =    *    >>    <<    
+separators: #    ;    {    )    }    (    
+identifiers: aaa    pi    raza    a    
+constants: 2    3.14    

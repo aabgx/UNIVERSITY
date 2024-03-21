@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: darkcyan;
+    background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/Yosemite_Sam.svg/800px-Yosemite_Sam.svg.png');
+    background-size: 20%;
+    background-position: left top;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#dialog-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5%;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: left;
+    width: 25%;
+    max-width: 400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+#dialog-container h1,
+#dialog-container h2,
+#dialog-container p {
+    margin: 0;
+}
+
+#bottomImage {
+    width: auto;
+    height: 30%;
+    margin-top: 20px;
+    /* Adaugăm spațiu între dialog-container și imagine */
+}
+#reincepeJocul {
+    margin-top: 10px;
+    /* Poți ajusta această valoare după preferințe */
+    background-color: orange;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 25px;
+    height: 10%;
+}

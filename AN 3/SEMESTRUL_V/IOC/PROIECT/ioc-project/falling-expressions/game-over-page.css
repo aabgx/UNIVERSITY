@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    width: 98vw;
+    height: 98vh;
+    text-align: center;
+}
+
+.score-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-menu-container {
+    margin-bottom: 1.5rem;
+}
+
+#scoreText {
+    font-size: 4rem;
+}
+
+.button-menu-container {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    background-color: #a35531;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button-menu-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #0056b3;
+}
+
+h1 {
+    font-size: 3.5rem;
+}

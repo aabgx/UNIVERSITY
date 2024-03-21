@@ -1,0 +1,42 @@
+// specificare MLP C++
+
+headere, int main() {}
+
+
+<program>::= <lista_headere><directiva_using><program_root>
+<lista_headere>::= <header> | <header><lista_headere>
+<header>::= #include"<" <header_file> ">"
+<header_file>::= iostream
+
+<directiva_using>::= using namespace std;
+<program_root>::= int main(){ <program_content> return 0; }
+<program_content>::= <lista_declarari><lista_instructiuni>
+
+<lista_declarari>::= <declarare>; | <declarare>;<lista_declarari>
+<declarare>::= <tip_data> <lista_id>
+<tip_data>::= int 
+<lista_id>::= <id> | <id>,<lista_id>
+<id>::= <litera> | <litera><sir_identificator>  // incepe doar cu litera!!|
+<sir_identificator>::=(<litera> | <cifra> | _ ) | (<litera> | <cifra> | _ )<sir_identificator>
+
+<lista_instructiuni>::= <instructiune>; | <instructiune>;<lista_instructiuni>
+<instructiune>::= <scriere> | <citire> | <atribuire> 
+<citire>::= cin">>"<id>
+<scriere>::= cout"<<"<id>
+<scriere>::= cout"<<"endl
+<atribuire>::= <id>=<expresie>
+<expresie>::= <expresie_primara> <operator> <expresie>
+<expresie_primara>::= <id> | <constanta> 
+<operator>::= + | -  | / | * | =
+
+<constanta>::= <nr_intreg> 
+<nr_intreg>::= <cifra> | <cifra_nenula><lista_cifre>
+
+<cifra>::= 0 | <cifra_nenula>
+<lista_cifre>::= <cifra> | <cifra><lista_cifre>
+<cifra_nenula>::= 1 |2 | 3 |..| 9
+
+
+
+
+

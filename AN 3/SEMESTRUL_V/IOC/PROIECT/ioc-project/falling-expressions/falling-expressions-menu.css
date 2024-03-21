@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.menu-container {
+    text-align: center;
+    max-width: 95%;
+    margin: auto;
+}
+
+
+h1 {
+    font-size: 3.5em;
+    margin: 0.5em;
+}
+
+
+p{
+    font-size: 1.3em;
+}
+
+.playButton {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    background-color: #a35531;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.playButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #0056b3;
+}
+
+.dropdown {
+    margin: 20px;
+}
+
+.color-picker {
+    margin: 20px;
+}
+
+.content-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.description-container {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.inputs {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.description {
+    text-align: left;
+    max-width: 400px;
+}
+
+.daffy-image {
+    width: auto;
+    height: 40vh;
+}
+
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .description-container, .inputs-and-image {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .description {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    .daffy-image {
+        height: 20vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .dropdown select, .color-picker input, button {
+        width: 100%;
+        margin: 10px 0;
+    }
+}

@@ -1,0 +1,8 @@
+E -> TP
+P -> +E
+P -> eps
+T -> FX
+X -> *T
+X -> eps
+F -> (E)
+F -> a

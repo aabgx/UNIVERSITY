@@ -1,0 +1,36 @@
+1. CITIRE cin >> a
+	**la citire se oune adresa in EAX
+	mov EAX, %s: mutam in eax valoarea stocata in a (al treilea din sir)
+	push EAX: impingem valoarea din eax in stiva de memorie
+	push dword read_int_fmt: read_int_fmt este un sir formatat pt citirea unui intreg, 
+			il impingen pe stiva de memorie
+	call [scanf]: citire intreg de la linia de intrare, adresa formatului si valoarea 
+			citita sunt luate de pe stiva
+	add ESP,8: ajustam stiva (eliminam 8 octeti)
+
+2. SCRIERE cout << a sau cout << endl
+	**la scriere se pune valoarea in EAX
+	mov EAX, [%s]: mutam in eax valoare stocata la adresa lui a (al treilea din sir)
+	push eax: impingem valoarea din eax pe stiva
+	push dword write_int_fmt: impingem un sir formatat pt afisare pe stiva
+	call [printf]: afisare valoare (formatul si valoarea luate de pe stiva)
+	add ESP,8: curatam stiva
+
+	pt endl sarim primii 2 pasi
+
+3. ATRIBUIRE
+	mut in eax adresa id-ului
+	mut in variabila mea (cu []) ce am in eax
+
+3. EXPRESIE
+	1. doua expresii primare cu op. aritmetic
+		genereaza un nume temporar pt rezultat
+	2. valoare terminala
+		se copiaza codul si numele variabilei direct in rezultat
+
+	daca am efectiv valoare, am nevoie de paranteze -> 2 o sa il folosesc ca [2]
+	
+
+$$ este valoarea lui expresie de ex
+varn numele la valoare sau constanta
+code va avea valoare doar daca incearca sa se evalueze o expresie, nu doar un id sau const

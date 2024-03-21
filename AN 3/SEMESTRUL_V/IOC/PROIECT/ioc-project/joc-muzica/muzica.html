@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recunoașterea notelor muzicale</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="main-container">
+        <div id="instructions-container">
+            <h1>Recunoașterea notelor muzicale</h1>
+            <p>După apăsarea butonului Start, pe ecran vor apărea pe rând imagini cu note muzicale. Când recunoașteți
+                nota muzicală, aceasta trebuie selectată din
+                listă. Pentru a trece la runda următoare, veți apăsa butonul aferent! </p>
+            <p>La finalul jocului, veți primi un scor final!</p>
+            <button id="start-btn" class="btn" onclick="startGame()">Start</button>
+        </div>
+        <div id="final-score-container">
+            <div id="final-score"></div>
+            <button id="restart-btn" class="btn" onclick="restartGame()">Reîncepe Jocul</button>
+        </div>
+
+        <div id="note-container">
+
+            <div id="note-image-container">
+                <img id="note-image" src="" alt="Note Image">
+            </div>
+            <div id="options-container"></div>
+            <button id="next-round-btn" class="btn" onclick="nextRound()">Următoarea Rundă</button>
+        </div>
+    </div>
+    <div id="background-image">
+        <img src="Bugs_Bunny.svg.png" alt="character">
+    </div>
+
+    <script src="script.js"> </script>
+</body>
+
+</html>

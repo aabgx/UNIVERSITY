@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Final Score</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-image: linear-gradient(to right, #98dbc6, #bdd4e7);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      #background-image {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 10%;
+        height: auto;
+        padding: 10px;
+        z-index: -1;
+      }
+
+      #background-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      #final-score {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+
+      #start-new-game {
+        font-size: 18px;
+        padding: 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        width: 150px;
+        transition-duration: 0.4s;
+        background-color: #ffffff;
+        /* Culoarea de fundal a butonului */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="final-score">Final Score: 0</div>
+    <button id="start-new-game" onclick="startNewGame()">Start New Game</button>
+    <div id="background-image">
+      <img src="colt.png" alt="Background Image" />
+    </div>
+
+    <script>
+      // Funcție pentru a prelua scorul din parametrul URL
+      function getScoreFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get("score");
+      }
+
+      // Funcție pentru a începe un nou joc
+      function startNewGame() {
+        window.location.href = "index.html"; // Redirectare către pagina principală
+      }
+
+      // Afisare scor final
+      const finalScoreElement = document.getElementById("final-score");
+      const finalScore = getScoreFromURL();
+      if (finalScore !== null) {
+        finalScoreElement.textContent = `Final Score: ${finalScore}`;
+      } else {
+        finalScoreElement.textContent = "Invalid Score";
+      }
+    </script>
+  </body>
+</html>

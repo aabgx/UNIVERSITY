@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+    background-color: darkcyan;
+    background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/Yosemite_Sam.svg/800px-Yosemite_Sam.svg.png');
+    background-size: 20%;
+    background-position: left top;
+    background-repeat: no-repeat;
+}
+
+#dialog-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Aici se adaugă culoarea semi-transparentă */
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 30px;
+}
+
+#dialog-container h1,
+#dialog-container h2,
+#dialog-container p {
+    margin: 0;
+}
+
+#start {
+    position: absolute;
+    left: 50%;
+    height: 10%;
+    width: 20%;
+    bottom: 20%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    background-color: #FFA500;
+    /* Am schimbat culoarea la portocaliu */
+    color: white;
+    /* Am schimbat culoarea textului la alb */
+    font-size: 1.5em;
+    /* Am mărit dimensiunea textului */
+}
+#meniu {
+    position: absolute;
+    left: 50%;
+    height: 10%;
+    width: 20%;
+    bottom: 10%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    background-color: #FFA500;
+    /* Am schimbat culoarea la portocaliu */
+    color: white;
+    /* Am schimbat culoarea textului la alb */
+    font-size: 1.5em;
+    /* Am mărit dimensiunea textului */
+}

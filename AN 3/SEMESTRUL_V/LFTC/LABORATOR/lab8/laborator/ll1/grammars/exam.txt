@@ -1,0 +1,3 @@
+S -> aSc
+S -> aSbSc
+S -> i

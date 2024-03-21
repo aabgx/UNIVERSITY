@@ -1,0 +1,6 @@
+(copiati outputul din bison in main.asm - de la bits32 in jos!!!!)
+
+1. nasm -f obj main.asm -o main.obj
+2. alink -oPE -subsys console -entry start main.obj
+
+3. main.exe (in exemplul de aici, asteapta 2 numere)

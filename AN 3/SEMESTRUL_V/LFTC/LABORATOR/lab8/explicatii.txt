@@ -1,0 +1,6 @@
+labul asta:
+	efectiv ll(1) ca sa verific acceptarea unei secvente
+labul urmator:
+	sa am un fip care imi spune cum vin atomii (iau din bison sau ceva)
+	sa verific cu ll(1) daca e acceptat acest fip de regulile din gramatica (adica am ca si in bison
+		regulile definite program -> ... intr-un txt si verific cu ll(1) daca merge)

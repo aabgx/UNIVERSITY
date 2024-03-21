@@ -1,0 +1,162 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #87e0ff, #6e63ff);
+    overflow: hidden;
+}
+
+#background-image {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 25%;
+    height: auto;
+    padding: 20px;
+}
+
+#background-image img {
+    width: 100%;
+    height: 30%;
+    display: block;
+}
+
+#main-container {
+    background: linear-gradient(to right, #87e0ff, #6e63ff);
+    padding: 20px;
+    border: 3px solid #333;
+    border-radius: 10px;
+    display: flex;
+    width: 30%;
+    height: 60%;
+    min-height: 200px;
+    max-height: 400px;
+    min-width: 500px;
+    max-width: 700px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+@media (max-width: 768px) {
+
+    /* Stil pentru ecrane cu lățime maximă de 768px */
+    #main-container {
+        width: 80%;
+        height: auto;
+    }
+}
+
+#instructions-container {
+    text-align: center;
+    
+    margin-bottom: 20px;
+}
+
+#instructions-container h1 {
+    font-size: 36px;
+    color: #200947;
+    margin-bottom: 10px;
+}
+
+#instructions-container p {
+    font-size: 18px;
+    color: #200947;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+
+#final-score-container {
+    text-align: center;
+    padding: 20px;
+    background-color: linear-gradient(to right, #87e0ff, #6e63ff);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+
+#header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#final-score {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+#note-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    display: none;
+}
+
+
+#note-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 7px solid #333;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+
+}
+
+#note-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.note-option {
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.selected {
+    background-color: lightblue;
+}
+
+.btn {
+    font-size: 25px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: auto;
+    background-color: #6e63ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+
+}
+
+
+.btn:hover {
+    background-color: #5461c1;
+}
+
+
+#options-container {
+    display: none;
+}

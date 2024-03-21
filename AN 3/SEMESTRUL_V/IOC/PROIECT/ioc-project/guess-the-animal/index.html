@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        display: flex;
+	font-size: 2vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-image: linear-gradient(to right, #98dbc6, #bdd4e7);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      #background-image {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 10%;
+        height: auto;
+        padding: 10px;
+        z-index: -1;
+      }
+
+      #background-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      #rules-container {
+        text-align: center;
+        max-width: 600px;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.2
+        ); /* Fundal semi-transparent */
+      }
+
+      #start-button {
+        font-size: 24px;
+        padding: 10px;
+        cursor: pointer;
+        border: solid 1px black;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        width: 150px;
+        transition-duration: 0.4s;
+        margin-top: 20px;
+      }
+    </style>
+    <title>Animal Game Rules</title>
+  </head>
+
+  <body>
+    <div id="rules-container">
+      <h1>REGULI</h1>
+      <p>
+        Trebuie să selectezi varianta care se potrivește cu animalul din
+        imagine.
+      </p>
+      <p>Variantele sunt în limba engleză! Vei avea 10 runde.</p>
+      <p>BAFTĂ!</p>
+      <a href="game.html" id="start-button">START</a>
+    </div>
+    <div id="background-image">
+      <img src="colt.png" alt="Background Image" />
+    </div>
+  </body>
+</html>

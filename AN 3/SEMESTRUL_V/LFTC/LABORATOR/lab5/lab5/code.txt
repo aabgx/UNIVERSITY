@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+int main(){
+int raza;
+cin>>raza;
+double pi=-3.14;
+cout<<pi*raza*raza;
+cout<<2*pi*raza;
+}
+
+aaa
+a=0x333E$
+a = 0b1010
+0667
+
