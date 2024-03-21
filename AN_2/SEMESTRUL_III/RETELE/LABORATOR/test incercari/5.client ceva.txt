@@ -1,0 +1,108 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <signal.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <pthread.h>
+
+#define LEN_MAXIM 100
+
+int flag = 0;
+int s;
+
+void scoate_enter(char* arr, int length)
+{
+        int i;
+        for (i = 0; i < length; i++)
+        {
+                if (arr[i] == '\n')
+                {
+                        arr[i] = '\0';
+                        break;
+                }
+        }
+}
+
+void ctrl_c_exit(int sig)
+{
+        flag = 1;
+}
+
+
+int main()
+{
+        signal(SIGINT, ctrl_c_exit);
+
+        struct sockaddr_in server_addr;
+
+        //SOCKET
+        s = socket(AF_INET, SOCK_STREAM, 0);
+        server_addr.sin_family = AF_INET;
+        server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+        server_addr.sin_port = htons(3083);
+
+
+        //CONNECT
+        if(connect(s, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1)
+        {
+                printf("ERROR: connect\n");
+                return EXIT_FAILURE;
+        }
+
+        printf("ACUM ESTI CONECTAT LA SERVER\n");
+
+        //TRIMITERE LA SERVER
+        if(fork()==0)
+        {
+                char mesaj[LEN_MAXIM];
+
+                while(1)
+                {
+                        fgets(mesaj, LEN_MAXIM, stdin);
+                        scoate_enter(mesaj, LEN_MAXIM);
+
+                        if (strcmp(mesaj, "exit") == 0)
+                        {
+                                break;
+                        }
+                        else
+                        {
+                                send(s, mesaj, strlen(mesaj)*sizeof(char), 0);
+                        }
+
+                        bzero(mesaj, LEN_MAXIM);
+                }
+                ctrl_c_exit(2);
+                exit(0);
+        }
+
+        //PRIMIRE DE LA SERVER
+        if(fork()==0)
+        {
+                char mesaj[LEN_MAXIM];
+                while (1)
+                {
+                        recv(s, mesaj, LEN_MAXIM, 0);
+                        printf("%s", mesaj);
+                        memset(mesaj, 0, sizeof(mesaj));
+                }
+                exit(0);
+        }
+
+
+        while (1)
+        {
+                if(flag)
+                {
+                        break;
+                }
+        }
+
+        close(s);
+
+        return 0;
+}

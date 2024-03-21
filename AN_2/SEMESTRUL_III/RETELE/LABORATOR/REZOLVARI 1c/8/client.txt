@@ -1,0 +1,53 @@
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <string.h>
+#include <arpa/inet.h>
+
+#include <stdlib.h>
+#include <unistd.h>
+
+int main() {
+        int c, l;
+        struct sockaddr_in server;
+
+        c = socket(AF_INET, SOCK_DGRAM, 0);
+        if (c < 0) {
+                printf("Eroare la crearea socketului client\n");
+                return 1;
+        }
+
+        memset(&server, 0, sizeof(server));
+        server.sin_port = htons(1234);
+        server.sin_family = AF_INET;
+        server.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+        //treaba clientului
+
+        int a,b;
+        printf("DATI PRIMUL NR: ");
+        scanf("%d",&a);
+        printf("DATI AL DOILEA NR: ");
+        scanf("%d",&b);
+        a=htonl(a);
+        b=htonl(b);
+
+        sendto(c,&a,sizeof(int), 0, (struct sockaddr *) &server, sizeof(server));
+        sendto(c,&b,sizeof(int), 0, (struct sockaddr *) &server, sizeof(server));
+
+        //inainte de recv
+        l = sizeof(server);
+        memset(&server, 0, sizeof(server));
+
+        int cmmdc,cmmmc;
+        recvfrom(c,&cmmdc,sizeof(int),0,(struct sockaddr *)&server,&l);
+        recvfrom(c,&cmmmc,sizeof(int),0,(struct sockaddr *)&server,&l);
+
+        cmmdc=ntohl(cmmdc);
+        cmmmc=htonl(cmmmc);
+        printf("CMMDC: %d       CMMMC: %d\n",cmmdc,cmmmc);
+        close(c);
+        return 0;
+}

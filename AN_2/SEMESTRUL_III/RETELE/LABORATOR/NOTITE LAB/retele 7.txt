@@ -1,0 +1,19 @@
+*IOS - internetwork operating system
+*priimii 3 octeti identifica reteaua, iar ultimul e adresa calculatorului in cadrul retelei (192.168.1.x)
+ in capus de ex sunt 172.30.x.y, deci si 172.30.0.17 cam seamana cu 172.30.5.150
+ la cati octeti ma uit se reduce la netmask, el imi zice: el imi zice ca toate calculatoarele din reteaua respectiva au
+		primul, primii 2 sau primii 3 sunt identici, fara netmask nu stim nimic (255.255.255.0) - trb sa fie doar 1 la
+		inceput (gen 255) si doar 0 la final, in rest orice cred
+*din cele de la 0 la 255 pe 0 si 255 nu le putem folosi: 0 -retea, 255 -broadcast, 1 de obicei e la router
+*daca facem sau pe biti intre ip si netmask obtinem adresa de broadcast, daca facem si pe biti -> adr retea
+*daca suntem in aceeasi retea trb sa aflam mac? destinatar (fac si pe biti si imi obtin adresa mea de retea)
+ daca nu suntem in aceeasi retea -> pun mac routerului
+
+*intre 2 echipamente de acelais tip trebe cabluri crossover
+
+*ce face un server dhcp? da adrese ip la calculatoarele din retea (devices -> al treilea in cisco, nu poate sa isi
+ dea lui singur adresa, pe aia tre sa o setez eu manual): trebe sa setez la calculatoarele din retea sa isi ia ip prin
+ dhcp, nu sa le pun manual (static)
+*ip,netmask,gateway(adresa routerului), adresa serverului dns trebe setate ca sa mearga netul pe un calculator
+
+*la noi acasa routerul e si server dhcp si prob si server dns

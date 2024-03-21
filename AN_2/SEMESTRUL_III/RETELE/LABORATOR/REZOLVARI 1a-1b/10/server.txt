@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+int main()
+{
+        int c,s;
+        struct sockaddr_in client_addr,server_addr;
+
+        //fac socket
+        s=socket(AF_INET,SOCK_STREAM,0);
+        if(s<0)
+        {
+                perror("EROARE LA SOCKET SERVER!");
+                return 1;
+        }
+
+        //fac bind
+        server_addr.sin_family=AF_INET;
+        server_addr.sin_port=htons(3083);
+        server_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
+
+        if(bind(s,(struct sockaddr*)&server_addr,sizeof(server_addr))<0)
+        {
+                perror("EROARE LA BIND!");
+                return 1;
+        }
+
+        //fac listen, aici devine serverul server
+        listen(s,5);
+
+        while(1)
+        {
+                //accept
+                int size=sizeof(client_addr);
+                c=accept(s,(struct sockaddr*)&client_addr,&size);
+
+                    printf("S-A CONECTAT UN CLIENT!\n");
+
+                //server concurent
+                if(fork()==0)
+                {
+                        int len1,len2,len,fr[26];
+
+                        recv(c,&len1,sizeof(int),MSG_WAITALL);
+                        len1=ntohl(len1);
+                        char sir1[len1];
+                        recv(c,sir1,len1*sizeof(char),MSG_WAITALL);
+
+                        recv(c,&len2,sizeof(int),MSG_WAITALL);
+                        len2=ntohl(len2);
+                        char sir2[len2];
+                        recv(c,sir2,len2*sizeof(char),MSG_WAITALL);
+
+                        if(len1>len2) len=len2;
+                        else len=len1;
+
+                        int i;
+
+                        for(i=0;i<=26;i++)
+                                fr[i]=0;
+
+                        for(int i=0;i<len;i++)
+                        {
+                                if(sir1[i]==sir2[i]) fr[sir1[i]-'a']++;
+                        }
+
+                        int max=0;
+                        char litera;
+                        for(i=0;i<26;i++)
+                        {
+                                if(fr[i]>max) {max=fr[i]; litera=i+'a';}
+                        }
+
+                        max=htonl(max);
+                        send(c,&max,sizeof(int),0);
+                        send(c,&litera,sizeof(char),0);
+
+                }
+
+                    close(c);
+                    //return 0;
+
+        }
+
+        return 0;
+}

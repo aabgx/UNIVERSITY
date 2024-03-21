@@ -1,0 +1,45 @@
+Clientul se conecteaza la server
+Server concurent
+Dupa conectare clientul citeste linii de la intrarea standard pe care le trimite la server pana la citirea liniei "exit"
+
+Serverul primeste linia si o trimite tuturor celorlalti clienti conectati la server, impreuna cu ip si port clientului
+Ceilalti clienti primesc de la server liniile impreuna cu ip si port cine a trimis
+
+
+printf("Scrie scriitor sau cititor\n");
+                //ii spun daca sunt scriitor sau nu
+                char sir_cuv[100];
+                fgets(sir_cuv,sizeof(sir_cuv),stdin);
+                sir[strlen(sir_cuv)-1] = '\0';
+
+                int len_cuv=strlen(sir_cuv);
+                len_cuv=htonl(len_cuv);
+                send(c,&len_cuv,sizeof(int),0);
+                send(c,&sir_cuv,ntohl(len_cuv)*sizeof(char),0);
+
+                if(strcmp(sir_cuv,"scriitor")==0)
+                {
+                char sir[100];
+                fgets(sir,sizeof(sir),stdin);
+                sir[strlen(sir)-1] = '\0';
+
+                int len=strlen(sir);
+                len=htonl(len);
+
+                if(strcmp(sir,"exit")==0) return 0;
+
+                send(c,&len,sizeof(int),0);
+                send(c,&sir,ntohl(len)*sizeof(char),0);
+
+                else{
+                int lung;
+                recv(c,&lung,sizeof(int),MSG_WAITALL);
+                lung=ntohl(lung);
+                char primire[lung];
+                recv(c,primire,lung*sizeof(char),MSG_WAITALL);
+                }
+
+Un client poate sa imi trimita un sir o singura data, dupa care doar afiseaza.
+
+NU, in server, fac un while(1) sau while(nu primesc exit) , mesajele ce le primesc le pun in pipe si le trimit la parinte
+si parintele trimite la toti acel mesaj.

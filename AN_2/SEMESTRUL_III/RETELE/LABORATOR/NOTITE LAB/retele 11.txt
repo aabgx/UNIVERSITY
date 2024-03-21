@@ -1,0 +1,12 @@
+INTREBARE EXAMEN:
+*2 calc in aceeasi retea pot avea gateway uri diferite? 
+DA, putem avea 2 routere si le legam
+
+*rute statice->vr sa trimit cuiva si ii zic routerului ce sa faca daca adresa ip e dintr o a numita familie de adrese
+*tracert trace route
+*show ip route in cli pe router (daca e cu s e static si c de la connected)
+
+*en
+configure terminal
+ip route 0.0.0.0 0.0.0.0 172.12.0.1
+show ip route

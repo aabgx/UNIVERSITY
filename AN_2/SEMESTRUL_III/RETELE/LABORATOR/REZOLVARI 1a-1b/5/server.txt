@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+int main()
+{
+        int c,s;
+        struct sockaddr_in client_addr,server_addr;
+
+        //fac socket
+        s=socket(AF_INET,SOCK_STREAM,0);
+        if(s<0)
+        {
+                perror("EROARE LA SOCKET SERVER!\n");
+                return 1;
+        }
+
+        //fac bind
+        server_addr.sin_family=AF_INET;
+        server_addr.sin_port=htons(3083);
+        server_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
+
+        if(bind(s,(struct sockaddr*)&server_addr,sizeof(server_addr))<0)
+        {
+                perror("EROARE LA BIND!\n");
+                return 1;
+        }
+
+        //fac listen, aici devine serverul server
+        listen(s,5);
+
+        while(1)
+        {
+                //accept
+                int size=sizeof(client_addr);
+                c=accept(s,(struct sockaddr*)&client_addr,&size);
+
+                    printf("S-A CONECTAT UN CLIENT!\n");
+
+                //server concurent
+                if(fork()==0)
+                {
+                        int nr,poz=0,rez[100];
+                        recv(c,&nr,sizeof(int),MSG_WAITALL);
+                        nr=ntohl(nr);
+
+                        for(int i=1;i<=nr/2;i++)
+                        {
+                                if(nr%i==0)
+                                {
+                                        rez[poz]=i;
+                                        rez[poz]=htonl(rez[poz]);
+                                        poz++;
+                                }
+                        }
+
+                        rez[poz]=nr;
+                        rez[poz]=htonl(rez[poz]);
+                        poz++;
+
+                        poz=htonl(poz);
+                        send(c,&poz,sizeof(int),0);
+                        send(c,rez,ntohl(poz)*sizeof(int),0);
+                }
+
+                    close(c);
+
+        }
+
+        return 0;
+}

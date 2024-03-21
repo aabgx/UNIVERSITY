@@ -1,0 +1,175 @@
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+#include <string.h>
+#include <pthread.h>
+#include <sys/types.h>
+#include <signal.h>
+
+#define MAX_CLIENTI 10
+#define MESAJ_MAXIM 100
+
+pthread_mutex_t mutex_clienti = PTHREAD_MUTEX_INITIALIZER;
+
+//STRUCTURA CLIENT
+typedef struct
+{
+        int socket;
+        char ip[32];
+} client_t;
+
+client_t *sir_clienti[MAX_CLIENTI];
+
+void scoate_enter(char* arr, int length)
+{
+        int i;
+        for (i = 0; i < length; i++)
+        {
+                if (arr[i] == '\n')
+                {
+                        arr[i] = '\0';
+                        break;
+                }
+        }
+}
+
+void adauga_client(client_t *client)
+{
+        pthread_mutex_lock(&mutex_clienti);
+
+        for(int i=0; i < MAX_CLIENTI; ++i)
+        {
+                if(!sir_clienti[i])
+                {
+                        sir_clienti[i] = client;
+                        break;
+                }
+        }
+
+        pthread_mutex_unlock(&mutex_clienti);
+}
+
+void sterge_client(int socket)
+{
+        pthread_mutex_lock(&mutex_clienti);
+
+        for(int i=0; i < MAX_CLIENTI; ++i)
+        {
+                if(sir_clienti[i])
+                {
+                        if(sir_clienti[i]->socket == socket)    {sir_clienti[i] = NULL; break;}
+                }
+        }
+
+        pthread_mutex_unlock(&mutex_clienti);
+}
+
+void trimite_mesaj(char *s, int socket)
+{
+        pthread_mutex_lock(&mutex_clienti);
+
+        for(int i=0; i<MAX_CLIENTI; ++i)
+        {
+                if(sir_clienti[i])
+                {
+                        if(sir_clienti[i]->socket != socket)
+                        {
+                                send(sir_clienti[i]->socket, s, strlen(s)*sizeof(char),0);
+                        }
+                }
+        }
+
+        pthread_mutex_unlock(&mutex_clienti);
+}
+
+void *comunicare(void *arg){
+        char mesaj[MESAJ_MAXIM];
+        int flag_exit = 0;
+
+        client_t *client = (client_t *)arg;
+
+        bzero(mesaj, MESAJ_MAXIM);
+
+        while(1){
+                if (flag_exit) {
+                        break;
+                }
+
+                recv(client->socket, mesaj, MESAJ_MAXIM, 0);
+                if (strcmp(mesaj, "exit") != 0)
+                {
+                        if(strlen(mesaj) > 0)
+                        {
+                                char ip_mesaj[MESAJ_MAXIM+34];
+                                scoate_enter(mesaj,strlen(mesaj));
+                                sprintf(ip_mesaj,"%s: %s\n",client->ip,mesaj);
+                                printf("%s: %s\n",client->ip,mesaj);
+                                trimite_mesaj(ip_mesaj,client->socket);
+                        }
+                }
+                else
+                {
+                        flag_exit = 1;
+                }
+
+                bzero(mesaj, MESAJ_MAXIM);
+        }
+
+        //SCOT CLIENT DIN LISTA SI DETASEZ THREADUL
+        close(client->socket);
+        sterge_client(client->socket);
+        free(client);
+        pthread_detach(pthread_self());
+        return NULL;
+}
+
+
+int main()
+{
+        int s,c;
+        struct sockaddr_in server_addr,client_addr;
+        pthread_t thread_nou;
+
+        //SOCKET SERVER
+        s = socket(AF_INET, SOCK_STREAM, 0);
+        server_addr.sin_family = AF_INET;
+        server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+        server_addr.sin_port = htons(3083);
+
+        if(s<0)
+        {
+                perror("EROARE LA SOCKET SERVER");
+                return EXIT_FAILURE;
+        }
+
+        //BIND
+        if(bind(s, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0)
+        {
+                perror("EROARE LA BIND");
+                return EXIT_FAILURE;
+        }
+
+        listen(s,5);
+
+        while(1)
+        {
+                int size = sizeof(client_addr);
+                c = accept(s, (struct sockaddr*)&client_addr, &size);
+
+                //CREEZ STRUCTURA DE TRIMIS PE THREAD
+                client_t *client = (client_t *)malloc(sizeof(client_t));
+                client->socket = c;
+                strcpy(client->ip,inet_ntoa(client_addr.sin_addr));
+
+                //ADAUG CLIENT IN SIR SI II FAC THREAD
+                adauga_client(client);
+                pthread_create(&thread_nou, NULL, &comunicare,(void *)client);
+
+        }
+
+        return 0;
+}

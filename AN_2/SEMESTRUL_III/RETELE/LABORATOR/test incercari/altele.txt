@@ -1,0 +1,12 @@
+int argc, char*argv[]
+if(argc!=3) {printf("esti prost, da 2 argumente\n"); return 0;}
+
+client_addr.sin_port=htons(atoi(argv[2]));
+client_addr.sin_addr.s_addr=inet_addr(argv[1]);
+
+hostname -I
+ifconfig? ipconfig?
+
+bair3083 altcineva
+
+strcpy(ip,inet_ntoa(client_addr.sin_addr));

@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+int main()
+{
+        struct sockaddr_in client_addr;
+
+        //fac socket
+        int c=socket(AF_INET,SOCK_STREAM,0);
+        if(c<0)
+        {
+                perror("EROARE LA CREAREA SOCKETULUI CLIENT!");
+        }
+
+        //fac connect
+        client_addr.sin_family=AF_INET;
+        client_addr.sin_port=htons(3083);
+        client_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
+
+        if(connect(c,(struct sockaddr*)&client_addr,sizeof(client_addr))<0)
+        {
+                perror("EROARE LA CONNECT!");
+                return 1;
+        }
+
+        //treaba clientului
+        printf("DATI SIRUL: ");
+        char sir[100];
+        fgets(sir,sizeof(sir),stdin);
+        sir[strlen(sir)-1] = '\0';
+
+        int len=strlen(sir);
+        len=htonl(len);
+
+        send(c,&len,sizeof(int),0);
+        send(c,&sir,ntohl(len)*sizeof(char),0);
+
+        int nr_spatii;
+        recv(c,&nr_spatii,sizeof(int),MSG_WAITALL);
+        nr_spatii=ntohl(nr_spatii);
+        printf("NR DE SPATII DIN SIRUL DAT E: %d\n",nr_spatii);
+
+        return 0;
+}

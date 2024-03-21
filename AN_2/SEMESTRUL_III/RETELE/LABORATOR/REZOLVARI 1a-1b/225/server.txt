@@ -1,0 +1,176 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+int main()
+{
+        int c1,c2,s;
+        struct sockaddr_in client_addr,server_addr;
+
+        //fac socket
+        s=socket(AF_INET,SOCK_STREAM,0);
+        if(s<0)
+        {
+                perror("EROARE LA SOCKET SERVER!\n");
+                return 1;
+        }
+
+        //fac bind
+        server_addr.sin_family=AF_INET;
+        server_addr.sin_port=htons(3083);
+        server_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
+
+        if(bind(s,(struct sockaddr*)&server_addr,sizeof(server_addr))<0)
+        {
+                perror("EROARE LA BIND!\n");
+                return 1;
+        }
+
+        //fac listen, aici devine serverul server
+        listen(s,5);
+
+        while(1)
+        {
+                //accept
+                int size=sizeof(client_addr);
+                c1=accept(s,(struct sockaddr*)&client_addr,&size);
+                c2=accept(s,(struct sockaddr*)&client_addr,&size);
+
+                printf("S-AU CONECTAT CLIENTII!\n");
+
+                int rand,inceput=0;
+                //server concurent
+
+                if(fork()==0)
+                {
+                        int len;
+                        char cuv[30],chr;
+                        int gresit=0;
+                        while(gresit==0)
+                        {
+                                if(inceput==0)
+                                {
+                                        printf("\nINCEPE JOCUL!\n\n");
+
+                                        chr = 'a' + (random() % 26);
+                                        printf("\nLITERA DE TRIMIS E: %c\n",chr);
+                                        strcpy(cuv," ");
+                                        len=1;
+                                        len=htonl(len);
+                                        send(c1,&len,sizeof(int),0);
+                                        send(c1,cuv,ntohl(len)*sizeof(char),0);
+                                        send(c1,&chr,sizeof(char),0);
+
+                                        recv(c1,&len,sizeof(int),MSG_WAITALL);
+                                        len=ntohl(len);
+                                        recv(c1,cuv,len*sizeof(char),MSG_WAITALL);
+                                        recv(c1,&chr,sizeof(char),MSG_WAITALL);
+                                        printf("\nAM PRIMIT CUVANTUL: %s        SI LITERA: %c \n",cuv,chr);
+
+                                        inceput=1;
+                                        rand=2;
+                                }
+                                else if(rand==1)
+                                {
+                                        //ii trimit ce am deja retinut in litera si cuvant
+                                        len=htonl(len);
+                                        send(c1,&len,sizeof(int),0);
+                                        send(c1,cuv,ntohl(len)*sizeof(char),0);
+                                        send(c1,&chr,sizeof(char),0);
+
+                                        char aux=chr;
+
+                                        recv(c1,&len,sizeof(int),MSG_WAITALL);
+                                        len=ntohl(len);
+                                        recv(c1,cuv,len*sizeof(char),MSG_WAITALL);
+                                        recv(c1,&chr,sizeof(char),MSG_WAITALL);
+                                        printf("\nAM PRIMIT CUVANTUL: %s        SI LITERA: %c \n",cuv,chr);
+
+                                        //VEZI DACA A PIERDUT
+                                        int are_litera=0;
+                                        for(int i=0;i<len;i++)
+                                                if(cuv[i]==aux) are_litera=1;
+                                        if(are_litera==0)
+                                        {
+                                        gresit=1;
+                                        char pierzator[10],castigator[11];
+                                        strcpy(pierzator,"PIERZATOR");
+                                        strcpy(castigator,"CASTIGATOR");
+                                        int len1,len2;
+                                        len1=strlen(pierzator);
+                                        len1++;
+                                        pierzator[len1-1]='\0';
+                                        len2=strlen(castigator);
+                                        len2++;
+                                        castigator[len2-1]='\0';
+
+                                        len1=htonl(len1);
+                                        send(c1,&len1,sizeof(int),0);
+                                        send(c1,pierzator,ntohl(len1),0);
+
+                                        len2=htonl(len2);
+                                        send(c2,&len2,sizeof(int),0);
+                                        send(c2,castigator,ntohl(len2),0);
+                                        }
+
+                                        rand=2;
+                                }
+                                else if(rand==2)
+                                {
+                                        //ii trimit ce am deja retinut in litera si cuvant
+                                        len=htonl(len);
+                                        send(c2,&len,sizeof(int),0);
+                                        send(c2,cuv,ntohl(len)*sizeof(char),0);
+                                        send(c2,&chr,sizeof(char),0);
+
+                                        char aux=chr;
+
+                                        recv(c2,&len,sizeof(int),MSG_WAITALL);
+                                        len=ntohl(len);
+                                        recv(c2,cuv,len*sizeof(char),MSG_WAITALL);
+                                        recv(c2,&chr,sizeof(char),MSG_WAITALL);
+                                        printf("\nAM PRIMIT CUVANTUL: %s        SI LITERA: %c \n",cuv,chr);
+
+                                        //VEZI DACA A PIERDUT
+                                        int are_litera=0;
+                                        for(int i=0;i<len;i++)
+                                                if(cuv[i]==aux) are_litera=1;
+                                        if(are_litera==0)
+                                        {
+                                        gresit=1;
+                                        char pierzator[10],castigator[11];
+                                        strcpy(pierzator,"PIERZATOR");
+                                        strcpy(castigator,"CASTIGATOR");
+                                        int len1,len2;
+                                        len1=strlen(pierzator);
+                                        len1++;
+                                        pierzator[len1-1]='\0';
+                                        len2=strlen(castigator);
+                                        len2++;
+                                        castigator[len2-1]='\0';
+
+                                        len1=htonl(len1);
+                                        send(c2,&len1,sizeof(int),0);
+                                        send(c2,pierzator,ntohl(len1),0);
+
+                                        len2=htonl(len2);
+                                        send(c1,&len2,sizeof(int),0);
+                                        send(c1,castigator,ntohl(len2),0);
+                                        }
+
+                                        rand=1;
+                                }
+                        }
+                }
+                    close(c1);
+                    close(c2);
+        }
+
+        return 0;
+}

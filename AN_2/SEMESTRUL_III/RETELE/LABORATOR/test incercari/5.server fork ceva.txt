@@ -1,0 +1,190 @@
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+#include <string.h>
+#include <pthread.h>
+#include <sys/types.h>
+#include <signal.h>
+
+#include  <sys/ipc.h>
+#include  <sys/shm.h>
+
+#define MAX_CLIENTI 10
+#define MESAJ_MAXIM 100
+
+//STRUCTURA CLIENT
+typedef struct
+{
+        int socket;
+        char ip[32];
+} client_t;
+
+void scoate_enter(char* arr, int length)
+{
+        int i;
+        for (i = 0; i < length; i++)
+        {
+                if (arr[i] == '\n')
+                {
+                        arr[i] = '\0';
+                        break;
+                }
+        }
+}
+void trimite_mesaj(char *s, int socket,client_t ShmPTR[])
+{
+        for(int i=0; i<MAX_CLIENTI; ++i)
+        {
+                if(strcmp(ShmPTR[i].ip,"")!=0)
+                {
+                        if(ShmPTR[i].socket != socket)
+                        {
+                                send(ShmPTR[i].socket, s, strlen(s)*sizeof(char),0);
+                        }
+                }
+        }
+}
+
+int main()
+{
+        int s,c;
+        struct sockaddr_in server_addr,client_addr;
+
+//CREEZ SHARED MEMORY
+//****************************************************************************************************
+        client_t *ShmPTR;
+        int ShmID=shmget(IPC_PRIVATE, 10*sizeof(client_t), IPC_CREAT | 0666);
+        if(ShmID<0)
+        {
+                printf("EROAE LA CREAREA SHARED MEMORY\n");
+                return 0;
+        }
+
+        ShmPTR = (client_t *) shmat(ShmID, NULL, 0);
+
+        int index_clienti=0;
+//****************************************************************************************************
+
+        for(int i=0;i<MAX_CLIENTI;i++)         strcpy(ShmPTR[i].ip,"");
+
+        //SOCKET SERVER
+        s = socket(AF_INET, SOCK_STREAM, 0);
+        server_addr.sin_family = AF_INET;
+        server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+        server_addr.sin_port = htons(3083);
+
+        if(s<0)
+        {
+                perror("EROARE LA SOCKET SERVER");
+                return EXIT_FAILURE;
+        }
+
+        //BIND
+        if(bind(s, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0)
+        {
+                perror("EROARE LA BIND");
+                return EXIT_FAILURE;
+        }
+
+        listen(s,5);
+
+        while(1)
+        {
+                int size = sizeof(client_addr);
+                c = accept(s, (struct sockaddr*)&client_addr, &size);
+
+                //CREEZ STRUCTURA CLIENTULUI
+                client_t client;
+                client.socket = c;
+                strcpy(client.ip,inet_ntoa(client_addr.sin_addr));
+
+//POPULEZ SPATIUL DIN SHARED MEMORY
+//*******************************************
+                ShmPTR[index_clienti]=client;
+                index_clienti++;
+//*******************************************
+
+                //ADAUG CLIENT IN SIR
+                for(int i=0; i < MAX_CLIENTI; ++i)
+                {
+                        if(strcmp(ShmPTR[i].ip,"")==0)
+                        {
+                                ShmPTR[i] = client;
+                                break;
+                        }
+                }
+
+                if(fork()==0)
+                {
+//FAC ShmPTR SA ARATE SPRE ACELASI SPATIU DE MEMORIE CA SI PARINTELE
+//mosteneste ShmID de la parinte
+//******************************************************************
+                        ShmPTR = (client_t *) shmat(ShmID, NULL, 0);
+//******************************************************************
+                        //PRIMIRE DE MESAJE
+                        char mesaj[MESAJ_MAXIM];
+                        int flag_exit = 0;
+
+                        bzero(mesaj, MESAJ_MAXIM);
+
+                        while(1)
+                        {
+                                if (flag_exit) {
+                                        break;
+                                }
+                                recv(client.socket, mesaj, MESAJ_MAXIM*sizeof(char), 0);
+                                if (strcmp(mesaj, "exit") != 0)
+                                {
+                                        if(strlen(mesaj) > 0)
+                                        {
+                                                char ip_mesaj[MESAJ_MAXIM+34];
+                                                bzero(ip_mesaj,MESAJ_MAXIM+34);
+
+                                                scoate_enter(mesaj,strlen(mesaj));
+                                                sprintf(ip_mesaj,"%s: %s\n",client.ip,mesaj);
+                                                printf("%s: %s\n",client.ip,mesaj);
+                                                trimite_mesaj(ip_mesaj,client.socket,ShmPTR);
+                                        }
+                                }
+                                else
+                                {
+                                        flag_exit = 1;
+                                }
+
+                                bzero(mesaj, MESAJ_MAXIM);
+                        }
+
+                        close(client.socket);
+
+                        //STERG CLIENT DIN LISTA
+                        for(int i=0; i < MAX_CLIENTI; ++i)
+                        {
+                                if(strcmp(ShmPTR[i].ip,"")!=0)
+                                {
+                                        if(ShmPTR[i].socket == socket)    {strcpy(ShmPTR[i].ip,""); break;}
+                                }
+                        }
+//DETASEZ COPILUL DE LA SEGMENTUL DE MEM
+//**************************************
+                        shmdt(ShmPTR);
+//**************************************
+                        exit(0);
+                }
+
+        }
+
+//STERG SEGMENTUL DE MEMORIE
+//*************************************
+        if (shmctl(ShmID,IPC_RMID,NULL) == -1)
+        {
+                perror("shmctl returned -1\n");
+                return 1;
+        }
+//*************************************
+
+        return 0;
+}

@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+int main()
+{
+        int c,s;
+        struct sockaddr_in client_addr,server_addr;
+
+        //fac socket
+        s=socket(AF_INET,SOCK_STREAM,0);
+        if(s<0)
+        {
+                perror("EROARE LA SOCKET SERVER!\n");
+                return 1;
+        }
+
+        //fac bind
+        server_addr.sin_family=AF_INET;
+        server_addr.sin_port=htons(3083);
+        server_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
+
+        if(bind(s,(struct sockaddr*)&server_addr,sizeof(server_addr))<0)
+        {
+                perror("EROARE LA BIND!\n");
+                return 1;
+        }
+
+        //fac listen, aici devine serverul server
+        listen(s,5);
+
+        while(1)
+        {
+                //accept
+                int size=sizeof(client_addr);
+                c=accept(s,(struct sockaddr*)&client_addr,&size);
+
+                    printf("S-A CONECTAT UN CLIENT!\n");
+
+                //server concurent
+                if(fork()==0)
+                {
+                        int l1,l2;
+                        recv(c,&l1,sizeof(int),MSG_WAITALL);
+                        l1=ntohl(l1);
+                        int sir1[l1];
+                        recv(c,sir1,l1*sizeof(int),MSG_WAITALL);
+                        recv(c,&l2,sizeof(int),MSG_WAITALL);
+                        l2=ntohl(l2);
+                        int sir2[l2];
+                        recv(c,sir2,l2*sizeof(int),MSG_WAITALL);
+
+                        for(int i=0;i<l1;i++)
+                                sir1[i]=ntohl(sir1[i]);
+                        for(int i=0;i<l2;i++)
+                                sir2[i]=ntohl(sir2[i]);
+
+                        int max,ok;
+                        if(l1>l2) max=l1;
+                        else max=l2;
+
+                        int poz=0,rez[max];
+                        for(int i=0;i<l1;i++)
+                        {       ok=1;
+                                for(int j=0;j<l2;j++)
+                                {
+                                        if(sir1[i]==sir2[j]) ok=0;
+                                }
+                                if(ok==1) {rez[poz]=sir1[i]; poz++;}
+                        }
+
+                        for(int i=0;i<poz;i++)
+                        {
+                                rez[i]=htonl(rez[i]);
+                        }
+
+                        poz=htonl(poz);
+                        send(c,&poz,sizeof(int),0);
+                        send(c,rez,ntohl(poz)*sizeof(int),0);
+
+                }
+
+                    close(c);
+
+        }
+
+        return 0;
+}

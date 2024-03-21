@@ -1,0 +1,6 @@
+*nu pot folosi aceeasi clasa de adrese la doua retele locale diferite, altfel in mom in care un calculator din prima
+retea vr sa trimita la unul din a doua, o sa il vada ca fiind in aceeasi retea si nu o sa treaca de router
+*default gateway: cui livrezi pachetele daca nu e in retea cu tn destinatarul
+*tracert www.nasa.org de exemplu imi arata cum ajunge pachetul, pe unde trece
+TEMA: 
+*https://moodle.cs.ubbcluj.ro/app2/user/index.php

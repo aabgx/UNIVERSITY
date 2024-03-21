@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <time.h>
+
+int main()
+{
+        struct sockaddr_in client_addr;
+
+        //fac socket
+        int c=socket(AF_INET,SOCK_STREAM,0);
+        if(c<0)
+        {
+                perror("EROARE LA CREAREA SOCKETULUI CLIENT!\n");
+        }
+
+        //fac connect
+        client_addr.sin_family=AF_INET;
+        client_addr.sin_port=htons(3083);
+        client_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
+
+        if(connect(c,(struct sockaddr*)&client_addr,sizeof(client_addr))<0)
+        {
+                perror("EROARE LA CONNECT!\n");
+                return 1;
+        }
+
+        //treaba clientului
+   while(1)
+   {
+        //primesc lungimea cuvantului si dupa cuvantul
+        int len;
+        recv(c,&len,sizeof(int),MSG_WAITALL);
+        len=ntohl(len);
+        char cuv[len],litera;
+        recv(c,cuv,len*sizeof(char),MSG_WAITALL);
+
+        //SA VAD DACA A PIERDUT SAU CASTIGAT
+        if(strcmp(cuv,"PIERZATOR")==0 || strcmp(cuv,"CASTIGATOR")==0)
+        {
+                printf("%s\n",cuv);
+                return 0;
+        }
+
+        recv(c,&litera,sizeof(char),MSG_WAITALL);
+
+        printf("AM PRIMIT CUVANTUL %s   SI LITERA: %c\n\n",cuv,litera);
+
+        char cuv_nou[30],chr;
+        printf("DATI UN CUVANT CU LITERA %c: ",litera);
+        scanf("%s",cuv_nou);
+        //printf("\nDATI O NOUA LITERA: ");
+        //scanf("%c",&chr);
+
+        srand(time(0));
+        chr = 'a' + (random() % 26);
+        printf("AM GENERAT: %c\n",chr);
+
+        len=strlen(cuv_nou);
+        len=len+1;
+        cuv[len-1]='\0';
+        len=htonl(len);
+        send(c,&len,sizeof(int),0);
+        send(c,cuv_nou,ntohl(len)*sizeof(char),0);
+        send(c,&chr,sizeof(char),0);
+
+
+   }
+
+}

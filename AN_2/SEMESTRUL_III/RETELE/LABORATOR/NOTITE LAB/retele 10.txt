@@ -1,0 +1,3 @@
+*cand trm de la sursa asta face si pe biti cu adresa destinatarului si netmask ul ei,apoi face cu adresa ei si netmask ul
+ei, daca obt lucrri diferite inseamna ca nu s in aceeasi retea
+*o clasa de 2^n adrese incepe la o adresa multiplu ce acest 2^n

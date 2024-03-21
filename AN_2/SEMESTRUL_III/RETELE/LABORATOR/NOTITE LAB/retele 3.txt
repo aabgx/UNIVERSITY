@@ -1,0 +1,25 @@
+-default gateway: adresa ip a routerului pe interfata interna
+-seamana daca fac parte din aceeasi clasa de adrese
+-nat(network adress translation) dupa ce trece de router si in internet o sa se vada adresa ip a routerului
+-un client cu ip public NU se poate conecta la un server cu adresa privata (invers eok)
+-calculatorul pt masina virtuala functioneaza ca un fel de router
+	daca placa ar fi conectata la reteaua aia mare ar trebui sa mai vedem o adresa printre restul
+	masina virtuala Nu e conecatta direct la reteaua locala, doar la calculator
+
+-ce-i dhcp????
+-telnet ip_unde_vr port (face un fel de client)
+-VEZI CUM POTI RULA PE WINDOWS
+
+TEST
+-server concurent
+-evident sa se conecteze ca lumea
+
+-vezi sa aflii cum tiparesti adresa ip a clientului!!!!!!!
+	ceva inet_ntoa(face din adresa ip interna in sir de caractere ca sa o putem tipari)
+	adresa o completeaza accept ul (ip si port) in sevrver
+	ntoa(client.sin_addr) ceva VEZI LA CATA
+-trebe sa trimitem la server un sir de numere, apoi din server trebe sa trimitem la un udp? la prof numele si rezultatul
+-daca si ajunge suma inca un punct
+
+SAU
+-sa facem un client care se oupa cu nuj ce server carea are un ip si un port dat

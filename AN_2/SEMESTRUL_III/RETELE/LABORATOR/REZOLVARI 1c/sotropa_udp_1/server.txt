@@ -1,0 +1,124 @@
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <string.h>
+#include <arpa/inet.h>
+
+#include <stdlib.h>
+#include <unistd.h>
+
+int main() {
+        int s,s1;
+        struct sockaddr_in celalalt_server,server, client;
+        int c, l, i;
+
+        s = socket(AF_INET, SOCK_DGRAM, 0);
+        if (s < 0)
+        {
+                printf("Eroare la crearea socketului server\n");
+                return 1;
+        }
+
+        memset(&server, 0, sizeof(server));
+        server.sin_port = htons(1234);
+        server.sin_family = AF_INET;
+        server.sin_addr.s_addr = INADDR_ANY;
+
+        if (bind(s, (struct sockaddr *) &server, sizeof(server)) < 0)
+        {
+                printf("Eroare la bind\n");
+                return 1;
+        }
+
+        l = sizeof(client);
+        memset(&client, 0, sizeof(client));
+
+        printf("Incepem primirea\n");
+
+        int ok=0,suma_veche;
+        char ip[20];
+
+        while(1)
+        {
+                int len;
+
+                recvfrom(s,&len, sizeof(int), 0, (struct sockaddr *) &client, &l);
+                len=ntohl(len);
+                char sir[len];
+                recvfrom(s,sir,len*sizeof(char),0,(struct sockaddr *) &client,&l);
+
+                //printf("Am primit sirul: %s \n", sir);
+                len--;
+
+                int suma=0,nr=0,putere=1;
+                for(int i=0;i<len;i++)
+                {
+                        if(sir[i]==' ')
+                        {
+                                suma=suma+nr;
+                                putere=1;
+                                nr=0;
+                        }
+                        else
+                        {
+                                nr=nr*putere+sir[i]-'0';
+                                putere=putere*10;
+                        }
+                }
+
+                suma=suma+nr;
+                suma=htonl(suma);
+
+                //generez un port de 4 cifre random si il trimit
+                uint16_t port= 1000+rand()%1000;
+                printf("PORTUL GENERAT: %hu\n",port);
+                port=htons(port);
+                sendto(s,&port,sizeof(uint16_t), 0, (struct sockaddr *) &client, sizeof(client));
+                port=ntohs(port);
+
+
+                //schimb portul si trimit suma calculata FAC EFECTIV SOCKET NOU TEMPORAR
+                s1 = socket(AF_INET, SOCK_DGRAM, 0);
+                if (s1 < 0)
+                {
+                        printf("Eroare la crearea socketului server\n");
+                        return 1;
+                }
+
+                memset(&celalalt_server, 0, sizeof(server));
+                celalalt_server.sin_port = htons(port);
+                celalalt_server.sin_family = AF_INET;
+                celalalt_server.sin_addr.s_addr = INADDR_ANY;
+
+		    if (bind(s1, (struct sockaddr *) &celalalt_server, sizeof(celalalt_server)) < 0)
+                {
+                        printf("Eroare la bind\n");
+                        return 1;
+                }
+
+                if(ok==0)
+                {
+                        strcpy(ip,inet_ntoa(client.sin_addr));
+                        suma_veche=suma;
+                        ok=1;
+                }
+
+                sendto(s1, &suma_veche, sizeof(int), 0, (struct sockaddr *) &client, sizeof(client));
+
+                int lung=strlen(ip);
+                lung++;
+                ip[lung-1]='\0';
+                lung=htonl(lung);
+                sendto(s1, &lung, sizeof(int), 0, (struct sockaddr *) &client, sizeof(client));
+                sendto(s1, ip, ntohl(lung)*sizeof(char), 0, (struct sockaddr *) &client, sizeof(client));
+
+                strcpy(ip,inet_ntoa(client.sin_addr));
+                suma_veche=suma;
+
+                close(s1);
+        }
+
+        close(s);
+}

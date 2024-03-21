@@ -1,0 +1,173 @@
+CE MAI RECUPEREZ
+MAC - media access control - adresa fizica
+
+1,2. physical layer - transporting bits (wifi is also a layer 1 device)
+     data link (wifi access cards) - hop to hop delivery: arp!!!
+	switch
+3. end to end delivery (network/RETEA) - routers hosts,..
+	!avem nevoie de adrese ip si de adrese mac!
+	ARP (address resolution protocol) - link an ip to a mac address
+	ipv4, ipv6
+	aici e localizata adresa ip, clasa de adrese, routere, DG
+4. transport (service to service delivery)
+	foloseste scheme de adresare: TCP, UDP
+5,6,7. (session, presentation, application - sau doar application in tcp/ip)
+	layer 4 + dara -> segment
+	proces numit incapsulare-deincapsulare
+	dhcp, http, dns, ssh
+
+**communication with no router
+	subnet identifies the size of the ip network
+	ARP link a layer 3 address (mac address) to a layer 2 address (ip address)
+	ffff.ffff.ffff mac address pt toate (broadcast)
+	ARP cache - tine minte mac-urile pt ip-urile cu care interactioneaza
+**communicating with router
+	o sa invete doar mac-ul de la router (aka DG)
+
+SWITCHES
+	ele considera doar layer 3 ca sa ia decizii
+	retin un mac address table
+
+**
+	unicast:dest is another host (they are OCCASIONALY floaded - cand inca nu stim unde e ip/mac destinatie)
+	broadcast: dest mac address of ffff.ffff.ffff 
+
+VLANS
+	virtual area local network
+	divide switch ports into isolated groups (aka acts like multiple mini switches)
+	o sa retina un mac pt fiecare portiune
+	!!pt un singur port de switch este de asteptat sa invete mai multe adrese mac!!
+
+ROUTERS
+	node - device that implements ipv6
+	router - a node that forwards ipv6 packets not explicitly addressed to himself
+	host - any node that is not a router
+
+	ways to populate routing table
+		directly connected: pt orice network atasat direct
+		static
+		dinamic: rip, bgp (border gateway protocol)
+
+
+PROTOCOALE
+	set de reguli si mesaje care formeaza standarde de internet
+	ARP - address resolution protocol
+	FTP - file transfer protocol
+	SMTP - simple mail transfer protocol
+	HTTP - hyper text transfer protocol (web servers) GET -> 200 OK messages
+	SSL & TLS pt secure canal
+	HTTPS secured HTTP
+	
+	DNS - domain name system - domain -> ip address
+		si pt emailuri tot el ajuta translatarea in ip-uri
+
+	DHCP - dynamic hosts configuration protocop (any time u connect to another wifi etc)
+		
+deci avem 4 itemi pt internet conectivity: ip, subnetmask, DG, DNS
+	
+
+SUMARIZARE:
+	mac address table: switchport -> mac address
+	arp table/cache: ip addr -> mac addr
+	routing table: ip network -> interface/next router
+	0.0.0.0/0 orice trimite la x ip address
+	
+VLAN: virtual local area network
+	allows to break one physical switch into multiple virtual switches
+	sallows u to extend those virtual switches to other physical switches
+	nu trebe atatea fire, merge si unul ca informatia oricum are lvl 2 si lvl 3 info si se stie care-i unde
+	! daca nu are pachetul un vlan tag he will associate this frame with this ports's native vlan
+	  si se va face forward doar acolo
+	daca se trimite ceva cu native vlan tag match, e trimis fara tag!!!!
+	acces ports - carry traffic for only one vlan
+	trunck ports - carry traffic for multiple vlans
+
+TOPOLOGII
+	bus (linie)
+	ring (conectat cu alte 2)
+	star (conectat de ceva la mijloc: hub, switch, star)
+	hirarchical (exemplu cu new york si tokyo)
+	mesh (toate conecatte intre ele)
+
+
+***DE AICI IS RANDOM, CE AM MAI VAZUT PRIN INTREBARI:
+
+DNS FOLOSESTE UDP PORT 53
+HTTP PORT 80 SI HTTPS 443 - orientativ, dar e predefinit asta (dar pe astea nu poate rula altceva!!!)
+doar bind e optional la TCP
+cabluri straight-through pt majoritatea si crossover pt echipamente de acelasi tip
+
+adrese ip private: 10.0.0.0/8 10.0.0.0 to 10.255.255.255
+			 172.16.0.0/12 172.16.0.0 to 172.31.255.255
+			 192.168.0.0/16 192.168.0.0 to 192.168.255.255
+			 127.0.0.1 localhost
+netmask 0.0.0.0/0 face match pe orice netmask
+/x means in acea clasa sunt 2^(32-x) adrese - prima e de retea ultima de broadcast
+
+ALGORITMI DE DIRIJARE
+	dinamici sau statici
+	DISTANTA - BELLMAN FORD si STAREA LEGATURILOR - DIJKSTRA
+	apoi astea is implementate de routere in protocoalele de dirijare
+
+HTTP foloseste TCP
+DNS foloseste UDP port 53
+adr MAC e rept pe 48 biti (aka 12 cifre hexa), ipv4 pe 32 biti si ipv6 pe 128 biti
+un switch trimite farme-uri, un router trimite pachete
+
+un pc si un router sunt de acc tip -> cablu crossover
+
+CLI - command line interface
+pe acelasi server web pot fi gazduite mai multe site-uri web
+/??? este nr de biti de 1 de la inceput
+
+FTP - transfer de fisiere (mutarea eficienta a datelor de pe o masina pe alta)
+SMTP - posta electronica (simple mail transfer protocol)
+
+pana la 256 sunt porturi general cunoscute - aka rezervate
+
+NAT - network address translation
+
+wan - wide area network
+man - metropolitan area network
+lan -local area network
+
+NAT:
+
+SNAT - source NAT (privat -> public usualy, schimba sursa pachetului)
+DNAT - destination NAT (schimba destinatia din public -> privat)
+PAT - port address translation
+port forwarding
+
+ce-i agregarea si cand se poate intampla?
+
+**
+Exista doua tipuri de dispozitive, MDI (routere, PC, servere) si MDI-X (switch, hub).
+Straight through folosesti cand vrei sa conectezi dispozitive de tipuri diferite si 
+crossover la tipuri identice
+
+
+**STIVA AGAIN:
+APLICATIE: HTTP (URL), FTP, TELNET, NTP, DHCP, PING, NTP, DNS, SSH, process
+
+TRANSPORT: TCP/UDP, socket, port, server proxy
+
+RETEA: IP (netmask, adresa de retea, adresa de broadcast), ARP, ICMP, IGMP, 
+	router (Tabela de dirijare+algoritmi), default gateway, SNAT, DNAT, NAT, modem (?)
+
+DATA LINK: Ethernet, switch, MAC
+
+Fizic
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

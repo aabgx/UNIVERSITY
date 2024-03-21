@@ -1,0 +1,64 @@
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <string.h>
+#include <arpa/inet.h>
+
+#include <stdlib.h>
+#include <unistd.h>
+
+int main() {
+        int s;
+        struct sockaddr_in server, client;
+        int c, l, i;
+
+        s = socket(AF_INET, SOCK_DGRAM, 0);
+        if (s < 0)
+        {
+                printf("Eroare la crearea socketului server\n");
+                return 1;
+        }
+
+        memset(&server, 0, sizeof(server));
+        server.sin_port = htons(1234);
+        server.sin_family = AF_INET;
+        server.sin_addr.s_addr = INADDR_ANY;
+
+        if (bind(s, (struct sockaddr *) &server, sizeof(server)) < 0)
+        {
+                printf("Eroare la bind\n");
+                return 1;
+        }
+
+        l = sizeof(client);
+        memset(&client, 0, sizeof(client));
+
+        printf("Incepem primirea\n");
+
+        while(1)
+        {
+                int len;
+                char aux;
+
+                recvfrom(s,&len, sizeof(int), 0, (struct sockaddr *) &client, &l);
+                len=ntohl(len);
+                char sir[len];
+                recvfrom(s,sir,len*sizeof(char),0,(struct sockaddr *) &client,&l);
+
+                printf("Am primit sirul: %s \n", sir);
+                len--;
+                int cnt=0;
+                for(int i=0;i<len;i++)
+                {
+                        if(sir[i]==' ') cnt++;
+                }
+                len++;
+                cnt=htonl(cnt);
+                sendto(s,&cnt, sizeof(int), 0, (struct sockaddr *) &client, sizeof(client));
+
+        }
+
+        close(s);
+}

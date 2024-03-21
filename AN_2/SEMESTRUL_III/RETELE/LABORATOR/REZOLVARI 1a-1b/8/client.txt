@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+int main()
+{
+        struct sockaddr_in client_addr;
+
+        //fac socket
+        int c=socket(AF_INET,SOCK_STREAM,0);
+        if(c<0)
+        {
+                perror("EROARE LA CREAREA SOCKETULUI CLIENT!\n");
+        }
+
+        //fac connect
+        client_addr.sin_family=AF_INET;
+        client_addr.sin_port=htons(3083);
+        client_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
+
+        if(connect(c,(struct sockaddr*)&client_addr,sizeof(client_addr))<0)
+        {
+                perror("EROARE LA CONNECT!\n");
+                return 1;
+        }
+
+        //treaba clientului
+        int l1,l2;
+        printf("lungimea pt primul sir: ");
+        scanf("%d",&l1);
+
+        int sir1[l1];
+        for(int i=0;i<l1;i++)
+        {
+                printf("sir1[%d]= ",i);
+                scanf("%d",&sir1[i]);
+                sir1[i]=htonl(sir1[i]);
+        }
+
+        printf("lungimea pt al doilea sir: ");
+        scanf("%d",&l2);
+        int sir2[l2];
+        for(int i=0;i<l2;i++)
+        {
+                printf("sir2[%d]= ",i);
+                scanf("%d",&sir2[i]);
+                sir2[i]=htonl(sir2[i]);
+        }
+
+        l1=htonl(l1);
+        l2=htonl(l2);
+        send(c,&l1,sizeof(int),0);
+        send(c,sir1,ntohl(l1)*sizeof(int),0);
+        send(c,&l2,sizeof(int),0);
+        send(c,sir2,ntohl(l2)*sizeof(int),0);
+
+        int len;
+        recv(c,&len,sizeof(int),MSG_WAITALL);
+        len=ntohl(len);
+        int rez[len];
+        recv(c,rez,len*sizeof(int),MSG_WAITALL);
+
+        printf("\nREZULTAT:\n");
+        for(int i=0;i<len;i++)
+        {
+                rez[i]=ntohl(rez[i]);
+                printf("rez[%d]= %d ",i,rez[i]);
+        }
+        printf("\n");
+        return 0;
+}

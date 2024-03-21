@@ -1,0 +1,16 @@
+ca sa fac server concurent, de fiecare data cand cineva imi trimite o informatie ii trimit 
+inapoi un port pe care sa stie ca trebe sa trimita de acum pe acolo
+
+enunt:
+Un client trimite la server un sir de numere si un nr de port
+Dupa care serverul calculeaza minimul din sirul acela si trimitea pe o noua conexiune clientului minimul calculat
+Aceasta noua conexiune este realiz de catre server ca si client care se conecteaza la adresa ip a clientului initial
+si pe nr de port trimis de acesta
+
+sau ca modificare sa vina raspunsul prin udp
+
+serverul raspunde cu adresa ip a clientului anterior
+
+1p sigur o sa fie sa facem server concurent
+
+minimul sau maximul ever trimise de clienti

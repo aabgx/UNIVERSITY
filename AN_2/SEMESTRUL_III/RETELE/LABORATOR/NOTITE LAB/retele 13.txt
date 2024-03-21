@@ -1,0 +1,4 @@
+*DNS - DOMAIN NAME SYSTEM (face translate nume->adresa ip)
+*de ce serverul dhcp trebuie sa fie cu mine in retea? 
+	pt ca requesturile de dhcp se trimit pe mac-ul de broadcast si se vede doar la nivelul retelei locale
+*  TDL - TOP LEVEL DOMAIN (.ro, .fr, .com , .net etc) apoi putem avea subdomenii (ex .ubbcluj.ro) apoi pot fi de asemenea subdomenii (ex cs.ubbcluj.ro)
