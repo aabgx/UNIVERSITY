@@ -1,0 +1,14 @@
+input {
+  background-image: url("patratele.jpg");
+  letter-spacing: 1.6em;
+  height: 27px;
+  margin-left: 27px;
+  border: none;
+}
+#nume,
+#prenume {
+  width: 525px;
+}
+#CNP {
+  width: 359px;
+}

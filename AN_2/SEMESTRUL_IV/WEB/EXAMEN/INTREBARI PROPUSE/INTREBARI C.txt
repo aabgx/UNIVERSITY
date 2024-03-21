@@ -1,0 +1,65 @@
+1) Ce este adevarat despre urmatorul cod javascript
+
+function wait(timeout) {
+	return new Promise((resolve) => {
+		setTimeout(resolve, timeout);
+	});
+}
+async function WaitFor3Second() {
+	await wait(3000);
+	console.log('Finished Task');
+}
+async function executeTasks() {
+	await Promise.all([WaitFor1Second(), WaitFor1Second()]);
+}
+executeTasks();
+
+a) In consola vor aparea 2 "Finished Task" in acelasi timp
+b) In consola vor aparea 2 "Finished Task" decalate cu aproximativ 3 secunde, deoarece javascript e single thread
+c) Va da eroare pentru ca nu putem pornii 2 functii async in acelasi timp
+Raspuns corect: a) 
+Explicatie: Javascript e single thread, dar avem doua apeluri asincrone de functii.
+
+2) Care este status code-ul unui apel GET, la url: https://google.com?
+
+a) StatusCode=404 (NOT FOUND), deoarece probabil nu exista acest endpoint
+b) StatusCode=401 (UNAUTHORIZED), deoarece incercam sa accesam un endpoint secure
+c) StatusCode=403 (FORBIDDEN), deoarece endpoint-ul e configurat sa refuze astfel de cereri
+d) StatusCode=200 (SUCCESS), se intoarce un fisier HTML
+e) StatusCode=200 (SUCCESS), se intoarce un continut gol
+Raspuns corect: d)
+Explicatie: Asa functioneaza browserele
+
+3) Cookie-uriile pot fi accesate prin javascript?
+
+a) Da
+b) Nu
+c) Depinde,
+Raspuns corect: c)
+Explicatie: Depinde daca atributul httponly este false. False=>poate fi accesat, True=>nu poate fi accesat.
+
+4) Unde este recomandat sa inseram codul javascript in cadrul unui fisier html?
+
+a) La inceput
+b) La sfarsit
+c) Nu exista o recomandare privind acest aspect
+Raspuns corect: b)
+Explicatie: Nu se mai randeaza pagina pana nu se termina de executat tot scriptul "adus"
+
+5) Unde este recomandat sa inseram codul CSS in cadrul unui fisier html?
+
+a) La inceput
+b) La sfarsit
+c) Nu exista o recomandare privind acest aspect
+Raspuns corect: a)
+Explicatie: In general vrem sa aducem textul deja stilizat, nu invers. (Pagina se randeaza asa cum e primita)
+
+6) Un cod javascript (definit fix inainte de </body>) modifica partea <head> a unei pagini web. Care dintre urmatoarele afirmatii sunt adevarate.
+
+a) Motoarele de cautare vor vedea schimbarea
+b) Motoarele de cautare nu vor vedea schimbarea
+c) Schimbarea este vizibila doar pentru utilizatorii care au intrat pe pagina
+d) Nu putem modifica nimic din cadrul acestei sectiuni a unei pagini web, pentru ca trebuie sa ramana statica
+e) Un cod javascript definit in <body> poate modifica doar parti din <body>
+Raspuns corect: b), c)
+Explicatie: Motoarele de cautare doar preiau ce e in <head>, nu si executa javascript

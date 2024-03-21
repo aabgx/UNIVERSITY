@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema 4</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js"></script>
+    <link rel="stylesheet" href="p4.css">
+</head>
+
+<body>
+    <table width="500" height="500" border="1px solid black">
+        <tr>
+            <td id="1" class="cell"></td>
+            <td id="2" class="cell"></td>
+            <td id="3" class="cell"></td>
+        </tr>
+        <tr>
+            <td id="4" class="cell"></td>
+            <td id="5" class="cell"></td>
+            <td id="6" class="cell"></td>
+        </tr>
+        <tr>
+            <td id="7" class="cell"></td>
+            <td id="8" class="cell"></td>
+            <td id="9" class="cell"></td>
+        </tr>
+    </table>
+    <div id="winnerTxt"></div>
+    <script>
+        $(document).ready(function () {
+            //pagina initiala necompletata
+            let board = ["-", "-", "-", "-", "-", "-", "-", "-", "-"];
+
+            //cine incepe
+            if (Math.floor(Math.random() * 2) === 1) {
+                console.log("Server started!");
+                send("---------");
+            }
+
+            //toate celulele -> adaugam evenimentul de click
+            let cells = $(".cell");
+            $(cells).each((indx, el) => {
+                console.log(el);
+                $(el).on("click", () => { putElement(indx, el) })
+            });
+
+            //onClick-ul
+            function putElement(ind, e) {
+                console.log(e);
+                e.innerHTML = 'X';
+                board[ind] = 'X';
+                send(board.join(""));
+            }
+
+            //trimite pagina si primeste jocul actualizat cu raspunsul serverului
+            function send(boardString) {
+                $.ajax('p4.php?str=' + boardString, {
+                    success: function (data, status, xhr) {
+                        var resp = xhr.responseText;
+                        console.log(resp);
+                        if (resp === 'x') {
+                            $("#winnerTxt").html('X WINS!');
+                        } else if (resp[1] === 't') {
+                            document.getElementById((parseInt(resp[0]) + 1).toString()).innerHTML = 'O';
+                            $("#winnerTxt").html('TIE!');
+                        }
+                        else if (resp.length == 2) {
+                            document.getElementById((parseInt(resp[0]) + 1).toString()).innerHTML = 'O';
+                            $("#winnerTxt").html('O WINS!');
+                        }
+                        else {
+                            document.getElementById((parseInt(resp) + 1).toString()).innerHTML = 'O';
+                            let response = parseInt(resp);
+                            board[response] = 'O';
+                        }
+                    }
+                });
+                console.log(board.join(""));
+            }
+        });
+
+    </script>
+</body>
+
+</html>

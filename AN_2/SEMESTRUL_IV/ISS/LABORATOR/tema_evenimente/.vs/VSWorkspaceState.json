@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\tema_evenimente",
+    "\\tema_evenimente\\controllers",
+    "\\tema_evenimente\\model",
+    "\\tema_evenimente\\service"
+  ],
+  "SelectedNode": "\\tema_evenimente\\controllers\\ClientController.cs",
+  "PreviewInSolutionExplorer": false
+}

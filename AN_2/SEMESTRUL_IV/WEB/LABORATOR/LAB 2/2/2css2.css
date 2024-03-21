@@ -1,0 +1,36 @@
+header {
+  background-color: pink;
+  /* virtual units */
+  min-height: 20vh;
+}
+footer {
+  height: 20vh;
+  background-color: palevioletred;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/* configurez tabelul sa fie pe stanga 20% */
+nav {
+  height: 2vh;
+  background-color: plum;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  text-align: center;
+}
+li {
+  padding-right: 40px;
+  padding-left: 40px;
+  border-right-style: solid;
+  display: inline-block;
+}
+
+div {
+  background-color: #faeccd;
+  height: 60vh;
+}

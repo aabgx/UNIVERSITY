@@ -1,0 +1,88 @@
+li {
+  background-image: url("css-pb4-sprite.png");
+  height: 84px;
+  width: 84px;
+}
+ul {
+  list-style-type: none;
+  /*pentru orizontala*/
+  display: flex;
+}
+
+#elem1 {
+  /*pozitia pe ox si oy (mut basically imaginea mai la stanga sau mai sus)*/
+  background-position: 0 84px;
+}
+#elem1:hover {
+  background-position: 0 0;
+}
+
+#elem2 {
+  background-position: -84px 84px;
+}
+#elem2:hover {
+  background-position: -84px 0;
+}
+
+#elem3 {
+  background-position: -168px 84px;
+}
+#elem3:hover {
+  background-position: -168px 0;
+}
+
+#elem4 {
+  background-position: -252px 84px;
+}
+#elem4:hover {
+  background-position: -252px 0;
+}
+
+#elem5 {
+  background-position: -336px 84px;
+}
+#elem5:hover {
+  background-position: -336px 0;
+}
+
+#elem6 {
+  background-position: -420px 84px;
+}
+#elem6:hover {
+  background-position: -420px 0;
+}
+
+#elem7 {
+  background-position: -504px 84px;
+}
+#elem7:hover {
+  background-position: -504px 0;
+}
+
+#elem8 {
+  background-position: -588px 84px;
+}
+#elem8:hover {
+  background-position: -588px 0;
+}
+
+#elem9 {
+  background-position: -672px 84px;
+}
+#elem9:hover {
+  background-position: -672px 0;
+}
+
+#elem10 {
+  background-position: -756px 84px;
+}
+#elem10:hover {
+  background-position: -756px 0;
+}
+
+#elem11 {
+  background-position: -840px 84px;
+}
+#elem11:hover {
+  background-position: -840px 0;
+}

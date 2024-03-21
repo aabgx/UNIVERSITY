@@ -1,0 +1,19 @@
+img {
+  width: 135px;
+  height: auto;
+}
+ul {
+  list-style-type: none;
+  width: 415px;
+  border: solid;
+  padding: 15px;
+  text-align: center;
+}
+li {
+  padding: 20px;
+  margin: 15px;
+  width: 135px;
+  /* display: flex; */
+  display: inline-block;
+  background-color: #6e9167;
+}

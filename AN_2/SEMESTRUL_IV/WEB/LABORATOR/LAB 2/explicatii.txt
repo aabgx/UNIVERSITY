@@ -1,0 +1,5 @@
+PB 7:
+padding: spatiu de incadrare
+border-radius: face colturi rotunde
+margin-bottom: spatiu intre chenare
+max-width: latime maxima

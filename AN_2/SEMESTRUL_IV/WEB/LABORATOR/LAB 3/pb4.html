@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      th {
+        cursor: pointer;
+      }
+      table {
+        border-collapse: separate;
+        border-spacing: 10px;
+      }
+    </style>
+    <script type="text/javascript">
+      /*h - linia cu headerul pe care s-a dat click pentru sortare*/
+      function sorteaza(h, al_catelea_tabel) {
+        /*celulele din antetul pe care s-a facut click*/
+        var elems = h.getElementsByTagName("td");
+
+        /*valorile celulelor din antetul pe care s-a dat click*/
+        var elvals = [];
+        for (var i = 0; i < elems.length; i++) {
+          elvals.push(elems[i].innerHTML);
+        }
+
+        /*toaate liniile din tabel*/
+        var rows =
+          document.getElementsByTagName("table")[al_catelea_tabel].rows;
+
+        /*pentru fiecare linie, creez un sir cu continutul celulelor*/
+        for (var i = 0; i < rows.length; i++) {
+          /*celulele liniei curente*/
+          var row = rows[i].getElementsByTagName("td");
+
+          /*sir cu continutul celulelor liniei curente*/
+          var r = [];
+          for (var j = 0; j < row.length; j++) r.push(row[j].innerHTML);
+
+          /*sortez elementele liniei curente dupa valorile din elvals*/
+          /*folosim o functie de sortare cu comparatie personalizata*/
+          r.sort((a, b) =>
+            elvals[r.indexOf(a)] > elvals[r.indexOf(b)] ? 1 : -1
+          );
+
+          /*inlocuiesc elementele din linie cu cele sortate*/
+          for (var j = 0; j < row.length; j++) row[j].innerHTML = r[j];
+        }
+
+        /*prima data a trebuit facuta actualizarea pe restul liniilor
+        ca sa aiba relevanta pozitiile din elvals
+        acum actualizam si randul selectat*/
+        elvals.sort();
+
+        /*inlocuiesc valorile celulelor din antet-ul selectat cu cele sortate*/
+        for (var i = 0; i < elems.length; i++) elems[i].innerHTML = elvals[i];
+      }
+    </script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th onclick="sorteaza(this.parentNode,0)">Fructe</th>
+        <td>Mere</td>
+        <td>Pere</td>
+        <td>Cirese</td>
+      </tr>
+      <tr>
+        <th onclick="sorteaza(this.parentNode,0)">Pret</th>
+        <td>3</td>
+        <td>5</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <th onclick="sorteaza(this.parentNode,0)">Cantitate</th>
+        <td>8</td>
+        <td>6</td>
+        <td>9</td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th onclick="sorteaza(this.parentNode,1)">Fructe</th>
+        <td>Mere</td>
+        <td>Pere</td>
+        <td>Cirese</td>
+      </tr>
+      <tr>
+        <th onclick="sorteaza(this.parentNode,1)">Pret</th>
+        <td>3</td>
+        <td>5</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <th onclick="sorteaza(this.parentNode,1)">Cantitate</th>
+        <td>8</td>
+        <td>6</td>
+        <td>9</td>
+      </tr>
+    </table>
+  </body>
+</html>

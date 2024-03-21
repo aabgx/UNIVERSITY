@@ -1,0 +1,25 @@
+header {
+  background-color: red;
+  height: 100px;
+}
+footer {
+  height: 60px;
+  background-color: pink;
+}
+nav {
+  height: 25px;
+  background-color: yellow;
+}
+div {
+  background-color: green;
+  min-height: calc(100vh - 185px);
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+h1 {
+  margin: 0;
+  padding: 0;
+}

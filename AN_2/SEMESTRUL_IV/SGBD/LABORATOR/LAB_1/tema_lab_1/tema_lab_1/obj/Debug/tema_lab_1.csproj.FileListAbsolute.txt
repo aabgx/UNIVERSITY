@@ -1,0 +1,11 @@
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\LAB_1\tema_lab_1\tema_lab_1\bin\Debug\tema_lab_1.exe.config
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\LAB_1\tema_lab_1\tema_lab_1\bin\Debug\tema_lab_1.exe
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\LAB_1\tema_lab_1\tema_lab_1\bin\Debug\tema_lab_1.pdb
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\LAB_1\tema_lab_1\tema_lab_1\obj\Debug\tema_lab_1.csproj.AssemblyReference.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\LAB_1\tema_lab_1\tema_lab_1\obj\Debug\tema_lab_1.csproj.SuggestedBindingRedirects.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\LAB_1\tema_lab_1\tema_lab_1\obj\Debug\tema_lab_1.Form1.resources
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\LAB_1\tema_lab_1\tema_lab_1\obj\Debug\tema_lab_1.Properties.Resources.resources
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\LAB_1\tema_lab_1\tema_lab_1\obj\Debug\tema_lab_1.csproj.GenerateResource.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\LAB_1\tema_lab_1\tema_lab_1\obj\Debug\tema_lab_1.csproj.CoreCompileInputs.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\LAB_1\tema_lab_1\tema_lab_1\obj\Debug\tema_lab_1.exe
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\LAB_1\tema_lab_1\tema_lab_1\obj\Debug\tema_lab_1.pdb

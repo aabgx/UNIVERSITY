@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- <!DOCTYPE html> -->
+<html lang="ro">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>TEMĂ</title>
+</head>
+
+<body>
+  <div>
+    <h1>ÎNREGISTRARE INTERNSHIP</h1>
+    <center>
+      <span>
+        <b>OBSERVAȚIE: </b> se vor completa
+        <strong>absolut toate</strong> campurile!
+      </span>
+    </center>
+    <br>
+    <br>
+    <br>
+  </div>
+  <form action="/action_page.php">
+    <fieldset>
+      <legend>Dată:</legend>
+      <label for="zi">Zi: </label>
+      <input type="text" id="zi" name="zi" maxlength="2">
+      <label for="luna">Lună:</label>
+      <input type="text" id="luna" name="luna" maxlength="2">
+      <label for="an">An:</label>
+      <input type="text" id="an" name="an" maxlength="4">
+    </fieldset>
+    <table border="1px solid black">
+      <tr>
+        <td colspan="2">
+          <table>
+            <tr>
+              <th colspan="2">DATE PERSONALE</th>
+            </tr>
+            <tr>
+              <td rowspan="1" valign="baseline">
+                <label for="nume">Nume: </label>
+                <input name="nume" type="text" id="nume">
+              </td>
+              <td rowspan="1">
+                <label for="prenume">Prenume: </label>
+                <input type="text" id="prenume">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="varsta">Vârsta: </label>
+                <input type="text" id="varsta" name="varsta">
+              </td>
+              <td>
+                <span> Sex: </span>
+                <label for="M">M: </label>
+                <input type="radio" id="M" name="sex">
+                <label for="F">F: </label>
+                <input type="radio" id="F" name="sex">
+                <label for="other">other: </label>
+                <input type="radio" id="other" name="sex">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="tara">Țara de proveniență: </label>
+                <select id="tara">
+                  <option value="Romania" selected>Romania</option>
+                  <option value="Ungaria">Ungaria</option>
+                  <option value="Spania">Spania</option>
+                  <option value="Franta">Franta</option>
+                  <option value="Italia">Italia</option>
+                </select>
+              </td>
+              <td>
+                <label for="oras">Orașul domiciliu: </label>
+                <input type="text" id="oras">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="email"> Email:</label>
+                <input type="text" id="email" size="20">
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <label for="politica">
+                  ACCEPTĂ POLITICĂ DE CONFIDENȚIALITATE
+                  <a href="https://usigarajromania.ro/prezenta-politica-de-confidentialitate/?gclid=Cj0KCQiAgaGgBhC8ARIsAAAyLfEIiE49Wss7jq95lV51Fdehl9gPWtjKmVj9rLZ1KwpVv7zvgOh47f0aAkDcEALw_wcB"
+                    target="_blank">
+                    link document aici
+                  </a>
+                </label>
+                <input type="checkbox" id="politica" checked>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2" bgcolor="red">INFORMȚII STUDII</th>
+      </tr>
+      <tr>
+        <td>
+          <label for="universitate">Universitate: </label>
+          <select id="universitate" multiple>
+            <option value="UTCN">UTCN</option>
+            <option value="UBB" selected>UBB</option>
+            <option value="UniBuc">UniBuc</option>
+            <option value="UVT">UVT</option>
+            <option value="USAMV">USAMV</option>
+          </select>
+        </td>
+        <td>
+          <label for="anul">Anul: </label>
+          <select id="anul">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="facultate">Facultate:</label>
+          <input type="text" id="facultate">
+        </td>
+        <td>
+          <label for="specializare">Specializare:</label>
+          <input type="text" id="specializare">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="linia">Linia de studiu:</label>
+          <select id="linia">
+            <option value="ro">română</option>
+            <option value="eng">engleză</option>
+            <option value="mg">maghiară</option>
+            <option value="gr">germană</option>
+          </select>
+        </td>
+        <td>
+          <p>
+            Vă rugăm să specificați în "alte detalii relevante" dacă sunteți
+            licențiat!
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th colspan="3" align="center">CE CĂUTĂM:</th>
+      </tr>
+      <tr>
+        <td>
+          <h5>HARD SKILLS:</h5>
+          <ul>
+            <li>java</li>
+            <li>
+              .net:
+              <ul>
+                <li>ado.net</li>
+                <li>asp.net</li>
+              </ul>
+            </li>
+            <li>python</li>
+            <li>aws</li>
+            <li>html si css</li>
+          </ul>
+        </td>
+        <td>
+          <h5>SOFT SKILLS</h5>
+          <ol start="100">
+            <li>un bun coechipier</li>
+            <li>un bun ascultător</li>
+            <li>bun la lucrat sub presiune</li>
+          </ol>
+        </td>
+        <td>
+          <h5>EXPERIENȚĂ ÎN:</h5>
+          <ol type="i">
+            <li>back-end</li>
+            <li>front-end</li>
+          </ol>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <label for="alte_detalii">ALTE DETALII RELEVANTE: </label>
+          <textarea id="alte_detalii" cols="100" rows="2"> </textarea>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <div>
+    <img
+      src="https://previews.123rf.com/images/captainvector/captainvector1602/captainvector160218152/52863657-smiley-face-showing-thumbs-up.jpg"
+      alt="happy face" width="100" height="100">
+  </div>
+</body>
+
+</html>

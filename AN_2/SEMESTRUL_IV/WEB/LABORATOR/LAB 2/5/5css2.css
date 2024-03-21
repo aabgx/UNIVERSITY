@@ -1,0 +1,17 @@
+img {
+  width: 135px;
+  height: auto;
+}
+ul {
+  background-color: #b3abba;
+  list-style-type: none;
+  border: solid;
+  width: 300px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+li {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+}

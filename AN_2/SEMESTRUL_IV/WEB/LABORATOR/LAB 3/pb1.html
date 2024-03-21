@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      function move(deUnde, unde) {
+        var selectedOption = $(deUnde).find('option:selected');
+				$(deUnde).find('option:selected').remove();
+				$(unde).append(selectedOption);
+      }
+    </script>
+  </head>
+  <body>
+    <select class="my-select"
+      id="first"
+      ondblclick="move(this, document.getElementById('second'))"
+      style="width: 100px; height: 200px"
+      multiple
+    >
+      <option value="1">1</option>
+      <option value="3">3</option>
+      <option value="5">5</option>
+      <option value="7">7</option>
+      <option value="9">9</option>
+    </select>
+    <select class="my-select"
+      id="second"
+      ondblclick="move(this, document.getElementById('first'))"
+      style="width: 100px; height: 200px"
+      multiple
+    >
+      <option value="2">2</option>
+      <option value="4">4</option>
+      <option value="6">6</option>
+      <option value="8">8</option>
+      <option value="10">10</option>
+    </select>
+    <select class="my-select"
+      id="third"
+      ondblclick="move('third','fourth')"
+      style="width: 100px; height: 200px"
+      multiple
+    >
+      <option value="1">1</option>
+      <option value="3">3</option>
+      <option value="5">5</option>
+      <option value="7">7</option>
+      <option value="9">9</option>
+    </select>
+    <select class="my-select"
+      id="fourth"
+      ondblclick="move('fourth','third')"
+      style="width: 100px; height: 200px"
+      multiple
+    >
+      <option value="1">1</option>
+      <option value="3">3</option>
+      <option value="5">5</option>
+      <option value="7">7</option>
+      <option value="9">9</option>
+    </select>
+  </body>
+</html>

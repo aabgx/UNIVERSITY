@@ -1,0 +1,28 @@
+REZERVARE BILETE EVENIMENT
+
+O companie de organizatori de evenimente pune la dispozitia cumparatorilor un sistem pentru rezervarea biletelor.Pentru a putea achizitiona un bilet,utilizatorul trebuie sa 
+detina un cont (se retin username si parola). Pentru un eveniment sunt memorate numele, pretul, nr locuri. Dupa autentificarea cu succes, un utilizator poate cauta 
+evenimentul dupa dupa nume, sau o reprezentare a evenimentului respectiv dupa data, iar aplicatia va afisa o lista cu rezultate. El poate selecta unul dintre rezultate 
+obtinute la reprezentari si sa rezerve un bilet (poate plati pe loc, online sau la eveniment). De asemenea, clientul poate sa anuleze rezervarile deja facute, prin selectarea
+uneia dintre ele si actionarea unui buton.
+
+Logarea se poate face de asemenea de catre un angajat (se va intra automat in versiunea de angajat, ei au conturi predefinite). Acestia pot adauga evenimente/reprezentari si
+pot sterge anumite rezervari deja aflate in sistem.
+
+-INREGISTRARE
+-LOGARE
+-CAUTARE EVENIMENTE DUPA NUME
+-CAUTARE REPREZENTARI DUPA DATA
+-REZERVARE
+-ANULARE REZERVARE
+
+-STERGERE REZERVARE
+-ADAUGARE EVENIMENT
+-ADAUGARE REPREZENTARE
+
+ENTITATI:
+1. client: nume_utilizator, parola
+2. angajat: nume_utilizator, parola
+3. eveniment: nume, nr_locuri, pret
+4. reprezentare: data, eveniment
+3. rezervare: nr_loc, reprezentare

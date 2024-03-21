@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      span {
+        position: absolute;
+        margin-left: 50%;
+      }
+      button {
+        position: relative;
+        display: inline;
+        transform: translateX(-50%);
+      }
+      #poze {
+        position: relative;
+        margin-left: 50%;
+      }
+      img {
+        width: 200px;
+        height: 200px;
+        /* display: none; */
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+
+      /*definim animatia*/
+      @keyframes fade {
+        from {
+          opacity: 0.2;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      li {
+        /*ca sa nu mi le numeroteze e list-style-type*/
+        list-style-type: none;
+        width: 200px;
+        position: relative;
+        transform: translateX(-50%);
+      }
+      /* .links {
+        position: absolute;
+        bottom: 5px;
+        height: 20px;
+        width: 100%;
+        background-color: black;
+        text-align: center;
+        opacity: 0.5;
+        color: white;
+        transform: translateX(-100%);
+      } */
+      .links {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 100%;
+        background-color: black;
+        text-align: center;
+        opacity: 0.5;
+        color: white;
+      }
+    </style>
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <body>
+    <ol id="poze">
+      <li>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg"
+        />
+        <a class="links" href="https://www.instagram.com/" target="_blank"
+          >INSTAGRAM</a
+        >
+      </li>
+      <li>
+        <img src="https://www.facebook.com/images/fb_icon_325x325.png" />
+        <a class="links" href="https://www.facebook.com" target="_blank"
+          >FACEBOOK</a
+        >
+      </li>
+      <li>
+        <img
+          src="https://help.twitter.com/content/dam/help-twitter/brand/logo.png"
+        />
+        <a class="links" href="https://www.twitter.com" target="_blank"
+          >TWITTER</a
+        >
+      </li>
+    </ol>
+
+    <span>
+      <button id="prev" onclick="move(-1)">PREV</button>
+      <button id="next" onclick="move(1)">NEXT</button>
+    </span>
+
+    <script type="text/javascript">
+      var index = 0;
+      var t;
+      change(1);
+
+      /*functie care schimba imaginea afisata*/
+      function change(n) {
+        var imgs = $("#poze img");
+        var texts = $("#poze .links");
+
+        /* Ascund toate imaginile și linkurile */
+        imgs.css("display", "none");
+        texts.css("display", "none");
+
+        /* Mut poziția cu n (1 pentru dreapta, -1 pentru stânga) */
+        index += n;
+        if (index > imgs.length) {
+          index = 1; // Trec înapoi la prima
+        }
+        if (index <= 0) {
+          index = imgs.length; // Trec la ultima
+        }
+      
+        /* Afisez imaginea și linkul curent */
+        $(imgs[index-1]).fadeIn(1000);
+        $(texts[index-1]).fadeIn(1000);
+      
+        /* Aman apelul functiei cu 3 secunde */
+        t = setTimeout(function() {
+          change(1);
+        }, 3000);
+      }
+
+      /*functie care schmba imaginea la apasarea butonului de PREV/NEXT*/
+      function move(n) {
+        clearTimeout(t);
+        change(n);
+      }
+    </script>
+  </body>
+</html>

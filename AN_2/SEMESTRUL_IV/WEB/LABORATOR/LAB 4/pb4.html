@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      
+      html,
+      body {
+        height: 100%;
+      }
+      
+      table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        margin: auto;
+      }
+      
+      th,
+      td {
+        text-align: center;
+        padding: 20px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+    </style>
+  
+
+    </head>
+      <body>
+        <table>
+          <thead>
+              <tr>
+                  <th onclick="sortTable(0)">Produse</th>
+                  <th onclick="sortTable(1)">Pret</th>
+                  <th onclick="sortTable(2)">Cantitate</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>Nuci</td>
+                  <td>50</td>
+                  <td>20</td>
+              </tr>
+              <tr>
+                  <td>Mere</td>
+                  <td>3</td>
+                  <td>8</td>
+              </tr>
+              <tr>
+                  <td>Struguri</td>
+                  <td>4</td>
+                  <td>6</td>
+              </tr>
+              <tr>
+                  <td>Prune</td>
+                  <td>4</td>
+                  <td>10</td>
+              </tr>
+          </tbody>
+      </table>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript">
+        //selectam tabelul nostru
+        var table = $("table")[0];
+  
+        function sortTable(n) {
+          //randurile din tabel
+          var tableContent = $(table).children("tbody");
+          var rows = [].slice.call(tableContent.children("tr"));
+  
+
+          //SE SORTEAZA TOATE RANDURILE DEODATA
+          //sortam dupa cuvinte
+          if (n == 0) {
+            rows.sort(function (a, b) {
+              console.log($(a).children()[n]);
+              if ($(a).children()[n].innerHTML > $(b).children()[n].innerHTML) return 1;
+              if ($(a).children()[n].innerHTML < $(b).children()[n].innerHTML)
+                return -1;
+              return 0;
+            });
+          } 
+          //sortam dupa numere
+          else {
+            rows.sort(function (a, b) {
+              if (
+                Number($(a).children()[n].innerHTML) >
+                Number($(b).children()[n].innerHTML)
+              )
+                return 1;
+              if (
+                Number($(a).children()[n].innerHTML) <
+                Number($(b).children()[n].innerHTML)
+              )
+                return -1;
+              return 0;
+            });
+          }
+        
+          //exista toate randurile deja, dar le face o schimbare de ordine (sa apara ordinea actualizata, nu doar in memorie)
+          rows.forEach(function (v) {
+            $(tableContent).append(v);
+          });
+        }        
+      </script>
+      </body>
+    </html>

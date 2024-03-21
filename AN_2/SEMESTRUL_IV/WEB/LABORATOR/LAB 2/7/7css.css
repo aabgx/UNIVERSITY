@@ -1,0 +1,36 @@
+ul.dialog {
+  list-style-type: none;
+  padding: 100px;
+}
+
+li {
+  min-height: 50px;
+  min-width: 100px;
+  border: solid;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  padding: 10px;
+  max-width: 170px;
+}
+
+li:before {
+  background-image: url("pb7-sprite.png");
+  position: absolute;
+  left: 20px;
+  content: "";
+  height: 56px;
+}
+li.alice:before {
+  width: 123px;
+}
+li.alice {
+  margin-left: 35px;
+}
+
+li.bob:before {
+  width: 111px;
+  background-position: 111px 0px;
+}
+li.bob {
+  margin-left: 23px;
+}

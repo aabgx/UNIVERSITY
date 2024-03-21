@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+				$('button').click(function () {
+					return valideaza();
+				});
+			});
+
+      function valideaza() {
+        /*iau campurile de input*/
+				$('#name').css('borderColor','black');
+				$('#bday').css('borderColor','black');
+				$('#age').css('borderColor','black');
+				$('#email').css('borderColor','black');
+
+        var err = "Campuri incorecte:\n";
+        /*fiecare camp incorect va fi incadrat in rosu verific ca numele sa contina doar litere*/
+        /*i ca sa fie case insensitive*/
+				if(!(/^[a-z]+$/i).test($('#name').val())){
+					err+="Nume\n";
+					$('#name').css('borderColor','red');
+				}
+        /*verific sa fie o data a nasterii aleasa*/
+				if($('#bday').val().length==0){
+					err+="Data nasterii\n";
+					$('#bday').css('borderColor','red');
+				}
+        /*verific ca varsta sa fie cuprinsa in intervalul [0,99]*/
+				if($('#age').val().length==0||$('#age').val()<0||$('#age').val()>99){
+					err+="Varsta\n";
+					$('#age').css('borderColor','red');
+				}
+        /*verific ca emailul sa fie in formatul: [minim un caracter]@[gmail/hotmail/yahoo].[ro/com]*/
+				if(!(/^[a-z0-9_.]+@(yahoo|gmail|hotmail)\.(ro|com)$/i).test($('#email').val())){
+					err+="Email\n";
+					$('#email').css('borderColor','red');
+				}
+        /*afisez campurile incorecte*/
+        if (err != "Campuri incorecte:\n") alert(err);
+        else alert("Datele sunt corecte");
+      }
+    </script>
+  </head>
+  <body>
+    <div style="position: absolute; left: 40%">
+      <label for="name">Nume:</label><br />
+      <input type="text" id="name" name="name" /><br />
+      <label for="bday">Data nasterii:</label><br />
+      <input type="date" id="bday" name="bday" /><br />
+      <label for="age">Varsta:</label><br />
+      <input type="text" id="age" name="age" /><br />
+      <label for="email">Email:</label><br />
+      <input type="text" id="email" name="email" /><br /><br />
+      <button>Trimite</button>
+    </div>
+  </body>
+</html>

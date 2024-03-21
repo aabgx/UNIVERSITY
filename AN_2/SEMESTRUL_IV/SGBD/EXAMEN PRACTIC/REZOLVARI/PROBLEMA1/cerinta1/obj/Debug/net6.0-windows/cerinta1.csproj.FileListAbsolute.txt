@@ -1,0 +1,48 @@
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\bin\Debug\net6.0-windows\cerinta1.exe
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\bin\Debug\net6.0-windows\cerinta1.deps.json
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\bin\Debug\net6.0-windows\cerinta1.runtimeconfig.json
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\bin\Debug\net6.0-windows\cerinta1.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\bin\Debug\net6.0-windows\cerinta1.pdb
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\cerinta1.csproj.AssemblyReference.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\cerinta1.Form1.resources
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\cerinta1.csproj.GenerateResource.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\cerinta1.GeneratedMSBuildEditorConfig.editorconfig
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\cerinta1.AssemblyInfoInputs.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\cerinta1.AssemblyInfo.cs
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\cerinta1.csproj.CoreCompileInputs.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\cerinta1.csproj.CopyComplete
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\cerinta1.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\refint\cerinta1.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\cerinta1.pdb
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\cerinta1.genruntimeconfig.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA 1\cerinta1\cerinta1\obj\Debug\net6.0-windows\ref\cerinta1.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\bin\Debug\net6.0-windows\cerinta1.exe
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\bin\Debug\net6.0-windows\cerinta1.deps.json
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\bin\Debug\net6.0-windows\cerinta1.runtimeconfig.json
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\bin\Debug\net6.0-windows\cerinta1.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\bin\Debug\net6.0-windows\cerinta1.pdb
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\cerinta1.csproj.AssemblyReference.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\cerinta1.Form1.resources
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\cerinta1.csproj.GenerateResource.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\cerinta1.GeneratedMSBuildEditorConfig.editorconfig
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\cerinta1.AssemblyInfoInputs.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\cerinta1.AssemblyInfo.cs
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\cerinta1.csproj.CoreCompileInputs.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\cerinta1.csproj.CopyComplete
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\cerinta1.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\refint\cerinta1.dll
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\cerinta1.pdb
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\cerinta1.genruntimeconfig.cache
+D:\FACULTATE\AN 2\SEMESTRUL IV\SGBD\EXAMEN PRACTIC\REZOLVARI\PROBLEMA1\cerinta1\obj\Debug\net6.0-windows\ref\cerinta1.dll

@@ -1,0 +1,15 @@
+table {
+  margin: auto;
+  border-collapse: collapse;
+}
+
+table td {
+  text-align: center;
+  width: calc(500px / 3);
+  height: calc(500px / 3);
+}
+
+#winnerTxt {
+  margin: auto;
+  width: 100px;
+}

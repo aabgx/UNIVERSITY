@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+				table,td{
+  					border-collapse: collapse;
+  					border: 1px solid black;
+  					border-spacing: 0px; 
+				}
+				td{
+					width: 60px;
+					height: 60px;
+					text-align: center;
+				}
+				span{
+					display: none;
+				}
+				table{
+					margin-left: auto;
+					margin-right: auto;
+				}
+				select{
+					position: absolute;
+					left: 40%;
+				}
+		</style>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+            /*functie care imi amesteca random un sir*/
+			function shuffle(array) {
+  				for (var i = array.length - 1; i > 0; i--) {
+                    /*random imi da nr intre 0 si 1, apoi fac sa fie intre 0 si i, o pozitie random*/
+        			var j = Math.floor(Math.random() * (i + 1));
+        			var aux = array[i];
+        			array[i] = array[j];
+        			array[j] = aux;
+    			}
+  				return array;
+			}
+
+            /*creez sirul cu perechi de numere, apoi le amestec*/
+			function randArray(n){
+				var arr=[];
+				for(var i=1;i<=n*n/2;i++){
+					arr.push(i);
+					arr.push(i);
+				}
+				arr=shuffle(arr);
+				return arr;
+			}
+
+            /*functie care afiseaza continutul celulei din tabel pe care s-a dat click*/
+			function showCell(cell,pairs,n){
+                /*accesam primul element span din interiorl celulei selcate (si singurul) si il afisam*/
+				($(cell).find('span')).css('display','block');
+
+                /*daca s-a descoperit ultima pereche dam restart*/
+				if(pairs.length==n*n-1){
+					setTimeout(function(){
+						alert('You won!')
+						window.location.reload(true);
+					},1000);
+				}
+                /*daca am descoperit o noua pereche sau o prima casuta din pereche, lasam afisat si punem in pairs ultima celula descoperita*/
+				else{
+					if(pairs.length%2==0||$(pairs[pairs.length-1]).find('span').html()==$(cell).find('span').html()){
+						pairs.push(cell);
+					}
+                    /*altfel ascundem ultimele 2 celule descoperite si scoatem din pairs ultima celula adaugata*/
+					else{ 
+						setTimeout(function(){
+		    				$(cell).find('span').css('display','none');
+		    				$(pairs[pairs.length-1]).find('span').css('display','none');
+		    				pairs.pop();
+						},1000);
+					}
+				}
+			}
+
+            /*functie care populeaza tabelul cu perechile de numere*/
+			function generateTable(n,pairs){
+				var arr=randArray(n);
+                /*cu index parcurg sirul aleator tocmai creat*/
+				var index=0;
+				for(var i=0;i<n;i++){
+					var row=$('<tr>').appendTo($("#tabel"));
+					for(var j=0;j<n;j++){
+						($("<td><span>"+arr[index]+"</span></td>").appendTo(row))
+							.click(function () { showCell(this,pairs,n); });
+						index++;
+					}
+				}
+
+			}
+		</script>
+	</head>
+	<body onload="generateTable(2,[])">
+        <table id="tabel"></table>
+      </body>
+</html>

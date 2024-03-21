@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema 1</title>
+
+    <script>
+        function showDepartures(dep) {
+            //console.log(document.getElementById("statii"));
+            console.log(dep);
+            if (dep == '') {
+                document.getElementsByClassName("arrivals").innerHTML = "";
+                return;
+            }
+            else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    //starea este 4 (DONE), iar codul de stare HTTP este 200 (OK)
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log(this.responseText);
+
+                        //actualizez cu raspunsul primit de la server
+                        document.getElementById("arrivals").innerHTML = this.responseText;
+                    }
+                };
+
+                //"depart" pt a transmite statia de plecare către server
+                xmlhttp.open("GET", "p1.php?depart=" + dep, true);
+
+                //se trimite cerea fara alte date suplimentare
+                xmlhttp.send(null);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    Plecare: <br>
+    <select name="statii" id="statii" size="4" onchange="showDepartures(this.value)">
+        <option value="Alba Iulia">Alba Iulia</option>
+        <option value="Cluj Napoca">Cluj Napoca</option>
+        <option value="Sibiu">Sibiu</option>
+    </select>
+    <br>
+    Sosiri: <br>
+    <div id="arrivals"></div>
+</body>
+
+</html>

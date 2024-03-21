@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema 2</title>
+</head>
+
+<body>
+    <div id="info"></div>
+    <button id="prev">Previous</button>
+    <button id="next">Next</button>
+
+    <script>
+        var pageNr = 1;
+        var limit = 3;
+        var total;
+        var prevBtn = document.getElementById("prev");
+        var nextBtn = document.getElementById("next");
+
+        function getTotalRecords() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //console.log(typeof (this.responseText));
+                    total = parseInt(this.responseText);
+                    console.log('TOTAL INREGISTRARI: ',total);
+                }
+            }
+            xhttp.open("GET", "p21.php?page=1", true);
+            xhttp.send(null);
+        }
+
+        function loadDoc(pageNr) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+
+                //DONE si raspuns OK
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("info").innerHTML = this.responseText;
+                }
+            }
+            console.log(pageNr);
+            xhttp.open("GET", "p2.php?page=" + pageNr, true);
+            xhttp.send(null);
+            udpateButtons();
+        }
+
+        function udpateButtons() {
+            if (pageNr == 1) {
+                prevBtn.disabled = true;
+            }
+            else
+                if (pageNr * limit >= total) {
+                    nextBtn.disabled = true;
+                }
+                else {
+                    prevBtn.disabled = false;
+                    nextBtn.disabled = false;
+                }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            getTotalRecords();
+            loadDoc(1);
+            prevBtn.addEventListener("click", () => { pageNr -= 1; loadDoc(pageNr); });
+            nextBtn.addEventListener("click", () => { pageNr += 1; loadDoc(pageNr); });
+        });
+    </script>
+</body>
+
+</html>

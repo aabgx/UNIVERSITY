@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table,
+      td {
+        border: 1px solid black;
+        border-radius: 10px;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+        /* display: none; */
+      }
+      td {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+      }
+      span {
+        display: none;
+      }
+      table {
+        border-collapse: separate;
+        border-spacing: 10px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+
+    <script type="text/javascript">
+      var imagini = [
+        "https://m.media-amazon.com/images/M/MV5BODg1OTczMWEtNTU3MS00OTUzLThjODEtNDg1MWQwZmExYmFlXkEyXkFqcGdeQWFybm8@._V1_QL75_UX500_CR0,0,500,281_.jpg",
+        "https://pm1.narvii.com/6899/9080a1df5d0eec8f10a2141b47b034bb03eb1fc0r1-450-450v2_00.jpg",
+        "https://upload.wikimedia.org/wikipedia/en/7/77/Ariel_disney.png",
+        "https://lumiere-a.akamaihd.net/v1/images/gallery_princess_jasmine_2_1abea4ca_41f20a9a.jpeg?region=3,0,2175,1223",
+        "https://lumiere-a.akamaihd.net/v1/images/ct_rapunzel_upcportalreskin_20694_01be5a18.jpeg?region=0%2C0%2C330%2C330",
+        "https://media1.popsugar-assets.com/files/thumbor/s4uRlUNwzbaqyloNsU8xyQc2n3Y/105x0:1185x1080/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2020/09/02/725/n/1922283/05e316a35f4fc75868be40.09776669_/i/life-lessons-from-disney-cinderella.png",
+        "https://i.pinimg.com/originals/0c/1d/df/0c1ddf669d3ed6533dc9f7b15e9d150f.png",
+        "https://lumiere-a.akamaihd.net/v1/images/ct_pocahontas_upcportalreskin_20694_53345657.jpeg?region=0%2C0%2C330%2C330",
+      ];
+
+      /*functie care imi amesteca random un sir*/
+      function shuffle(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+          /*random imi da nr intre 0 si 1, apoi fac sa fie intre 0 si i, o pozitie random*/
+          var j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      /*creez sirul cu perechi de numere, apoi le amestec*/
+      function randArray(n) {
+        var arr = [];
+        for (var i = 1; i <= (n * n) / 2; i++) {
+          arr.push(i);
+          arr.push(i);
+        }
+        arr = shuffle(arr);
+        return arr;
+      }
+
+      /*functie care afiseaza continutul celulei din tabel pe care s-a dat click*/
+      function showCell(cell, pairs, n) {
+        /*accesam primul element span din interiorl celulei selcate (si singurul) si il afisam*/
+        cell.getElementsByTagName("span")[0].style.display = "block";
+
+        /*daca s-a descoperit ultima pereche dam restart*/
+        if (pairs.length == n * n - 1) {
+          setTimeout(function () {
+            alert("You won!");
+            window.location.reload();
+          }, 1000);
+        } else {
+          /*daca am descoperit o noua pereche sau o prima casuta din pereche, lasam afisat si punem in pairs ultima celula descoperita*/
+          if (
+            pairs.length % 2 == 0 ||
+            pairs[pairs.length - 1].getElementsByTagName("span")[0].innerHTML ==
+              cell.getElementsByTagName("span")[0].innerHTML
+          ) {
+            pairs.push(cell);
+            console.log(pairs);
+          } else {
+            /*altfel ascundem ultimele 2 celule descoperite si scoatem din pairs ultima celula adaugata*/
+            setTimeout(function () {
+              cell.getElementsByTagName("span")[0].style.display = "none";
+              pairs[pairs.length - 1].getElementsByTagName(
+                "span"
+              )[0].style.display = "none";
+              pairs.pop();
+            }, 1000);
+          }
+        }
+      }
+
+      /*functie care populeaza tabelul cu perechile de numere*/
+      function generateTable(n, pairs) {
+        var arr = randArray(n);
+        console.log(arr);
+        var tb = document.getElementById("tabel");
+
+        /*cu index parcurg sirul aleator tocmai creat*/
+        var index = 0;
+        for (var i = 0; i < n; i++) {
+          var row = tb.insertRow();
+          for (var j = 0; j < n; j++) {
+            var cell = row.insertCell();
+
+            /*n-am idee de ce nu merge direct cu imagine*/
+            cell.innerHTML =
+              "<span>" +
+              "<img src='" +
+              imagini[arr[index] - 1] +
+              "' alt='imagine' />" +
+              "</span>";
+
+            /*setez evenimentul de click pe fiecare celula*/
+            cell.onclick = function () {
+              showCell(this, pairs, n);
+            };
+            index++;
+          }
+        }
+      }
+    </script>
+  </head>
+  <body onload="generateTable(2,[])">
+    <table id="tabel"></table>
+  </body>
+</html>
