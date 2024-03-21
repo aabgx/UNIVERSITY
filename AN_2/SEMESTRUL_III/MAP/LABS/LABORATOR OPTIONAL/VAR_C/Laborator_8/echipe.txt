@@ -1,9 +1,0 @@
-﻿1;echipa1
-2;echipa2
-3;echipa3
-4;echipa4
-5;echipa5
-6;echipa6
-7;echipa7
-8;echipa8
-9;echipa9
