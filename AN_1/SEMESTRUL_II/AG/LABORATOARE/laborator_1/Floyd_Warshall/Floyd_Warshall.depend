@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1646643715 source:c:\users\andre\desktop\ag\laborator_1\floyd_warshall\main.cpp
+	<iostream>
+	<limits.h>
+
+1646644825 source:c:\users\andre\desktop\ag\laboratoare\laborator_1\floyd_warshall\main.cpp
+	<iostream>
+	<limits.h>
+
