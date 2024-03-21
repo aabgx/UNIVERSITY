@@ -1,0 +1,73 @@
+;sir de dwords, ia bytes high din fiecare word si creaza word nou
+;nr valorile de 1 si afiseaza pe ecran in baza 10
+bits 32 ; assembling for the 32 bits architecture
+
+; declare the EntryPoint (a label defining the very first instruction of the program)
+global start        
+
+; declare external functions needed by our program
+extern exit,printf               ; tell nasm that exit exists even if we won't be defining it
+import exit msvcrt.dll
+import printf msvcrt.dll        ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+                          ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+
+; our data is declared here (the variables needed by our program)
+segment data use32 class=data
+    words times 10 dw -1
+    suma db 0
+    s dd 1234A678h, 12785634h, 1A4D3C28h
+    lens equ $-s
+    aux dw -1
+    copie dd -1
+    copie1 dd -1
+    format_d db '%d',0
+
+    
+    ;in words ar trebui sa fie A612, 5612, 3C1A
+; our code starts here
+segment code use32 class=code
+    start:
+    
+        mov esi,s
+        mov ecx,lens/2
+        mov edi, words
+        
+        repeta:
+            lodsw
+            mov byte[edi],ah
+            inc edi
+        loop repeta
+        ;Sunt in ordinea buna pusi (cand incarca words, il ia pe cel inferior intai ->cand vrem sa scoatem pe rand words din esi vor fi ok)
+        
+        ;numaram bitii de 1
+        mov esi,words
+        mov ecx, lens/4 ; avem word uri cate dwords au fost la inceput
+        repeta_words:
+            mov eax,0
+            lodsw ;in ax avem word-ul
+            
+            mov [copie1],ecx
+            mov ecx, 16 ;sunt 16 biti de verificat la fiecare word
+            
+            repeta_cnt:
+                shr ax,1
+                adc byte[suma],0
+            loop repeta_cnt
+        
+            mov ecx,[copie1]
+        loop repeta_words
+        
+        
+        ;afisez suma calculata
+        mov eax,0
+        mov al,byte[suma]
+        ;printf(format,variabile)
+        push dword eax
+        push dword format_d
+        call [printf]
+        add esp,4*2
+
+    
+        ; exit(0)
+        push    dword 0      ; push the parameter for exit onto the stack
+        call    [exit]       ; call exit to terminate the program

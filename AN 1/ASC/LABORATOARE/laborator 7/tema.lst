@@ -1,0 +1,50 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 01020304                    s1 db 1,2,3,4
+    14 00000004 05060708                    s2 db 5,6,7,8
+    15                                      ls equ $-s2;atat lungimea s1 si s2, cat si lungimea d
+    16 00000008 02                          doi db 2
+    17 00000009 00<rept>                    d times ls db 0
+    18                                  
+    19                                  ; our code starts here
+    20                                  segment code use32 class=code
+    21                                      start:
+    22 00000000 BF00000000                      mov edi,0       ;cu asta vom parcurge toate 3 sirurile
+    23 00000005 B904000000                      mov ecx,ls      ;vrem ca bucla sa mearga de nr. de elemente ori
+    24                                          
+    25                                          repeta:
+    26 0000000A 8A9F[00000000]                      mov bl,[s1+edi]
+    27 00000010 8ABF[04000000]                      mov bh,[s2+edi]  ;elementele din fiecare sir, cu care lucram operatia curenta
+    28                                              
+    29                                              ;verificam daca suntem pe o pozitie para sau impara: edi%2
+    30 00000016 6689F8                              mov ax,di
+    31 00000019 F635[08000000]                      div byte[doi]; ->   al = cat    si  ah = rest
+    32                                              ;daca ah = 0 numarul e par, altfel impar
+    33 0000001F 80FC00                              cmp ah,0
+    34 00000022 7402                                je par
+    35 00000024 750B                                jne impar
+    36                                              par:
+    37 00000026 00FB                                    add bl,bh
+    38 00000028 889F[09000000]                          mov [d+edi],bl ;punem pe pozitia edi din rezultat valoarea calculata
+    39 0000002E 47                                      inc edi
+    40 0000002F EB09                                    jmp final_repeta ;jump la final ca sa nu faca si calculul pentru eticheta impar
+    41                                              impar:
+    42 00000031 28FB                                    sub bl,bh
+    43 00000033 889F[09000000]                          mov [d+edi],bl ;punem pe pozitia edi din rezultat valoarea calculata
+    44 00000039 47                                      inc edi
+    45                                              final_repeta:
+    46 0000003A E2CE                            loop repeta ;merge de ecx ori
+    47                                                  
+    48                                          ; exit(0)
+    49 0000003C 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    50 0000003E FF15[00000000]                  call    [exit]       ; call exit to terminate the program

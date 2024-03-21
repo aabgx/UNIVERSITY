@@ -1,0 +1,68 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 EAFF9100D0FF7F00            s dw -22, 145, -48, 127
+    14                                      lens equ ($-s)/2
+    15 00000008 FF<rept>                    d times lens db -1
+    16 0000000C FFFF<rept>                  c times lens dw -1
+    17 00000014 10                          saisprezece db 16
+    18 00000015 00000000                    copie dd 0
+    19 00000019 0000                        copie2 dw 0
+    20 0000001B 00                          zero db 0
+    21                                      
+    22                                  ; our code starts here
+    23                                  segment code use32 class=code
+    24                                      start:
+    25                                          
+    26 00000000 BE[00000000]                    mov esi, s 
+    27 00000005 BD00000000                      mov ebp, 0 ; parcurgem d cu el
+    28 0000000A BF[0C000000]                    mov edi,c
+    29 0000000F B904000000                      mov ecx, lens ; ecx - lungimea sirului pt. loop
+    30 00000014 FC                              CLD
+    31                                          
+    32                                          repeta:
+    33 00000015 66AD                                lodsw ; cuvintele sunt incarcate pe rand in ax
+    34 00000017 66AB                                stosw ; salvam ax in copie1, parcurs cu edi
+    35 00000019 890D[15000000]                      mov [copie],ecx
+    36                                              
+    37 0000001F 8B0D[1B000000]                      mov ecx,[zero]
+    38 00000025 8A0D[14000000]                      mov cl,[saisprezece] ; transformam ecx pt bucla mica, ce trebuie efectuata de 16 ori
+    39                                              
+    40                                              cifre1:
+    41 0000002B 66D1E8                                  shr ax,1     ;in CF va fi ultima cifra rotita la dreapta
+    42 0000002E 121D[1B000000]                          adc bl,[zero] ;numar cifrele de 1 ce apar in reprezentarea binara a numarului dat
+    43 00000034 E2F5                                loop cifre1
+    44                                              
+    45                                              
+    46 00000036 66B80000                            mov ax,0 ; ax oricum nu ne mai trebuie in forma asta, il folosim la comparare
+    47 0000003A 83EF02                              sub edi,2 ;ca sa comparam pozitia curenta cu 0, nu urmatoarea
+    48 0000003D 66AF                                scasw ; aici e iar crescut edi,deci revein la pozitia buna
+    49 0000003F 7D02                                jge nega ; daca nr e negativ, cifrele de 0 vor fi 16 - nr. cifre de 1
+    50 00000041 7C0A                                jl aici ; daca nr. e pozitiv sau 0, am rezolvat problema
+    51                                              
+    52                                              nega:
+    53 00000043 8A3D[14000000]                          mov bh,[saisprezece]
+    54 00000049 28DF                                    sub bh,bl
+    55 0000004B 88FB                                    mov bl,bh
+    56                                              
+    57                                              aici:
+    58                                              
+    59 0000004D 889D[08000000]                      mov [d+ebp],bl
+    60 00000053 45                                  inc ebp
+    61 00000054 8B0D[15000000]                      mov ecx,[copie] ; revenim la valoarea lui ecx pt bucla mare
+    62 0000005A B300                                mov bl,0
+    63                                              
+    64 0000005C E2B7                            loop repeta
+    65                                          
+    66                                          ; exit(0)
+    67 0000005E 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    68 00000060 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

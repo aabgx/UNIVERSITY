@@ -1,0 +1,107 @@
+     1                                  ;problema 7
+     2                                  bits 32 ; assembling for the 32 bits architecture
+     3                                  
+     4                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     5                                  global start        
+     6                                  
+     7                                  ; declare external functions needed by our program
+     8                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     9                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+    10                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    11                                                            extern exit, fopen, fprintf, fclose, fscanf, printf
+    12                                  import exit msvcrt.dll
+    13                                  import fopen msvcrt.dll
+    14                                  import fprintf msvcrt.dll
+    15                                  import fscanf msvcrt.dll
+    16                                  import fclose msvcrt.dll
+    17                                  import printf msvcrt.dll
+    18                                  
+    19                                  ; our data is declared here (the variables needed by our program)
+    20                                  segment data use32 class=data
+    21 00000000 00                          poz db 0
+    22 00000001 00000000                    max dd 0
+    23 00000005 646563697469742E74-         fisier db "decitit.txt", 0     ;fisierele cu care lucrez
+    23 0000000E 787400             
+    24                                      
+    25                                                              ;mod acces fisier
+    26 00000011 7200                        access_mode db "r", 0
+    27                                      
+    28 00000013 FFFFFFFF                    descriptor dd -1               ;descriptori de fisier
+    29                                      
+    30 00000017 256300                      format_citire db "%c", 0 
+    31 0000001A 43656C206D61692066-         printformat db 'Cel mai frecvent caracter este %c si apare de %d ori.', 0
+    31 00000023 72656376656E742063-
+    31 0000002C 617261637465722065-
+    31 00000035 737465202563207369-
+    31 0000003E 206170617265206465-
+    31 00000047 202564206F72692E00 
+    32                                      
+    33                                      
+    34 00000050 61                          chr1 db 'a'
+    35 00000051 7A                          chr2 db 'z'
+    36 00000052 00<rept>                    vector times 28 db 0
+    37 0000006E FF                          a db -1
+    38                                  ; our code starts here
+    39                                  segment code use32 class=code
+    40                                      start:
+    41 00000000 68[11000000]                    push dword access_mode  
+    42 00000005 68[05000000]                    push dword fisier
+    43 0000000A FF15[00000000]                  call [fopen]
+    44 00000010 83C408                          add esp, 4*2 
+    45                                          
+    46 00000013 A3[13000000]                    mov [descriptor], eax  ;ca sa verificam daca s-a deschis bine (daca descriptorul e diferit de 0)
+    47 00000018 83F800                          cmp eax, 0
+    48 0000001B 0F8489000000                    je final_tot
+    49                                          
+    50                                          ;daca ajunge aici e ok deschiderea si citim cu fscanf
+    51                                          
+    52                                          repeta:
+    53 00000021 68[6E000000]                        push dword a
+    54 00000026 68[17000000]                        push dword format_citire
+    55 0000002B FF35[13000000]                      push dword [descriptor]
+    56 00000031 FF15[00000000]                      call [fscanf]
+    57 00000037 83C40C                              add esp, 4*3
+    58 0000003A 83F8FF                              cmp eax, -1 ; cand nu mai are ce sa citeasca, face eax -1, nu 0
+    59 0000003D 744C                                je final_repeta
+    60                                              
+    61                                          
+    62 0000003F 803D[6E000000]61                    cmp byte[a], 'a'
+    63 00000046 7241                                jb final_if
+    64 00000048 803D[6E000000]7A                    cmp byte[a], 'z'
+    65 0000004F 7F38                                jg final_if ;vad daca e litera mica, adica daca e intre a si z
+    66                                              
+    67                                              
+    68 00000051 802D[6E000000]61                    sub byte[a],'a'
+    69 00000058 0FB61D[6E000000]                    movzx ebx, byte[a] ;poz din vector
+    70 0000005F 8083[52000000]01                    add byte[vector+ebx],1
+    71 00000066 8B15[01000000]                      mov edx,[max]
+    72                                             
+    73 0000006C 3893[52000000]                      cmp byte[vector+ebx],dl
+    74 00000072 7F02                                jg actualizare
+    75 00000074 EB13                                jmp final_if ;daca nu am de facut actualizare trec la urmatorrul caracter
+    76                                              actualizare:
+    77 00000076 0FB693[52000000]                        movzx edx,byte[vector+ebx]
+    78 0000007D 8915[01000000]                          mov [max], edx
+    79 00000083 881D[00000000]                          mov [poz], bl
+    80                                                  ; in max va fi nr de aparitii si la [vector+poz] litera cu cele mai multe aparitii
+    81                                              final_if:
+    82 00000089 EB96                                jmp repeta
+    83                                          final_repeta:
+    84 0000008B 0FB61D[00000000]                movzx ebx, byte[poz]
+    85 00000092 83C361                          add ebx,'a' ; pt ca in vector lucram cu numere pana acum si verau sa lucrez cu caractere
+    86                                          ;printf(printformat,ebx,max)
+    87 00000095 FF35[01000000]                  push dword [max]            ; aici e numarul de aparitii al literei
+    88 0000009B 53                              push ebx
+    89 0000009C 68[1A000000]                    push dword printformat
+    90 000000A1 FF15[00000000]                  call [printf]
+    91 000000A7 83C40C                          add esp,4*3
+    92                                          
+    93                                          final_tot:
+    94                                          
+    95 000000AA FF35[13000000]                  push dword [descriptor]
+    96 000000B0 FF15[00000000]                  call [fclose]
+    97 000000B6 83C404                          add esp, 4*1
+    98                                         
+    99                                          ; exit(0)
+   100 000000B9 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+   101 000000BB FF15[00000000]                  call    [exit]       ; call exit to terminate the program

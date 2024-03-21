@@ -1,0 +1,2 @@
+ Cele doua numere citite sunt a= 23 si b=12
+ Rezultatul operatiei 23 / 12 este: catul = 1 si restul = 11

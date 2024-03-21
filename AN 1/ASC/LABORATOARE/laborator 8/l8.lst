@@ -1,0 +1,81 @@
+     1                                  bits 32
+     2                                  global start        
+     3                                  extern exit, printf, scanf  
+     4                                  import exit msvcrt.dll    
+     5                                  import printf msvcrt.dll   
+     6                                  import scanf msvcrt.dll     
+     7                                                            
+     8                                  segment data use32 class=data
+     9 00000000 00000000                    a dd 0
+    10 00000004 00000000                    b dd 0
+    11 00000008 00000000                    result dd 0
+    12 0000000C 496E74726F64756365-         format1 db 'Introduceti a=', 0	; format este un sir C
+    12 00000015 746920613D00       
+    13 0000001B 496E74726F64756365-         format2 db 'Introduceti b=', 0      
+    13 00000024 746920623D00       
+    14 0000002A 256400                      readformat db '%d', 0  
+    15 0000002D 532D61206369746974-         printformat db 'S-a citit a=%d + b=%d . Rezultatul sumei este = %d (rez)', 0  
+    15 00000036 20613D2564202B2062-
+    15 0000003F 3D2564202E2052657A-
+    15 00000048 756C746174756C2073-
+    15 00000051 756D65692065737465-
+    15 0000005A 203D20256420287265-
+    15 00000063 7A2900             
+    16                                      ; elem din printformat se pun pe stiva de la dreapta la stanga 
+    17 00000066 696E74726F64756365-         mesajptcitire db 'introduceti datele: a= si b=', 0
+    17 0000006F 746920646174656C65-
+    17 00000078 3A20613D2073692062-
+    17 00000081 3D00               
+    18                                      
+    19 00000083 00000000                    n dd 0
+    20 00000087 00000000                    m dd 0
+    21 0000008B 256420256400                formatnoucitire db '%d %d', 0
+    22                                  
+    23                                  segment code use32 class=code
+    24                                  start:
+    25                                     ; apel printf(“Introduceti a=”)
+    26 00000000 68[0C000000]                push dword format1
+    27 00000005 FF15[00000000]              call [printf]
+    28 0000000B 83C404                      add esp, 4*1
+    29                                  
+    30                                      ; apel scanf(“%d”, a)
+    31 0000000E 68[00000000]                push dword a		; se pune pe stiva offset-ul variabilei!!
+    32 00000013 68[2A000000]                push dword readformat
+    33 00000018 FF15[00000000]              call [scanf]
+    34 0000001E 83C408                      add esp, 4*2
+    35                                  
+    36                                      ; apel printf(“Introduceti b=”)
+    37 00000021 68[1B000000]                push dword format2
+    38 00000026 FF15[00000000]              call [printf]
+    39 0000002C 83C404                      add esp, 4*1
+    40                                      
+    41                                      
+    42                                  
+    43                                      ; apel scanf(“%d”, b)
+    44 0000002F 68[04000000]                push dword b    	; se pune pe stiva offset-ul variabilei!!
+    45 00000034 68[2A000000]                push dword readformat
+    46 00000039 FF15[00000000]              call [scanf]
+    47 0000003F 83C408                      add esp, 4*2
+    48                                      
+    49                                  
+    50                                      
+    51                                     
+    52                                      
+    53                                  
+    54 00000042 A1[00000000]                mov eax, [a]
+    55 00000047 0305[04000000]              add eax, [b]
+    56 0000004D A3[08000000]                mov [result], eax
+    57                                  
+    58                                      ; !!!! daca rez sunt de dim mai mica decat 32 biti inainte de a fi puse pe sitva pentru afisare trebuie sa fie convertite la doublewords.
+    59                                      
+    60                                      ; apel printf(mesajdeafisat, a, b, result)
+    61 00000052 FF35[08000000]              push dword [result]     ; pune pe stiva valoarea rezultatului 
+    62 00000058 FF35[04000000]              push dword [b]          ; pune pe stiva valoarea lui b
+    63 0000005E FF35[00000000]              push dword [a]          ; pune pe stiva valoarea lui a
+    64 00000064 68[2D000000]                push dword printformat
+    65 00000069 FF15[00000000]              call [printf]
+    66 0000006F 83C410                      add esp,4*4
+    67                                  
+    68 00000072 6A00                        push dword 0
+    69 00000074 FF15[00000000]              call [exit]
+    70                                  

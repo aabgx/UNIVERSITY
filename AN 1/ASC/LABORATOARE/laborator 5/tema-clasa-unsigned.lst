@@ -1,0 +1,61 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13                                      ; a,b,d-byte; c-doubleword; x-qword
+    14 00000000 00                          a db 0h ;ca sa nu dea un nr negativ la scadere
+    15 00000001 55                          b db 255h
+    15          ******************       warning: byte data exceeds bounds [-w+number-overflow]
+    16 00000002 FFCCDDEE                    c dd 0EEDDCCFFh ; daca pun 0EEDDCC nu mai merge
+    17 00000006 55                          d db 255h
+    17          ******************       warning: byte data exceeds bounds [-w+number-overflow]
+    18 00000007 1122334455667788            x dq 8877665544332211h
+    19                                      ;
+    20                                  ; our code starts here
+    21                                  segment code use32 class=code
+    22                                      start:
+    23                                          ; (8-a*b*100+c)/d+x;
+    24 00000000 A0[00000000]                    mov al,[a]
+    25 00000005 F625[01000000]                  mul byte[b] ; ax = a*b ax=0
+    26                                          ;CF=0  ZF=1  SF=0 OF=0
+    27 0000000B 66BB6400                        mov bx,100
+    28 0000000F 66F7E3                          mul bx ; dx:ax = a*b*100 dx=0 ax=0
+    29                                          ;CF=0  ZF=1  SF=0 OF=0
+    30                                          
+    31                                          ;8-a*b*100
+    32 00000012 B308                            mov bl,8
+    33 00000014 660FB6DB                        movzx bx,bl
+    34 00000018 66B90000                        mov cx,0 ; cx:bx = 8
+    35                                          
+    36 0000001C 6629C3                          sub bx,ax  ;bx=0008
+    37                                          ;CF=0  ZF=0  SF=0 OF=0
+    38 0000001F 6619D1                          sbb cx,dx ; cx:bx = 8-a*b*100   cx=0000
+    39                                          ;CF=0  ZF=1  SF=0 OF=0
+    40                                          
+    41 00000022 66031D[02000000]                add bx,word[c+0] ;little endian bx=EDE4
+    42                                          ;CF=0  ZF=0  SF=1 OF=0
+    43 00000029 66130D[04000000]                adc cx,word[c+2] ; cx:bx = 8-a*b*100+c  cx=000E
+    44                                          ;CF=0  ZF=0  SF=1 OF=0
+    45                                          
+    46 00000030 6689D8                          mov ax,bx
+    47 00000033 6689CA                          mov dx,cx ; dx:ax = 8-a*b*100+c =1234 5680
+    48                                          
+    49 00000036 660FB61D[06000000]              movzx bx,[d]
+    50 0000003E 66F7F3                          div bx; ax - cat | dx - rest    nu incape catul! cat=7CE67h=511591(10) rest=4Dh=77(10)
+    51                                          
+    52 00000041 0FB7C0                          movzx eax,ax
+    53 00000044 0FB7D2                          movzx edx,dx
+    54 00000047 0305[07000000]                  add eax,dword[x+0]
+    55 0000004D 1315[0B000000]                  adc edx,dword[x+4]; edx:eax = rezultatul
+    56                                  
+    57                                          ; exit(0)
+    58 00000053 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    59 00000055 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

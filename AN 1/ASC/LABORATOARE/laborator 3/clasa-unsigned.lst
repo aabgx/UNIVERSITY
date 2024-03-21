@@ -1,0 +1,70 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13                                      ; ... (a+a+b*c*100)/(a+10)+a-e; a,b,c-byte; e-doubleword;  unsigned
+    14                                      
+    15 00000000 0A                          a db 10
+    16 00000001 03                          b db 3
+    17 00000002 05                          c db 5 
+    18 00000003 07000000                    e dd 7
+    19                                  
+    20                                  ; our code starts here
+    21                                  segment code use32 class=code
+    22                                      start:
+    23                                          ; ...
+    24                                          ;b*c
+    25 00000000 A0[01000000]                    mov al, [b]
+    26 00000005 F625[02000000]                  mul byte[c]  ; ax = b*c
+    27 0000000B 66BB6400                        mov bx, 100
+    28 0000000F 66F7E3                          mul bx   ; rez in dx:ax = b*c*100
+    29                                          
+    30                                          ; a de la byte sa fie extins la doubleword in comb de reg a-> cx:bx
+    31                                          
+    32 00000012 8A1D[00000000]                  mov bl, [a]
+    33 00000018 00DB                            add bl, bl ; bl= a+a
+    34 0000001A B700                            mov bh, 0
+    35 0000001C 66B90000                        mov cx, 0   ; cx:bx = a
+    36                                          
+    37                                          ; cx:bx +
+    38                                          ; dx:ax
+    39                                          ;---------
+    40                                          
+    41 00000020 6601D8                          add ax, bx  ; ax = ax+bx
+    42 00000023 6611CA                          adc dx, cx   ; dx = dx+cx +cf (daca a fost trasnport in op anterioara)
+    43                                          ; rez in dx:ax = (a+a+b*c*100)
+    44                                          
+    45 00000026 B30A                            mov bl, 10
+    46 00000028 021D[00000000]                  add bl, [a] ; bl = a+10
+    47                                          
+    48                                          ; dx:ax                      / bl
+    49                                          ; doubleword in comb de reg   / byte
+    50 0000002E B700                            mov bh, 0 
+    51                                          ; dx:ax                      / bx
+    52                                          ; doubleword in comb de reg   /word
+    53                                          
+    54 00000030 66F7F3                          div bx   ; se imparte dx:ax la bx si rez este in dx rest si in ax cat
+    55                                          ; ax = (a+a+b*c*100)/(a+10)
+    56                                          
+    57 00000033 8A1D[00000000]                  mov bl, [a]
+    58 00000039 B700                            mov bh, 0
+    59                                          
+    60 0000003B 6601D8                          add ax, bx ; ax = (a+a+b*c*100)/(a+10)+ a
+    61                                          ; ax   - e
+    62                                          ; word - doubleword
+    63 0000003E 0FB7C0                          movzx eax, ax 
+    64 00000041 2B05[03000000]                  sub eax, [e] ; eax = (a+a+b*c*100)/(a+10)+a-e
+    65                                          
+    66                                          
+    67                                      
+    68                                          ; exit(0)
+    69 00000047 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    70 00000049 FF15[00000000]                  call    [exit]       ; call exit to terminate the program
