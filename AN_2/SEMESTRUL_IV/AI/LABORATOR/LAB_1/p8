@@ -1,0 +1,26 @@
+# O(n) timp si O(n) spatiu (nr max cif (logn) combinatii (-> 2^logn) -1)
+# puteam cumva cu impartiri?
+from queue import Queue
+
+# afisez primul element din coada, apoi adaug in coada acel element + "1" si acel element +"0", va merge in cascada
+def binar_1_n(n):
+    rez = []
+    coada = Queue()
+
+    coada.put(1)
+
+    while n > 0:
+        n -= 1
+        element = coada.get()  # remove and return elementul
+        # print(element)
+        rez.append(element)
+
+        coada.put(element * 10)  # adaug 0 la final
+        coada.put(element * 10 + 1)  # adaug 1 la final
+
+    return rez
+
+
+binar_1_n(10)
+
+assert binar_1_n(4) == [1, 10, 11, 100]

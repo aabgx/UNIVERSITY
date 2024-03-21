@@ -1,0 +1,23 @@
+# O(n) timp si O(n) spatiu
+# folosesc un dictionar pt a retine nr de aparitii al cuvintelor
+def singura_aparitie(prop):
+    cuvinte = ""
+    d = dict()
+    lst = prop.split()
+    for el in lst:
+        if el not in d:
+            d[el] = 1
+        else:
+            d[el] += 1
+    for k, v in d.items():
+        if v == 1:
+            print(k)
+            cuvinte += k
+            cuvinte += " "
+
+    return cuvinte
+
+
+print(singura_aparitie("ana ana ana are mere rosii ana are"))
+
+assert singura_aparitie("ana ana ana are mere rosii ana are") == "mere rosii "

@@ -1,0 +1,62 @@
+# prea naiv, nu
+import bisect
+
+
+def quick_sort(lst):
+    """
+    Se împarte lista în 2 astfel încât elementele din dreapta pivotului sunt mai mici decât elementele din stânga pivotului
+    Se sorteaza cele doua subliste
+    lst->list, lista de elemente
+    return->list, lista sortata de elemente
+    """
+    if len(lst) <= 1:
+        return lst
+    pivot = lst.pop()
+    lesser = quick_sort(
+        [x for x in lst if x < pivot]
+    )  # Lista cu elemente mai mici decat pivot-ul ales -> o sa se aplice sortarea
+    greater = quick_sort(
+        [x for x in lst if x >= pivot]
+    )  # Lista cu elemente mai mari cu pivot-ul -> o sa se aplice sortarea
+    #                                                      Nu il ia de doua ori pe pivot deoaece am dat lst.pop()
+    return lesser + [pivot] + greater
+
+
+def k_greater_nu(k):
+    arr = [7, 4, 6, 3, 9, 1]
+    arr_sort = quick_sort(arr)
+    return arr_sort[len(arr_sort) - k]
+
+
+# asta e buna
+# O(n*logk)
+
+
+# facem un sir cu k elem, sa tinem minte cele mai mari k elemente, apoi tot actualizam sirul
+def k_greater(lst, k):
+    rez = []
+    for i in range(k):
+        rez.append(lst[i])
+    rez.sort(reverse=True)  # k*logk
+
+    for i in range(len(lst)):
+        if lst[i] > rez[-1]:
+            n = len(rez)
+            left = 0
+            right = n - 1
+            while left < right:
+                mid = (left + right) // 2
+                if rez[mid] < lst[i]:
+                    left = mid + 1
+                else:
+                    right = mid
+            rez.insert(lst[i], left)
+            rez.pop()  # O(1)
+
+    print(rez)
+    return rez[0]
+
+
+print(k_greater([7, 4, 6, 3, 9, 1], 2))
+
+assert k_greater([7, 4, 6, 3, 9, 1], 2) == 7

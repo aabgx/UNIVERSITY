@@ -1,0 +1,37 @@
+# prea naiv nup
+def quick_sort(lst):
+    if len(lst) <= 1:
+        return lst
+    pivot = lst.pop()
+    lesser = quick_sort([x for x in lst if x < pivot])
+    greater = quick_sort([x for x in lst if x >= pivot])
+    return lesser + [pivot] + greater
+
+
+def ultimul_cuvant_nu(prop):
+    lst = quick_sort(prop.split())
+    return lst[len(lst) - 1]
+
+
+# asta e buna
+# compar cuvantul curent cu maximul
+# O(n*m) timp unde m e media literelor din cuvinte si O(1) spatiu
+def ultimul_cuvant(prop):
+    cuv = ""
+    maxim = ""
+    for el in prop:
+        if el == " ":
+            if cuv > maxim:
+                maxim = cuv
+            cuv = ""
+        else:
+            cuv += el
+    if cuv > maxim:
+        maxim = cuv
+
+    return maxim
+
+
+print(ultimul_cuvant("asta e propozitia mea si gata z"))
+
+assert ultimul_cuvant("asta e z gata") == "z"

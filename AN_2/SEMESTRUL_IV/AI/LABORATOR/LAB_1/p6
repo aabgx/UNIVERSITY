@@ -1,0 +1,41 @@
+# pot cu un dictionar si as avea o(n) si la timp si la spatiu
+def comun_nu(sir, n):
+    d = dict()
+    for i in range(n):
+        if sir[i] not in d.keys():
+            d[sir[i]] = 1
+        else:
+            d[sir[i]] += 1
+
+    rez = -1
+    maxim = 0
+    for k, v in d.items():
+        if maxim < v:
+            rez = k
+            maxim = v
+    print(rez)
+
+
+comun_nu([1, 2, 3, 4, 1, 2, 3, 4, 3, 4, 3, 4, 3], 13)
+
+# Moore's voting
+# adunam 1 cand il gasim si scadem 1 cand nu-l gasim
+# toate vor ajunge eventual la 0, inafara de cel care se repeta de mai mult de n/2 ori (scazi de mai multe ori decat aduni)
+# O(n) timp si O(1) spatiu
+def comun(lst):
+    rez = lst[0]
+    cnt = 1
+    for i in range(1, len(lst)):
+        if rez == lst[i]:
+            cnt += 1
+        else:
+            cnt -= 1
+            if cnt == 0:
+                rez = lst[i]
+                cnt = 1
+    return rez
+
+
+print(comun([1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1]))
+
+assert comun([1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1]) == 1

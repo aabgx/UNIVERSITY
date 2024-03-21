@@ -1,0 +1,25 @@
+# mnup, prea naiv
+def repeta_nu(sir, n):
+    d = dict()
+    for i in range(n):
+        if sir[i] not in d.keys():
+            d[sir[i]] = 1
+        else:
+            return sir[i]
+
+
+# asta e ok
+# din suma lor scadem suma gauss
+# O(n) si O(1)
+def repeta(sir, n):
+    suma = n * (n - 1) / 2
+    suma_sir = 0
+    for i in range(n):
+        suma_sir += sir[i]
+
+    return int(suma_sir - suma)
+
+
+print(repeta([1, 2, 3, 4, 5, 6, 2, 7, 8], 9))
+
+assert repeta([1, 2, 3, 4, 5, 6, 2, 7, 8], 9) == 2

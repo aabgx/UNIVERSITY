@@ -1,0 +1,119 @@
+import copy
+import os 
+import numpy
+import networkx
+import matplotlib.pyplot as plot
+import warnings 
+
+from networkx.algorithms import community
+
+warnings.simplefilter('ignore')
+
+#BY HAND TEMA
+#reader pentru graf din fisiere
+def reader(file_name):
+     #aflu extensia fisierului
+    file_extension = file_name.split(".")[-1]
+
+    #decid cum citesc in functie de extensie
+    if file_extension == "txt":  # Pentru fisierele txt
+        graph = networkx.read_edgelist(file_name)
+    elif file_extension == 'gml':  # Extensia e gml
+        graph = networkx.read_gml(file_name, label='id')
+    else: #este csv
+        graph = networkx.Graph()
+        with open(file_name, "r") as file:
+            _ = file.readline()
+            while True:
+                line = file.readline()
+                if not line:
+                    break
+                elems = line.split(",")
+                i = elems[0]
+                j = elems[1]
+                graph.add_edge(i,j)
+    
+    return graph
+
+def plot_communities(graph, communities):
+        numpy.random.seed(123)  # to freeze the graph's view (networks uses a random view)
+
+        pos = networkx.spring_layout(graph)  # compute graph layout
+        plot.figure(figsize=(10,15))  # image is 8 x 8 inches
+        networkx.draw_networkx_nodes(graph,pos,node_size=20,cmap=plot.cm.RdYlBu,node_color=communities)
+        networkx.draw_networkx_edges(graph, pos, alpha=0.3)
+        plot.show()
+
+#ASTA NUJ DC NU MERGE
+#returneaza muchia (un tuplu) ce da cel mai mult la calculul ala (aka de sters)
+def edge_to_remove(g):
+      
+    dictionar = networkx.edge_betweenness_centrality(g)
+    list_of_tuples = list(dictionar.items())
+      
+    list_of_tuples.sort(key=lambda x:x[1], reverse=True)
+
+    return list_of_tuples[0][0] #returneaza un tuplu, (a,b)
+  
+
+#scoate muchii pana cand exista mai mult de o singura comunitate (sau cat ii spunem sa gaseasca)
+def girvan(G,nb_comm):
+    g=copy.deepcopy(G)
+    a = networkx.connected_components(g)
+    a=list(a)
+    lena = len(a)
+
+    while(lena < nb_comm):
+        g.remove_edge(*edge_to_remove(g)) #((a,b)) -> (a,b)
+
+        a = networkx.connected_components(g)
+        a=list(a)
+        lena = len(a)
+
+    communities_final = []
+    nodes = list(g.nodes)
+    index = 1
+    for community in a:
+        for node in community:
+            idx = nodes.index(node)
+            communities_final.insert(idx, index)
+        index += 1
+    return communities_final
+
+
+
+#BY TOOL EXAMPLE
+def greedyCommunitiesDetectionByTool(graph):
+        communities_generator = networkx.community.girvan_newman(graph)
+        _ = next(communities_generator)
+        next_level_communities = next(communities_generator)
+        communities = sorted(map(sorted, next_level_communities))
+        communities_final = []
+        nodes = list(graph.nodes)
+        index = 1
+        for community in communities:
+            for node in community:
+                idx = nodes.index(node)
+                communities_final.insert(idx, index)
+            index += 1
+        return communities_final
+
+
+
+def run():
+     #file_name="data/exemplu_simplu.txt"
+     file_name="data/dolphins/dolphins.gml"
+     #file_name="data/book1.csv"
+     #file_name="data/dolphins.gml"
+
+     #by hand
+     graph=reader(file_name)
+     comunitati=girvan(graph,2)
+     plot_communities(graph,comunitati)
+
+
+     #by tool
+     plot_communities(graph, greedyCommunitiesDetectionByTool(graph))
+
+
+run()

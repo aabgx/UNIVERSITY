@@ -1,0 +1,11 @@
+import math
+
+# O(?), daca e functie python probabil e cea mai eficienta varianta
+def dist_euc(p, q):
+    # sqrt(sum((px - qx) ** 2.0 for px, qx in zip(p, q)))
+    return math.dist(p, q)
+
+
+print(dist_euc([1, 5], [4, 1]))
+
+assert dist_euc([1, 5], [4, 1]) == 5.0

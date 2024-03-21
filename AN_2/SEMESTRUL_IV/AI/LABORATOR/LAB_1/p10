@@ -1,0 +1,45 @@
+# prea naiv, as putea face cautare binara pe linii
+def primul_nu(mtx):
+
+    m = len(mtx)
+    n = len(mtx[0])
+
+    for j in range(n):
+        for i in range(m):
+            if mtx[i][j] == 1:
+                return i + 1
+
+
+print(primul_nu([[0, 0, 0, 1, 1], [0, 1, 1, 1, 1], [0, 0, 1, 1, 1]]))
+
+
+# O(n+m)
+# parcurgere din dreapta sus in stanga daca e 1 si in jos altfel, maxim n+m elemente parcurse
+def primul(mtx):
+    maxim = 1
+
+    linii = len(mtx)
+    coloane = len(mtx[0])
+
+    i = 0
+    j = coloane - 1
+
+    while j > 0 and i < linii - 1:
+        stanga = mtx[i][j - 1]
+        jos = mtx[i + 1][j]
+
+        if stanga == 1:
+            j -= 1
+
+        else:
+            if jos == 1:
+                maxim = i + 2
+            i += 1
+
+    return maxim
+
+
+print(primul([[0, 1, 1, 1, 1], [0, 0, 0, 0, 1], [0, 1, 1, 1, 1], [0, 1, 1, 1, 1]]))
+
+assert primul([[0, 1, 1, 1, 1], [0, 0, 0, 0, 1], [0, 1, 1, 1, 1], [0, 1, 1, 1, 1]]) == 4
+assert primul([[0, 0, 0, 0, 1], [0, 0, 0, 0, 0], [1, 1, 1, 1, 1], [0, 0, 1, 1, 1]]) == 3
