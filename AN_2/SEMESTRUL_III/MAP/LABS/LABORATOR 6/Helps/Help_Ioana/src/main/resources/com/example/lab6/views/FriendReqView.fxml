@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane stylesheets="@../css/styleLogin.css" fx:controller="com.example.lab6.controller.FriendRequestController" xmlns:fx="http://javafx.com/fxml" styleClass="root">
+    <children>
+
+        <TableView fx:id="tableFriendReqView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="200.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="95.0" AnchorPane.topAnchor="0.0">
+            <columns>
+                <TableColumn fx:id="tableColumnNameReq" prefWidth="75.0" text="Nume" />
+                <TableColumn fx:id="tableColumnPasswordReq" prefWidth="75.0" text="Parola" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <Button fx:id="btnFriendReq" mnemonicParsing="false" onAction="#handleAcceptRequest" text="Accept friend request" AnchorPane.rightAnchor="0.0"/>
+    </children>
+</AnchorPane>

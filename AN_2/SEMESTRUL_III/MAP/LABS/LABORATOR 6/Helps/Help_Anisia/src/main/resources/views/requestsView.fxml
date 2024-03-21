@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetworkgui.controller.RequestsController">
+   <children>
+      <TableView fx:id="tableRequests" layoutX="74.0" layoutY="80.0" prefHeight="200.0" prefWidth="493.0">
+        <columns>
+          <TableColumn fx:id="fromFirstName" prefWidth="124.5" text="FirstNameFrom" />
+          <TableColumn fx:id="fromLastName" prefWidth="135.5" text="LastNameFrom" />
+            <TableColumn fx:id="sentAtColumn" prefWidth="108.5" text="SentAt" />
+            <TableColumn fx:id="statusColumn" prefWidth="123.5" text="Status" />
+        </columns>
+      </TableView>
+      <Button fx:id="acceptRequestBtn" layoutX="403.0" layoutY="304.0" mnemonicParsing="false" onAction="#acceptRequest" prefHeight="36.0" prefWidth="53.0" text="Accept" />
+      <Button fx:id="rejectRequestBtn" layoutX="496.0" layoutY="304.0" mnemonicParsing="false" onAction="#rejectRequest" prefHeight="36.0" prefWidth="56.0" text="Reject" />
+   </children>
+</AnchorPane>

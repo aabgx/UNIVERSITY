@@ -1,0 +1,9 @@
+﻿1;scoala1;1;nume1;
+2;scoala2;2;nume2;
+3;scoala3;3;nume3;
+4;scoala4;4;nume4;
+5;scoala5;4;nume5;
+6;scoala6;2;nume6;
+7;scoala7;3;nume7;
+8;scoala8;1;nume8;
+9;scoala8;2;nume8;

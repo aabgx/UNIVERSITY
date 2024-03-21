@@ -1,0 +1,5 @@
+﻿ech1,Boston Celtics
+ech2,LA Clippers
+ech3,Charlotte Hornets
+ech4,Chicago Bulls
+ech5,Huston Rockets

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="467.0" prefWidth="549.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetwork.controller.AddFriendController">
+    <children>
+        <TableView fx:id="usersTable" layoutY="38.0" prefHeight="238.0" prefWidth="570.0">
+            <columns>
+                <TableColumn fx:id="tableColFirstName" minWidth="0.0" prefWidth="285.0" text="First Name" />
+                <TableColumn fx:id="tableColLastName" minWidth="0.0" prefWidth="346.0" text="Last Name" />
+            </columns>
+        </TableView>
+      <VBox alignment="CENTER" layoutY="279.0" prefHeight="188.0" prefWidth="570.0" spacing="10.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="177.0" spacing="20.0">
+               <children>
+                  <Label text="First Name:" />
+                  <TextField fx:id="textFieldFirstName" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="65.0" prefHeight="56.0" prefWidth="177.0" spacing="20.0">
+               <children>
+                  <Label text="Last Name:" />
+                  <TextField fx:id="textFieldLastName" />
+               </children>
+            </HBox>
+                <Button mnemonicParsing="false" onAction="#handleAddFriend" text="Add Friend" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutY="-2.0" prefHeight="44.0" prefWidth="570.0">
+         <children>
+            <Label fx:id="labelCurrentUser" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="223.0" text="Current User">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+         </children></HBox>
+    </children>
+</AnchorPane>

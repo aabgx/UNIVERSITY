@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="273.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.AdaugaController">
+   <children>
+      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="emailColoana" prefWidth="193.0" text="EMAIL" />
+          <TableColumn fx:id="numeColoana" prefWidth="200.0" text="NUME" />
+            <TableColumn fx:id="prenumeColoana" prefWidth="206.0" text="PRENUME" />
+        </columns>
+      </TableView>
+      <Button fx:id="adaugaBtn" layoutX="274.0" layoutY="218.0" mnemonicParsing="false" onAction="#handleAdauga" text="ADAUGA" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,6 @@
+﻿ech1,New Orleans Pelicans
+ech2,Indiana Pacers
+ech3,Charlotte Hornets
+ech4,San Antonio Spurs
+ech5,Orlando Magic
+ech6,New York Knicks

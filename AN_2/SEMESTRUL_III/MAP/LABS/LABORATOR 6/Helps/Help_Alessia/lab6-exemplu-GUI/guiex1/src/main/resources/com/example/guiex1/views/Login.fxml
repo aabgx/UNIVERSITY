@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<GridPane fx:controller="com.example.guiex1.controller.LoginController" hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="287.0" prefWidth="388.0" vgap="20.0" xmlns:fx="http://javafx.com/fxml/1"
+          xmlns="http://javafx.com/javafx/17.0.2">
+    <columnConstraints>
+        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="295.5999755859375" minWidth="10.0"
+                           prefWidth="133.59998779296876"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="436.4000244140625" minWidth="10.0"
+                           prefWidth="317.20001220703125"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="127.20001983642578" minHeight="10.0" prefHeight="33.19998779296875"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="139.5999755859375" minHeight="10.0" prefHeight="24.000012207031247"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="174.39998626708984" minHeight="10.0" prefHeight="27.60000000000001"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="174.39998626708984" minHeight="10.0" prefHeight="30.800012207031244"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="123.60000610351562" minHeight="10.0" prefHeight="57.99998779296877"
+                        vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <children>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="User Login" wrappingWidth="74.13668775558472"/>
+        <Label prefHeight="17.0" prefWidth="143.0" text="User Name:" GridPane.rowIndex="1"/>
+        <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Label prefHeight="17.0" prefWidth="118.0" text="Password:" GridPane.rowIndex="2"/>
+        <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        <Button mnemonicParsing="false" text="LogIn" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
+                GridPane.rowIndex="3" onAction="#handleSubmitButtonAction"/>
+        <Text fx:id="textResponse"  GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+    </children>
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+    </padding>
+</GridPane>

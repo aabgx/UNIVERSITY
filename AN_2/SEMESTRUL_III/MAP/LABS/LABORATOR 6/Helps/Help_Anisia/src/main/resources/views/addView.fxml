@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetworkgui.controller.AddView">
+   <children>
+      <TableView fx:id="usersTable" layoutX="50.0" layoutY="38.0" prefHeight="289.0" prefWidth="500.0">
+        <columns>
+          <TableColumn fx:id="firstNameColumn" prefWidth="161.5" text="First Name" />
+          <TableColumn fx:id="lastNameColumn" prefWidth="181.0" text="Last Name" />
+            <TableColumn fx:id="emailColumn" prefWidth="156.5" text="Email" />
+        </columns>
+      </TableView>
+      <TextField fx:id="firstNameLbl" layoutX="312.0" layoutY="350.0" prefHeight="25.0" prefWidth="235.0" />
+      <TextField fx:id="secondNameLbl" layoutX="312.0" layoutY="387.0" prefHeight="25.0" prefWidth="235.0" />
+      <Label layoutX="230.0" layoutY="350.0" prefHeight="25.0" prefWidth="64.0" text="First Name:" />
+      <Label layoutX="230.0" layoutY="391.0" prefHeight="17.0" prefWidth="64.0" text="Last Name:" />
+      <Button fx:id="addBtn" layoutX="437.0" layoutY="432.0" mnemonicParsing="false" onAction="#addRequest" prefHeight="25.0" prefWidth="110.0" text="Send Request" />
+   </children>
+</AnchorPane>

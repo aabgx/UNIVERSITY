@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox maxWidth="-Infinity" prefHeight="500.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.myfacebook.controller.MessagesController">
+  <children>
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="421.0" style="-fx-background-color: #EAEAEA;" VBox.vgrow="ALWAYS">
+         <children>
+            <TextField fx:id="inputMessage" layoutX="24.0" layoutY="446.0" prefHeight="31.0" prefWidth="252.0" />
+            <Label fx:id="messagesToLabel" layoutX="14.0" layoutY="14.0" opacity="0.44" prefHeight="31.0" prefWidth="145.0" text="messagesTo" />
+            <Button fx:id="sendButton" layoutX="303.0" layoutY="446.0" mnemonicParsing="false" onAction="#handleSendMessage" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: #CF3E3E;" text="Send" textFill="#f8f4f4" />
+            <TableView fx:id="messageTable" layoutX="12.0" layoutY="52.0" prefHeight="377.0" prefWidth="403.0">
+              <columns>
+                <TableColumn id="messagesColumn" fx:id="messagesColumn" minWidth="0.0" prefWidth="401.99997933705646" text="messages" />
+              </columns>
+            </TableView>
+         </children>
+    </AnchorPane>
+      <TextFlow prefHeight="200.0" prefWidth="200.0" />
+      <AnchorPane id="messagesPanel" prefHeight="365.0" prefWidth="369.0" />
+  </children>
+</VBox>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="231.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetwork.controller.UserController">
+   <children>
+      <TableView fx:id="usersTable" prefHeight="230.0" prefWidth="429.0">
+        <columns>
+          <TableColumn fx:id="tableColFirstName" minWidth="0.0" prefWidth="214.0" text="First Name" />
+          <TableColumn fx:id="tableColLastName" minWidth="0.0" prefWidth="213.0" text="Last Name" />
+        </columns>
+      </TableView>
+      <HBox alignment="CENTER" layoutX="429.0" prefHeight="230.0" prefWidth="107.0" spacing="10.0">
+         <children>
+            <Button layoutX="217.0" layoutY="44.0" mnemonicParsing="false" onAction="#handleShowRequests" text="Select" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

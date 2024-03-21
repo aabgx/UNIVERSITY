@@ -1,0 +1,129 @@
+Complexity metrics,Mon, 28 Nov 2022 14:03:57 EET
+Method,CogC,ev(G),iv(G),v(G)
+Main.main(String[]),0,1,1,1
+UI.UI.UI(Service),0,1,1,1
+UI.UI.adaugaPrietenie(),1,1,2,2
+UI.UI.adaugaUtilizator(),1,1,2,2
+UI.UI.afisCeaMaiSociabilaComunitate(),0,1,1,1
+UI.UI.afisNrComunitati(),0,1,1,1
+UI.UI.citire(String),0,1,1,1
+UI.UI.printeazaMeniu(),0,1,1,1
+UI.UI.printeazaPrietenii(),1,1,2,2
+UI.UI.printeazaUtilizatori(),1,1,2,2
+UI.UI.start(),3,1,13,13
+UI.UI.stergePrietenie(),1,1,2,2
+UI.UI.stergeUtilizator(),1,1,2,2
+UI.UI.updatePrietenie(),1,1,2,2
+UI.UI.updateUtilizator(),1,1,2,2
+domain.Entitate.Entitate(ID),2,1,2,2
+domain.Entitate.equals(Object),3,3,2,4
+domain.Entitate.getId(),0,1,1,1
+domain.Entitate.hashCode(),0,1,1,1
+domain.Entitate.toString(),0,1,1,1
+"domain.Prietenie.Prietenie(String, String, String, LocalDateTime)",0,1,1,1
+domain.Prietenie.equals(Object),5,4,4,7
+domain.Prietenie.getData(),0,1,1,1
+domain.Prietenie.getIdPrieten1(),0,1,1,1
+domain.Prietenie.getIdPrieten2(),0,1,1,1
+domain.Prietenie.hashCode(),0,1,1,1
+domain.Prietenie.setData(LocalDateTime),0,1,1,1
+domain.Prietenie.toString(),0,1,1,1
+"domain.Utilizator.Utilizator(String, String, String, String, String)",0,1,1,1
+domain.Utilizator.equals(Object),5,4,5,8
+domain.Utilizator.getEmail(),0,1,1,1
+domain.Utilizator.getNume(),0,1,1,1
+domain.Utilizator.getParola(),0,1,1,1
+domain.Utilizator.getPrenume(),0,1,1,1
+domain.Utilizator.hashCode(),0,1,1,1
+domain.Utilizator.setEmail(String),0,1,1,1
+domain.Utilizator.setNume(String),0,1,1,1
+domain.Utilizator.setParola(String),0,1,1,1
+domain.Utilizator.setPrenume(String),0,1,1,1
+domain.Utilizator.toString(),0,1,1,1
+domain.validators.ValidationException.ValidationException(),0,1,1,1
+domain.validators.ValidationException.ValidationException(String),0,1,1,1
+"domain.validators.ValidationException.ValidationException(String, Throwable)",0,1,1,1
+"domain.validators.ValidationException.ValidationException(String, Throwable, boolean, boolean)",0,1,1,1
+domain.validators.ValidationException.ValidationException(Throwable),0,1,1,1
+domain.validators.ValidatorPrietenie.validate(Prietenie),3,4,1,4
+domain.validators.ValidatorUtilizator.validate(Utilizator),8,5,9,13
+repo.FileRepository.FileRepository(String),0,1,1,1
+repo.FileRepository.adauga(entityType),0,1,1,1
+repo.FileRepository.cautaId(String),3,3,2,3
+repo.FileRepository.getAll(),0,1,1,1
+repo.FileRepository.loadFromFile(),3,1,4,4
+repo.FileRepository.saveToFile(List<entityType>),2,1,3,3
+repo.FileRepository.sterge(entityType),0,1,1,1
+"repo.FileRepository.update(entityType, entityType)",0,1,1,1
+repo.PrietenieRepository.PrietenieRepository(String),0,1,1,1
+repo.PrietenieRepository.entityToLine(Prietenie),0,1,1,1
+repo.PrietenieRepository.lineToEntity(String),0,1,1,1
+repo.UtilizatorRepository.UtilizatorRepository(String),0,1,1,1
+repo.UtilizatorRepository.entityToLine(Utilizator),0,1,1,1
+repo.UtilizatorRepository.lineToEntity(String),0,1,1,1
+"repo.db.PrietenieDBRepository.PrietenieDBRepository(String, String, String)",0,1,1,1
+repo.db.PrietenieDBRepository.adauga(Prietenie),1,1,2,2
+repo.db.PrietenieDBRepository.cautaId(String),1,1,2,2
+repo.db.PrietenieDBRepository.getAll(),2,1,3,3
+repo.db.PrietenieDBRepository.sterge(Prietenie),1,1,2,2
+"repo.db.PrietenieDBRepository.update(Prietenie, Prietenie)",1,1,2,2
+"repo.db.UtilizatorDBRepository.UtilizatorDBRepository(String, String, String)",0,1,1,1
+repo.db.UtilizatorDBRepository.adauga(Utilizator),1,1,2,2
+repo.db.UtilizatorDBRepository.cautaId(String),1,1,2,2
+repo.db.UtilizatorDBRepository.getAll(),2,1,3,3
+repo.db.UtilizatorDBRepository.sterge(Utilizator),1,1,2,2
+"repo.db.UtilizatorDBRepository.update(Utilizator, Utilizator)",1,1,2,2
+"service.Service.DFS(int, boolean[])",9,1,6,6
+"service.Service.Service(Repository<String, Utilizator>, Repository<String, Prietenie>)",0,1,1,1
+"service.Service.adaugaPrietenie(String, String, LocalDateTime)",8,4,5,8
+"service.Service.adaugaUtilizator(String, String, String, String)",3,3,2,3
+service.Service.ceaMaiSociabilaComunitate(),11,1,5,8
+service.Service.getAllPrietenii(),0,1,1,1
+service.Service.getAllUtilizatori(),0,1,1,1
+service.Service.nrComunitati(),4,1,3,4
+service.Service.stergePrietenie(String),1,2,1,2
+service.Service.stergeUtilizator(String),1,2,1,2
+"service.Service.updatePrietenie(String, LocalDateTime)",1,2,1,2
+"service.Service.updateUtilizator(String, String, String, String, String)",1,2,1,2
+teste.TesteDomain.testPrietenie(),0,1,1,1
+teste.TesteDomain.testUtilizator(),0,1,1,1
+teste.TesteRepository.testAdaugaStergePrietenie(),0,1,1,1
+teste.TesteRepository.testAdaugaStergeUtilizator(),0,1,1,1
+teste.TesteValidatori.testValidatorPrietenie(),4,1,5,5
+teste.TesteValidatori.testValidatorUtilizator(),4,1,5,5
+
+Class,OCavg,OCmax,WMC
+Main,1.00,1,1
+UI.UI,1.21,2,17
+domain.Entitate,1.60,3,8
+domain.Prietenie,1.38,4,11
+domain.Utilizator,1.25,4,15
+domain.validators.ValidationException,1.00,1,5
+domain.validators.ValidatorPrietenie,4.00,4,4
+domain.validators.ValidatorUtilizator,5.00,5,5
+repo.FileRepository,1.50,3,12
+repo.PrietenieRepository,1.00,1,3
+repo.UtilizatorRepository,1.00,1,3
+repo.db.PrietenieDBRepository,1.17,2,7
+repo.db.UtilizatorDBRepository,1.17,2,7
+service.Service,2.83,8,34
+teste.TesteDomain,1.00,1,2
+teste.TesteRepository,1.00,1,2
+teste.TesteValidatori,1.00,1,2
+
+Package,v(G)avg,v(G)tot
+,1.00,1
+UI,2.43,34
+domain,1.68,42
+domain.validators,3.14,22
+repo,1.50,21
+repo.db,2.00,24
+service,3.33,40
+teste,2.33,14
+
+Module,v(G)avg,v(G)tot
+LAB_SAPTAMANA5,2.18,198
+
+Project,v(G)avg,v(G)tot
+project,2.18,198
+

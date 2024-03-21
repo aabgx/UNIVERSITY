@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetwork.controller.ChatController">
+   <children>
+      <HBox alignment="CENTER" layoutX="-1.0" layoutY="338.0" prefHeight="76.0" prefWidth="600.0" spacing="10.0">
+         <children>
+            <TextField fx:id="message" />
+            <Button mnemonicParsing="false" onAction="#sendMessage" text="Add message" />
+         </children>
+      </HBox>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="281.0" layoutY="22.0" prefHeight="24.0" prefWidth="50.0" text="Chat">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="58.0" layoutY="60.0" pannable="true" prefHeight="279.0" prefWidth="500.0" vvalue="1.0">
+         <content>
+            <VBox fx:id="VBox" prefHeight="264.0" prefWidth="483.0" spacing="10.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
