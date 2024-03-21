@@ -1,0 +1,10 @@
+1,Dan,Aalan,Onco,1
+2,Dan,Balan,Onco,1
+3,Dan,Calan,Onco,0
+4,Dan,Dalan,Onco,1
+5,Dan,Ealan,Onco,1
+6,Dan,Falan,Onco,0
+7,Dan,Galan,Onco,1
+8,Man,Halan,Onco,0
+9,Dan,Ialan,Oncologie,1
+10,Dan,Jalan,Onco,1

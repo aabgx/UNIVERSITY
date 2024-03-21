@@ -1,0 +1,12 @@
+2,titlu2,artist2,pop
+3,titlu3,artist3,rock
+4,titlu4,artist4,rock
+5,titlu5,artist5,rock
+6,titlu6,artist6,folk
+7,titlu7,artist7,folk
+8,titlu8,artist8,folk
+9,titlu9,artist9,folk
+10,titlu10,artist10,disco
+11,titlu11,artist1,pop
+12,titlu12,artist2,pop
+12,titlu13,artist13,pop

@@ -1,0 +1,7 @@
+tip1,model1,2000,rosu,3700
+tip3,model3,2010,albastru,2180
+tip2,model2,2007,negru,3400
+tip5,model5,2009,galben,7700
+tip4,model4,2020,albastru,2200
+tip7,model7,2001,rosu,2100
+tip6,model6,1999,negru,1200
