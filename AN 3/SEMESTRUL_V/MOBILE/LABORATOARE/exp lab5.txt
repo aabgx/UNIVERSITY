@@ -1,0 +1,9 @@
+compose: pentru ca totul e compuneri de functii
+state: 
+	-e similar cu react
+	-controlled components: unele is in stare sa faca render dar ca sa aiba comportament trebe sa 			scriem cod
+
+
+Dao: data access object - folosit ca baza de date locala
+local save:
+	-in todo -> ui -> item -> ItemViewModel

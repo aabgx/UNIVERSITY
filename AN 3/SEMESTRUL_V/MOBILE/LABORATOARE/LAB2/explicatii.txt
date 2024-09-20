@@ -1,0 +1,23 @@
+**App.tsx
+	-daca incerc sa intru pe altceva decat login ma redirect la login din cauza privateRoute
+
+**AuthProvider:
+	-avem useEffect de fiecare data cand se incarca pagina sa vedem daca tokenul a fost deja salvat sau il cautam in preferinte daca nu -> il salvam daca il gasim
+	-logout e aici pt ca avem nevoie de acces la token, sa il modificam/stergem
+
+**authApi:
+	-apeleaza functia de pe backend (de login) cu parametrii username si parola
+
+**ItemProvider:
+	-la save_item_succeded: splice cand e nou nout creat sa il adauge si in lista noastra
+	-saveItemCallBack: aici se intampla salvarea offline
+
+
+???anisia ii merge sa dea add apoi edit offline?
+???de de am token la executePendingOperation in ItemProvider?
+-dau dispatch ca sa salveze pe front efectiv modificarile (alea cu litere mari)
+-imi trebuie wrapper pt ca nu pot da o functie async la useEffect
+
+-useEffect merge both ways, pe mn ma intereseaza doar cand trece din offline in online de aia am if in ItemProvider la executePendingOperations
+
+-in movieComponent ma ajuta aia cu IsNotSave
